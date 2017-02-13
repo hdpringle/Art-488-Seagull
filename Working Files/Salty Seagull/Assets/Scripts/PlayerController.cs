@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed;
-	public Text scoreText;
-	public Text winText;
+	public float moveSpeed, rotationLR = 2.0f, rotationUD = 2.0f;
+	private float yaw = 0.0f, pitch = 0.0f;
+	public Text scoreText, winText;
 
 	private Rigidbody rb;
 	private int count;
@@ -22,12 +22,16 @@ public class PlayerController : MonoBehaviour {
 	// Called for physics
 	void FixedUpdate()
 	{
-		float moveHorizontal = Input.GetAxis("Horizontal");
+		//float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
-		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+		yaw += rotationLR * Input.GetAxis("Horizontal");
+		pitch -= rotationUD * Input.GetAxis("Mouse Y");
 
-		rb.AddForce(movement * speed);
+		Vector3 movement = new Vector3 (0.0f, 0.0f, moveVertical);
+
+		rb.AddRelativeForce (movement * moveSpeed);
+		transform.eulerAngles = new Vector3 (pitch, yaw, 0);
 	}
 
 	void OnTriggerEnter(Collider other)
