@@ -48,6 +48,13 @@ public class PlayerController : MonoBehaviour {
 			Mathf.Clamp(rb.position.y, sea.position.y, boundary.yMax),
 			Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
 		);
+
+		rb.rotation.eulerAngles = new Vector3
+			(
+				0,
+				Mathf.Clamp (rb.rotation.y, -30f, 90f),
+				0
+			);
 	}
 
 	void OnTriggerEnter(Collider other)
