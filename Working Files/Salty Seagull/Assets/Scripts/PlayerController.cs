@@ -9,17 +9,25 @@ public class Boundary
 	public float xMin, xMax, yMax, zMin, zMax;
 }
 
+[System.Serializable]
+public class SeagullLimits
+{
+	public float upAngle, downAngle, moveSpeed, rotationLR, rotationUD, maxSpeed;
+}
+
 public class PlayerController : MonoBehaviour {
 
-	public float moveSpeed = 10.0f, rotationLR = 2.0f, rotationUD = 2.0f;
-	public Text scoreText, winText;
+	public Text scoreText, winText, warnText, timer;
+	public int requiredScore = 10;
 
 	public Boundary boundary;
+	public SeagullLimits limits;
 	public Transform sea;
 
 	private Rigidbody rb;
 	private int count;
 	private float yaw = 0.0f, pitch = 0.0f;
+	private bool holding = false;
 
 	void Start () {
 		rb = GetComponent<Rigidbody>();
@@ -34,13 +42,16 @@ public class PlayerController : MonoBehaviour {
 		//float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
-		yaw += rotationLR * Input.GetAxis("Horizontal");
-		pitch -= rotationUD * Input.GetAxis("Jump") - rotationUD * Input.GetAxis("Fire2");
+		yaw += limits.rotationLR * Input.GetAxis("Horizontal");
+		pitch -= limits.rotationUD * Input.GetAxis("Jump") - limits.rotationUD * Input.GetAxis("Fire2");
+
+		pitch = Mathf.Clamp (pitch, -limits.upAngle, limits.downAngle);
 
 		Vector3 movement = new Vector3 (0.0f, 0.0f, moveVertical);
 
-		rb.AddRelativeForce (movement * moveSpeed);
-		transform.eulerAngles = new Vector3 (pitch, yaw, 0);
+		rb.AddRelativeForce (movement * limits.moveSpeed);
+
+		rb.MoveRotation ( Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
 
 		rb.position = new Vector3
 		(
@@ -49,19 +60,25 @@ public class PlayerController : MonoBehaviour {
 			Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
 		);
 
-		rb.rotation.eulerAngles = new Vector3
-			(
-				0,
-				Mathf.Clamp (rb.rotation.y, -30f, 90f),
-				0
-			);
+		// rb.rotation = Quaternion.Euler(0, Mathf.Clamp (rb.rotation.y, -30f, 90f), 0);
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("pickup"))
 		{
-			other.gameObject.SetActive(false);
+			if (holding)
+			{
+				// Display warning message
+			} else
+			{
+				other.gameObject.SetActive(false);
+				holding = true;
+			}
+		}
+		else if (other.gameObject.CompareTag("nest"))
+		{
+			holding = false;
 			count++;
 			updateScore ();
 		}
@@ -70,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 	void updateScore()
 	{
 		scoreText.text = "Score: " + count.ToString ();
-		if (count >= 12)
+		if (count >= requiredScore)
 		{
 			winText.text = "YOU WIN!!";
 		}
