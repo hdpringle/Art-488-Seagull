@@ -12,7 +12,7 @@ public class Boundary
 [System.Serializable]
 public class SeagullLimits
 {
-	public float upAngle, downAngle, moveSpeed, rotationLR, rotationUD, maxSpeed;
+	public float upAngle, downAngle, moveSpeed, rotationLR, rotationUD, maxSpeed, tilt;
 }
 
 public class PlayerController : MonoBehaviour {
@@ -41,9 +41,12 @@ public class PlayerController : MonoBehaviour {
 	{
 		//float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
+		float turnUp = Input.GetAxis ("Jump");
+		float turnDown = Input.GetAxis ("Fire2");
+		float turnLR = Input.GetAxis ("Horizontal");
 
-		yaw += limits.rotationLR * Input.GetAxis("Horizontal");
-		pitch -= limits.rotationUD * Input.GetAxis("Jump") - limits.rotationUD * Input.GetAxis("Fire2");
+		yaw += limits.rotationLR * turnLR;
+		pitch -= limits.rotationUD * (turnUp - turnDown);
 
 		pitch = Mathf.Clamp (pitch, -limits.upAngle, limits.downAngle);
 
