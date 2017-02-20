@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour {
 		case Steering.MOUSE:
 			turnUD = Input.GetAxis ("Mouse Y");
 			turnLR = Input.GetAxis ("Mouse X");
+			limits.tilt = 0;
 			break;
 		case Steering.JOYSTICK:
 			turnUD = -Input.GetAxis ("Mouse Y");
