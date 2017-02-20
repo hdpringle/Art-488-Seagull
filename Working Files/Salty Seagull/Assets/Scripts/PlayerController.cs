@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour {
 		pitch = Mathf.Clamp (pitch, -limits.upAngle, limits.downAngle);
 
 		Vector3 movement = -transform.InverseTransformDirection (rb.velocity) * limits.antiDrift;
-		if (moveVertical > 0)
+		if (moveVertical > 0 || (moveVertical < 0 && movement.z < 0))
 		{
 			movement.z = moveVertical * limits.accelSpeed;
 		}
