@@ -12,7 +12,13 @@ public class Boundary
 [System.Serializable]
 public class SeagullLimits
 {
-	public float upAngle, downAngle, accelSpeed, decelSpeed, rotationLR, rotationUD, maxSpeed, tilt;
+	public float upAngle, downAngle, accelSpeed, glideDecel, antiDrift, rotationLR, rotationUD, maxSpeed, tilt;
+}
+
+[System.Serializable]
+public enum Steering
+{
+	KEYS, MOUSE, JOYSTICK
 }
 
 public class PlayerController : MonoBehaviour {
@@ -22,17 +28,23 @@ public class PlayerController : MonoBehaviour {
 
 	public Boundary boundary;
 	public SeagullLimits limits;
+	public Steering steering;
+
 	public Transform sea;
 
 	private Rigidbody rb;
 	private int count;
-	private float yaw = 0.0f, pitch = 0.0f;
+	private float yaw, pitch;
 	private bool holding = false;
+
+	private float moveVertical, turnUD, turnLR;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
 		count = 0;
+		yaw = transform.rotation.eulerAngles.y;
+		pitch = transform.rotation.eulerAngles.x;
 		updateScore ();
 		winText.text = "";
 		rb.freezeRotation = true;
@@ -41,25 +53,44 @@ public class PlayerController : MonoBehaviour {
 	// Called for physics
 	void FixedUpdate()
 	{
-		//float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
-		float turnUp = Input.GetAxis ("Fire3");
-		float turnDown = Input.GetAxis ("Fire2");
-		float turnLR = Input.GetAxis ("Horizontal");
+		moveVertical = Input.GetAxis("Vertical");
+
+		switch (steering)
+		{
+		case Steering.KEYS:
+			turnUD = (Input.GetAxis ("Fire3") - Input.GetAxis ("Fire2"));
+			turnLR = Input.GetAxis ("Horizontal");
+			break;
+		case Steering.MOUSE:
+			turnUD = Input.GetAxis ("Mouse Y");
+			turnLR = Input.GetAxis ("Mouse X");
+			break;
+		case Steering.JOYSTICK:
+			turnUD = -Input.GetAxis ("Mouse Y");
+			turnLR = Input.GetAxis ("Mouse X");
+			break;
+		}
 
 		yaw += limits.rotationLR * turnLR;
-		pitch -= limits.rotationUD * (turnUp - turnDown);
+		pitch -= limits.rotationUD * turnUD;
 
 		pitch = Mathf.Clamp (pitch, -limits.upAngle, limits.downAngle);
 
-		Vector3 movement = -transform.InverseTransformDirection (rb.velocity) * limits.decelSpeed;
-		movement.z = moveVertical * limits.accelSpeed;
+		Vector3 movement = -transform.InverseTransformDirection (rb.velocity) * limits.antiDrift;
+		if (moveVertical > 0)
+		{
+			movement.z = moveVertical * limits.accelSpeed;
+		}
+		else
+		{
+			movement.z = movement.z / limits.antiDrift * limits.glideDecel;
+		}
 
 		rb.AddRelativeForce (movement);
-		print (rb.GetRelativePointVelocity (rb.position));
 
-		//rb.MoveRotation (rb.rotation * Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
+		// rb.MoveRotation (rb.rotation * Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
 		rb.rotation = Quaternion.Euler (pitch, yaw, turnLR * -limits.tilt);
+		// rb.rotation = Quaternion.Euler (pitch, yaw, 0);
 
 		rb.position = new Vector3
 		(
@@ -98,10 +129,5 @@ public class PlayerController : MonoBehaviour {
 		{
 			winText.text = "YOU WIN!!";
 		}
-	}
-
-	float DragForce()
-	{
-		return 0;
 	}
 }
