@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 
 	private float moveVertical, turnUD, turnLR;
 
+    Transform heldObject;
+
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -99,6 +101,12 @@ public class PlayerController : MonoBehaviour {
 			Mathf.Clamp(rb.position.y, sea.position.y, boundary.yMax),
 			Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
 		);
+
+        //move the held object with you
+        if(holding)
+        {
+            heldObject.position = transform.FindChild("MountPoint").transform.position;
+        }
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -111,7 +119,8 @@ public class PlayerController : MonoBehaviour {
 			}
 			else
 			{
-				other.gameObject.SetActive(false);
+                //other.gameObject.SetActive(false);
+                heldObject = other.transform;
 				holding = true;
 			}
 		}

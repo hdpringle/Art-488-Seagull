@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
 [System.Serializable]
 public class Boundary
 {
@@ -20,8 +20,8 @@ public enum Steering
 {
 	KEYS, MOUSE, JOYSTICK
 }
-
-public class PlayerController : MonoBehaviour {
+*/
+public class PrototypePlayerController : MonoBehaviour {
 
 	public Text scoreText, winText, warnText, timer;
 	public int requiredScore = 10;
