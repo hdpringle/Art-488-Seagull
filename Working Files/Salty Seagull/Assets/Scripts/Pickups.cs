@@ -6,7 +6,7 @@ public class Pickups : MonoBehaviour
 {
 
     //might use in the future?
-    public int pointVal;
+    public int pointVal = 1;
     public float spawnTime;
 
 	//I set up a bool here so gravity only effects objects when they are in the air.
@@ -41,7 +41,7 @@ public class Pickups : MonoBehaviour
 		if (other.CompareTag("nest"))
 		{
 			GameObject.Find(playerName).GetComponent<PlayerController>().holding = false;
-			GameObject.Find(playerName).GetComponent<PlayerController>().count++;
+			GameObject.Find(playerName).GetComponent<PlayerController>().count+= pointVal;
 			GameObject.Find(playerName).GetComponent<PlayerController>().updateScore();
 		}
 	}
