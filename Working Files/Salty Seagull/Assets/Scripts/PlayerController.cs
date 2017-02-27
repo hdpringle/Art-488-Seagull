@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
     public Transform sea;
 
     private Rigidbody rb;
-    private int count;
+    public int count;
     private float yaw, pitch;
-    private bool holding = false;
+    public bool holding = false;
     private float moveVertical, turnUD, turnLR;
 
     Transform heldObject;
@@ -62,19 +62,32 @@ public class PlayerController : MonoBehaviour
             case Steering.KEYS:
                 turnUD = (Input.GetAxis("Fire3") - Input.GetAxis("Fire2"));
                 turnLR = Input.GetAxis("Horizontal");
-                break;
+				if (Input.GetKeyDown(KeyCode.Space) && holding)
+				{
+					holding = false;
+					heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+				}
+				break;
+
             case Steering.MOUSE:
                 turnUD = Input.GetAxis("Mouse Y");
                 turnLR = Input.GetAxis("Mouse X");
                 limits.tilt = 0;
-                break;
+				if (Input.GetKeyDown(KeyCode.Space) && holding)
+				{
+					holding = false;
+					heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+				}
+				break;
+
             case Steering.JOYSTICK:
                 turnUD = -Input.GetAxis("Mouse Y");
                 turnLR = Input.GetAxis("Mouse X");
                 //press bumper to drop the object
-                if (Input.GetKeyDown(("joystick 1 button " + 5.ToString())))
+                if (Input.GetKeyDown(("joystick 1 button " + 5.ToString())) && holding)
                 {
                     holding = false;
+                    heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
                 }
                 break;
         }
@@ -140,7 +153,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void updateScore()
+    public void updateScore()
     {
         scoreText.text = "Score: " + count.ToString();
         if (count >= requiredScore)
