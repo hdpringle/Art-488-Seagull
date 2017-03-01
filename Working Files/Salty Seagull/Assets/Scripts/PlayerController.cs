@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography.X509Certificates;
 
 [System.Serializable]
 public class Boundary
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public Steering steering;
 
     public Transform sea;
+	public GameController gameController;
 
     private Rigidbody rb;
     public int count;
@@ -55,6 +58,11 @@ public class PlayerController : MonoBehaviour
     // Called for physics
     void FixedUpdate()
     {
+		if (!gameController.Running ())
+		{
+			return;
+		}
+
         moveVertical = Input.GetAxis("Vertical");
 
         switch (steering)
