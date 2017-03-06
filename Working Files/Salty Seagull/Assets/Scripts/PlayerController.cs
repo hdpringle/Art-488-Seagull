@@ -107,8 +107,15 @@ public class PlayerController : MonoBehaviour
         //move the held object with you
         if(holding)
         {
-            heldObject.position = transform.FindChild("MountPoint").transform.position;
-        }
+			/*8
+			//should set the held objects mount point's position equal to the seagull's mount point position
+            heldObject.FindChild("MountPoint").transform.position = transform.FindChild("MountPoint").transform.position;
+
+			//should update the object to move with it's mount point
+			heldObject.position = heldObject.Find("MountPoint").transform.position - heldObject.GetComponent<Pickups>().offset;
+			*/
+			heldObject.position = transform.FindChild("MountPoint").transform.position - (heldObject.FindChild("MountPoint").transform.position - heldObject.position);
+		}
 
 
     }
@@ -131,7 +138,7 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("nest"))
         {
             holding = false;
-            count++;
+            //count++;
             updateScore();
         }
     }

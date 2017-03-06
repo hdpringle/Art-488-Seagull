@@ -13,10 +13,12 @@ public class Pickups : MonoBehaviour
     public bool gravityActive;
 	public float gravityStrength = 0.075f;
 	public int heldByPlayer = 0;
+	public Vector3 offset;
     // Use this for initialization
     void Start()
     {
         gravityActive = false;
+		offset = transform.FindChild("MountPoint").transform.position;
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Pickups : MonoBehaviour
 			transform.Translate(Vector3.down* gravityStrength , Space.World);
 		}
     }
+
 	//we dont need gravity once an object has hit a surface
     private void OnTriggerEnter(Collider other)
     {
@@ -38,8 +41,10 @@ public class Pickups : MonoBehaviour
 		}
 
 		gravityActive = false;
+
 		if (other.CompareTag("nest"))
 		{
+			gravityActive = true;
 			GameObject.Find(playerName).GetComponent<PlayerController>().holding = false;
 			GameObject.Find(playerName).GetComponent<PlayerController>().count++;
 			GameObject.Find(playerName).GetComponent<PlayerController>().updateScore();
