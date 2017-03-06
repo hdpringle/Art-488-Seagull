@@ -10,11 +10,13 @@ public class GameController : MonoBehaviour {
 
 	private float currentTime;
 	private int minutes, seconds;
+	private bool paused;
 
 	// Use this for initialization
 	void Start ()
 	{
 		currentTime = timeLimitSeconds;
+		paused = false;
 	}
 	
 	// Update is called once per frame
@@ -31,11 +33,32 @@ public class GameController : MonoBehaviour {
 
 	public void Restart()
 	{
-		
+		// Move along, nothing to see here
 	}
 
-	public bool Running()
+	public bool GameEnded()
 	{
-		return currentTime > 0;
+		return currentTime <= 0;
+	}
+
+	public bool GameStarted()
+	{
+		return true;
+	}
+
+	public bool isPaused()
+	{
+		return paused;
+	}
+
+	public void Pause(bool state)
+	{
+		paused = state;
+		ShowMenu (state);
+	}
+
+	public void ShowMenu(bool state)
+	{
+		
 	}
 }

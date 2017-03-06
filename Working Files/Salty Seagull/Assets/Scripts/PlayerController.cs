@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography.X509Certificates;
+using System;
 
 [System.Serializable]
 public class Boundary
@@ -31,7 +32,6 @@ public class PlayerController : MonoBehaviour
 
     public Boundary boundary;
     public SeagullLimits limits;
-    public Steering steering;
 
     public Transform sea;
 	public GameController gameController;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public int count;
     private float yaw, pitch;
-    public bool holding = false;
+    public bool holding;
     private float moveVertical, turnUD, turnLR;
 
     Transform heldObject;
@@ -53,52 +53,27 @@ public class PlayerController : MonoBehaviour
         updateScore();
         winText.text = "";
         rb.freezeRotation = true;
+		holding = false;
     }
 
     // Called for physics
     void FixedUpdate()
     {
-		if (!gameController.Running ())
+		if (!gameController.GameStarted () || gameController.GameEnded () || gameController.isPaused ())
 		{
 			return;
 		}
 
         moveVertical = Input.GetAxis("Vertical");
 
-        switch (steering)
-        {
-            case Steering.KEYS:
-                turnUD = (Input.GetAxis("Fire3") - Input.GetAxis("Fire2"));
-                turnLR = Input.GetAxis("Horizontal");
-				if (Input.GetKeyDown(KeyCode.Space) && holding)
-				{
-					holding = false;
-					heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-				}
-				break;
+		if ((Input.GetKeyDown(("joystick 1 button " + 5.ToString()))) || Input.GetKeyDown(KeyCode.Space) && holding)
+		{
+			holding = false;
+			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+		}
 
-            case Steering.MOUSE:
-                turnUD = Input.GetAxis("Mouse Y");
-                turnLR = Input.GetAxis("Mouse X");
-                limits.tilt = 0;
-				if (Input.GetKeyDown(KeyCode.Space) && holding)
-				{
-					holding = false;
-					heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-				}
-				break;
-
-            case Steering.JOYSTICK:
-                turnUD = -Input.GetAxis("Mouse Y");
-                turnLR = Input.GetAxis("Mouse X");
-                //press bumper to drop the object
-                if (Input.GetKeyDown(("joystick 1 button " + 5.ToString())) && holding)
-                {
-                    holding = false;
-                    heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-                }
-                break;
-        }
+		turnUD = FABS ((Input.GetAxis ("Fire3") - Input.GetAxis ("Fire2")), Input.GetAxis ("Mouse Y"));
+		turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
 
         yaw += limits.rotationLR * turnLR;
         pitch -= limits.rotationUD * turnUD;
@@ -169,4 +144,17 @@ public class PlayerController : MonoBehaviour
             winText.text = "YOU WIN!!";
         }
     }
+
+	/**
+	 * Max absolute value function for floats
+	 */
+	public float FABS (float a, float b)
+	{
+		float asq = Mathf.Pow (a, 2);
+		float bsq = Mathf.Pow (b, 2);
+
+		if (asq > bsq)
+			return a;
+		return b;
+	}
 }
