@@ -24,6 +24,11 @@ public enum Steering
 	KEYS, MOUSE, JOYSTICK
 }
 
+public class InputValues
+{
+	public float moveVertical, turnUD, turnLR;
+}
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public int count;
     private float yaw, pitch;
     public bool holding;
-    private float moveVertical, turnUD, turnLR;
+	private InputValues input;
 
     Transform heldObject;
 
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 
-        moveVertical = Input.GetAxis("Vertical");
+		input.moveVertical = Input.GetAxis("Vertical");
 
 		if ((Input.GetKeyDown(("joystick 1 button " + 5.ToString()))) || Input.GetKeyDown(KeyCode.Space) && holding)
 		{
@@ -72,18 +77,18 @@ public class PlayerController : MonoBehaviour
 			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
 		}
 
-		turnUD = FABS ((Input.GetAxis ("Fire3") - Input.GetAxis ("Fire2")), Input.GetAxis ("Mouse Y"));
-		turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
+		input.turnUD = FABS ((Input.GetAxis ("Fire3") - Input.GetAxis ("Fire2")), Input.GetAxis ("Mouse Y"));
+		input.turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
 
-        yaw += limits.rotationLR * turnLR;
-        pitch -= limits.rotationUD * turnUD;
+		yaw += limits.rotationLR * input.turnLR;
+		pitch -= limits.rotationUD * input.turnUD;
 
         pitch = Mathf.Clamp(pitch, -limits.upAngle, limits.downAngle);
 
         Vector3 movement = -transform.InverseTransformDirection(rb.velocity) * limits.antiDrift;
-        if (moveVertical > 0 || (moveVertical < 0 && movement.z < 0))
+		if (input.moveVertical > 0 || (input.moveVertical < 0 && movement.z < 0))
         {
-            movement.z = moveVertical * limits.accelSpeed;
+			movement.z = input.moveVertical * limits.accelSpeed;
         }
         else
         {
@@ -93,7 +98,7 @@ public class PlayerController : MonoBehaviour
         rb.AddRelativeForce(movement);
 
         // rb.MoveRotation (rb.rotation * Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
-        rb.rotation = Quaternion.Euler(pitch, yaw, turnLR * -limits.tilt);
+		rb.rotation = Quaternion.Euler(pitch, yaw, input.turnLR * -limits.tilt);
         // rb.rotation = Quaternion.Euler (pitch, yaw, 0);
 
         rb.position = new Vector3
