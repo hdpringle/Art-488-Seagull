@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3c69a237df8eb48f4a4462c4c545cd53
 timeCreated: 1489009525
 licenseType: Free
+=======
+guid: df94db9a0f4f1fb419d5dc8538b6b8c7
+timeCreated: 1488915364
+licenseType: Pro
+>>>>>>> origin/master
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -46,11 +52,14 @@ ModelImporter:
     100076: transform2
     100078: transform3
     100080: transform4
+<<<<<<< HEAD
     100082: lighthouse
     100084: Sand
     100086: stalag1
     100088: stalag2
     100090: stalag3
+=======
+>>>>>>> origin/master
     400000: cliffs
     400002: directionalLight1
     400004: imagePlane1
@@ -92,11 +101,14 @@ ModelImporter:
     400076: transform2
     400078: transform3
     400080: transform4
+<<<<<<< HEAD
     400082: lighthouse
     400084: Sand
     400086: stalag1
     400088: stalag2
     400090: stalag3
+=======
+>>>>>>> origin/master
     2300000: cliffs
     2300002: pCube1
     2300004: pCube2
@@ -119,11 +131,14 @@ ModelImporter:
     2300038: SeagullStage_v4:pCube8
     2300040: SeagullStage_v4:pCube9
     2300042: SeagullStage_v4:pCylinder1
+<<<<<<< HEAD
     2300044: lighthouse
     2300046: Sand
     2300048: stalag1
     2300050: stalag2
     2300052: stalag3
+=======
+>>>>>>> origin/master
     3300000: cliffs
     3300002: pCube1
     3300004: pCube2
@@ -146,11 +161,14 @@ ModelImporter:
     3300038: SeagullStage_v4:pCube8
     3300040: SeagullStage_v4:pCube9
     3300042: SeagullStage_v4:pCylinder1
+<<<<<<< HEAD
     3300044: lighthouse
     3300046: Sand
     3300048: stalag1
     3300050: stalag2
     3300052: stalag3
+=======
+>>>>>>> origin/master
     4300000: sand
     4300002: pCube1
     4300004: pCube2
@@ -173,11 +191,14 @@ ModelImporter:
     4300038: SeagullStage_v4:pCube15
     4300040: pPlane3
     4300042: cliffs
+<<<<<<< HEAD
     4300044: stalag1
     4300046: stalag2
     4300048: stalag3
     4300050: lighthouse
     4300052: Sand
+=======
+>>>>>>> origin/master
     9500000: //RootNode
   materials:
     importMaterials: 1

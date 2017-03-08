@@ -6,22 +6,9 @@ using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography.X509Certificates;
 using System;
 
-[System.Serializable]
-public class Boundary
+public class InputValues
 {
-	public float xMin, xMax, yMax, zMin, zMax;
-}
-
-[System.Serializable]
-public class SeagullLimits
-{
-	public float upAngle, downAngle, accelSpeed, glideDecel, antiDrift, rotationLR, rotationUD, maxSpeed, tilt;
-}
-
-[System.Serializable]
-public enum Steering
-{
-	KEYS, MOUSE, JOYSTICK
+	public float moveForward, turnUD, turnLR, drop;
 }
 
 public class PlayerController : MonoBehaviour
@@ -29,19 +16,14 @@ public class PlayerController : MonoBehaviour
 
     public Text scoreText, winText, warnText, timer;
     public int requiredScore = 10;
-
-    public Boundary boundary;
-    public SeagullLimits limits;
-
-    public Transform sea;
-	public GameController gameController;
+	public GameController game;
 
     private Rigidbody rb;
     public int count;
     private float yaw, pitch;
     public bool holding;
-    private float moveVertical, turnUD, turnLR;
-
+	protected InputValues input;
+	public int playerNumber;
     Transform heldObject;
 
     void Start()
@@ -54,60 +36,65 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         rb.freezeRotation = true;
 		holding = false;
+		input = new InputValues ();
     }
 
     // Called for physics
     void FixedUpdate()
     {
-		if (!gameController.GameStarted () || gameController.GameEnded () || gameController.isPaused ())
+		if (!game.GameStarted () || game.GameEnded () || game.isPaused ())
 		{
 			return;
 		}
 
-        moveVertical = Input.GetAxis("Vertical");
+		GetControls ();
 
-		if ((Input.GetKeyDown(("joystick 1 button " + 5.ToString()))) || Input.GetKeyDown(KeyCode.Space) && holding)
+		DoMotion ();
+    }
+
+	protected virtual void GetControls()
+	{
+		input.moveForward = Input.GetAxis("Forward");
+		input.turnUD = FABS (Input.GetAxis ("Vertical"), Input.GetAxis ("Mouse Y"));
+		input.turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
+		input.drop = Input.GetAxis ("Drop");
+	}
+
+	protected void DoMotion()
+	{
+		yaw += game.seagullLimits.rotationLR * input.turnLR;
+		pitch -= game.seagullLimits.rotationUD * input.turnUD;
+
+		pitch = Mathf.Clamp(pitch, -game.seagullLimits.upAngle, game.seagullLimits.downAngle);
+
+		Vector3 movement = -transform.InverseTransformDirection(rb.velocity) * game.seagullLimits.antiDrift;
+		if (input.moveForward > 0 || (input.moveForward < 0 && movement.z < 0))
 		{
-			holding = false;
-			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+			movement.z = input.moveForward * game.seagullLimits.accelSpeed;
+		}
+		else
+		{
+			movement.z = movement.z / game.seagullLimits.antiDrift * game.seagullLimits.glideDecel;
 		}
 
-		turnUD = FABS ((Input.GetAxis ("Fire3") - Input.GetAxis ("Fire2")), Input.GetAxis ("Mouse Y"));
-		turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
+		rb.AddRelativeForce(movement);
 
-        yaw += limits.rotationLR * turnLR;
-        pitch -= limits.rotationUD * turnUD;
+		// rb.MoveRotation (rb.rotation * Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
+		rb.rotation = Quaternion.Euler(pitch, yaw, input.turnLR * -game.seagullLimits.tilt);
+		// rb.rotation = Quaternion.Euler (pitch, yaw, 0);
 
-        pitch = Mathf.Clamp(pitch, -limits.upAngle, limits.downAngle);
-
-        Vector3 movement = -transform.InverseTransformDirection(rb.velocity) * limits.antiDrift;
-        if (moveVertical > 0 || (moveVertical < 0 && movement.z < 0))
-        {
-            movement.z = moveVertical * limits.accelSpeed;
-        }
-        else
-        {
-            movement.z = movement.z / limits.antiDrift * limits.glideDecel;
-        }
-
-        rb.AddRelativeForce(movement);
-
-        // rb.MoveRotation (rb.rotation * Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
-        rb.rotation = Quaternion.Euler(pitch, yaw, turnLR * -limits.tilt);
-        // rb.rotation = Quaternion.Euler (pitch, yaw, 0);
-
-        rb.position = new Vector3
-        (
-            Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax),
-            Mathf.Clamp(rb.position.y, sea.position.y, boundary.yMax),
-            Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
-        );
+		rb.position = new Vector3
+			(
+				Mathf.Clamp(rb.position.x, game.boundary.xMin, game.boundary.xMax),
+				Mathf.Clamp(rb.position.y, game.sea.position.y, game.boundary.yMax),
+				Mathf.Clamp(rb.position.z, game.boundary.zMin, game.boundary.zMax)
+			);
 
 
-        //move the held object with you
-        if(holding)
-        {
-			/*8
+		//move the held object with you
+		if(holding)
+		{
+			/*
 			//should set the held objects mount point's position equal to the seagull's mount point position
             heldObject.FindChild("MountPoint").transform.position = transform.FindChild("MountPoint").transform.position;
 
@@ -117,8 +104,12 @@ public class PlayerController : MonoBehaviour
 			heldObject.position = transform.FindChild("MountPoint").transform.position - (heldObject.FindChild("MountPoint").transform.position - heldObject.position);
 		}
 
-
-    }
+		if (input.drop > 0 && holding)
+		{
+			holding = false;
+			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+		}
+	}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -132,6 +123,7 @@ public class PlayerController : MonoBehaviour
             {
                 //other.gameObject.SetActive(false);
                 heldObject = other.transform;
+				heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;
                 holding = true;
             }
         }
