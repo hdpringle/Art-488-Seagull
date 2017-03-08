@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour
 {
 
 	public float timeLimitSeconds, warmupTime;
-	public Text timer;
 	public Transform sea;
 	public Boundary boundary;
 	public SeagullLimits seagullLimits;
@@ -44,7 +43,13 @@ public class GameController : MonoBehaviour
 			minutes = ((int)currentTime) / 60;
 			seconds = ((int)currentTime) % 60;
 
-			timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+			Text[] timers = GameObject.FindObjectsOfType (typeof(Text)) as Text[];
+			foreach (Text timer in timers)
+			{
+				if (timer.CompareTag ("timer")) {
+					timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+				}
+			}
 		}
 	}
 
