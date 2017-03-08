@@ -22,7 +22,7 @@ public enum Steering
 }
 */
 public class PrototypePlayerController : MonoBehaviour {
-
+	/*
 	public Text scoreText, winText, warnText, timer;
 	public int requiredScore = 10;
 
@@ -131,4 +131,5 @@ public class PrototypePlayerController : MonoBehaviour {
 			winText.text = "YOU WIN!!";
 		}
 	}
+	*/
 }

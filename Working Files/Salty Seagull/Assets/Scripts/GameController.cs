@@ -3,10 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+[System.Serializable]
+public class Boundary
+{
+	public float xMin = -50, xMax = 50, yMax = 35, zMin = -40, zMax = 40;
+}
+
+[System.Serializable]
+public class SeagullLimits
+{
+	public float upAngle = 50f, downAngle = 35f, accelSpeed = 6f, glideDecel = 0.005f, antiDrift = 3f, rotationLR = 3f, rotationUD = 3f, maxSpeed = 10f, tilt = 35f;
+	// public float upAngle = 50, downAngle = 35, accelSpeed = 6, glideDecel = 0.005, antiDrift = 3, rotationLR = 3, rotationUD = 3, maxSpeed = 10, tilt = 35;
+}
+
+public class GameController : MonoBehaviour
+{
 
 	public float timeLimitSeconds, warmupTime;
 	public Text timer;
+	public Transform sea;
+	public Boundary boundary;
+	public SeagullLimits seagullLimits;
 
 	private float currentTime;
 	private int minutes, seconds;
