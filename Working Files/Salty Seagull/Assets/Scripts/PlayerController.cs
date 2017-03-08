@@ -26,7 +26,7 @@ public enum Steering
 
 public class InputValues
 {
-	public float moveVertical, turnUD, turnLR;
+	public float moveForward, turnUD, turnLR;
 }
 
 public class PlayerController : MonoBehaviour
@@ -59,7 +59,17 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         rb.freezeRotation = true;
 		holding = false;
+		input = new InputValues ();
     }
+
+	void Update()
+	{
+		if ((Input.GetKeyDown(("joystick 1 button " + 5.ToString()))) || Input.GetKeyDown(KeyCode.Space) && holding)
+		{
+			holding = false;
+			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+		}
+	}
 
     // Called for physics
     void FixedUpdate()
@@ -69,15 +79,9 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 
-		input.moveVertical = Input.GetAxis("Vertical");
+		input.moveForward = Input.GetAxis("Forward");
 
-		if ((Input.GetKeyDown(("joystick 1 button " + 5.ToString()))) || Input.GetKeyDown(KeyCode.Space) && holding)
-		{
-			holding = false;
-			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-		}
-
-		input.turnUD = FABS ((Input.GetAxis ("Fire3") - Input.GetAxis ("Fire2")), Input.GetAxis ("Mouse Y"));
+		input.turnUD = FABS (Input.GetAxis ("Vertical"), Input.GetAxis ("Mouse Y"));
 		input.turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
 
 		yaw += limits.rotationLR * input.turnLR;
@@ -86,9 +90,9 @@ public class PlayerController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -limits.upAngle, limits.downAngle);
 
         Vector3 movement = -transform.InverseTransformDirection(rb.velocity) * limits.antiDrift;
-		if (input.moveVertical > 0 || (input.moveVertical < 0 && movement.z < 0))
+		if (input.moveForward > 0 || (input.moveForward < 0 && movement.z < 0))
         {
-			movement.z = input.moveVertical * limits.accelSpeed;
+			movement.z = input.moveForward * limits.accelSpeed;
         }
         else
         {
