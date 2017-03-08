@@ -8,7 +8,7 @@ using System;
 
 public class InputValues
 {
-	public float moveForward, turnUD, turnLR;
+	public float moveForward, turnUD, turnLR, drop;
 }
 
 public class PlayerController : MonoBehaviour
@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
     public int count;
     private float yaw, pitch;
     public bool holding;
-	private InputValues input;
-
+	protected InputValues input;
+	public int playerNumber;
     Transform heldObject;
 
     void Start()
@@ -38,15 +38,6 @@ public class PlayerController : MonoBehaviour
 		holding = false;
 		input = new InputValues ();
     }
-
-	void Update()
-	{
-		if ((Input.GetKeyDown(("joystick 1 button " + 5.ToString()))) || Input.GetKeyDown(KeyCode.Space) && holding)
-		{
-			holding = false;
-			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-		}
-	}
 
     // Called for physics
     void FixedUpdate()
@@ -66,6 +57,7 @@ public class PlayerController : MonoBehaviour
 		input.moveForward = Input.GetAxis("Forward");
 		input.turnUD = FABS (Input.GetAxis ("Vertical"), Input.GetAxis ("Mouse Y"));
 		input.turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
+		input.drop = Input.GetAxis ("Drop");
 	}
 
 	protected void DoMotion()
@@ -111,6 +103,12 @@ public class PlayerController : MonoBehaviour
 			*/
 			heldObject.position = transform.FindChild("MountPoint").transform.position - (heldObject.FindChild("MountPoint").transform.position - heldObject.position);
 		}
+
+		if (input.drop > 0 && holding)
+		{
+			holding = false;
+			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
+		}
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -125,6 +123,7 @@ public class PlayerController : MonoBehaviour
             {
                 //other.gameObject.SetActive(false);
                 heldObject = other.transform;
+				heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;
                 holding = true;
             }
         }
