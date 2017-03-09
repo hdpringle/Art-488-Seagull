@@ -154,6 +154,10 @@ public class PlayerController : MonoBehaviour
 
     public void updateScore()
     {
+		if(count < 0)
+		{
+			count = 0;
+		}
         scoreText.text = "Score: " + count.ToString();
         if (count >= requiredScore)
         {
