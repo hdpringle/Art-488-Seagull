@@ -18,6 +18,7 @@ public class Pickups : MonoBehaviour
     void Start()
     {
         gravityActive = false;
+		pointVal = 1;
 		offset = transform.FindChild("MountPoint").transform.position;
     }
 
@@ -41,13 +42,16 @@ public class Pickups : MonoBehaviour
 		}
 
 		gravityActive = false;
-
 		if (other.CompareTag("nest"))
 		{
-			gravityActive = true;
-			GameObject.Find(playerName).GetComponent<PlayerController>().holding = false;
-			GameObject.Find(playerName).GetComponent<PlayerController>().count++;
-			GameObject.Find(playerName).GetComponent<PlayerController>().updateScore();
+			//only give points to the player for dropping in their own nest
+			if (other.gameObject.GetComponent<NEST>().nestId == heldByPlayer)
+			{
+				gravityActive = true;
+				GameObject.Find(playerName).GetComponent<PlayerController>().holding = false;
+				GameObject.Find(playerName).GetComponent<PlayerController>().count+=pointVal;
+				GameObject.Find(playerName).GetComponent<PlayerController>().updateScore();
+			}
 		}
 	}
 }

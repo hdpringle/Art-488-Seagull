@@ -120,18 +120,35 @@ public class PlayerController : MonoBehaviour
                 // Display warning message
             }
             else
-            {
-                //other.gameObject.SetActive(false);
-                heldObject = other.transform;
-				heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;
-                holding = true;
+			{
+				//Check to see if the object we collided with is in our own nest
+				if (! GameObject.Find("NEST" + playerNumber).GetComponent<NEST>().isInNest(other.gameObject))
+				{
+					//other.gameObject.SetActive(false);
+					heldObject = other.transform;
+					heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;
+					holding = true;
+				}
+
+				//if you stole this item, let the nest know its gone
+				if(GameObject.Find("NEST"+(playerNumber%2+1)).GetComponent<NEST>().isInNest(other.gameObject))
+				{
+					GameObject.Find("NEST" + (playerNumber % 2 + 1)).GetComponent<NEST>().removeFromNest(other.gameObject);
+					//that player loses points!
+					GameObject.Find("Player" + (playerNumber % 2 + 1)).GetComponent<PlayerController>().count -= other.gameObject.GetComponent<Pickups>().pointVal;
+					GameObject.Find("Player" + (playerNumber % 2 + 1)).GetComponent<PlayerController>().updateScore();
+				}
             }
         }
         if(other.CompareTag("nest"))
         {
-            holding = false;
-            //count++;
-            updateScore();
+			if(other.gameObject.GetComponent<NEST>().nestId == playerNumber)
+			{
+				//count++;
+				holding = false;
+				updateScore();
+				other.gameObject.GetComponent<NEST>().addObject(heldObject.gameObject);
+			}
         }
     }
 
