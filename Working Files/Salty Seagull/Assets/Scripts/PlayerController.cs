@@ -17,13 +17,13 @@ public class PlayerController : MonoBehaviour
     public Text scoreText, winText, warnText, timer;
     public int requiredScore = 10;
 	public GameController game;
+	public int playerNumber;
 
     private Rigidbody rb;
     public int count;
     private float yaw, pitch;
-    public bool holding;
+    private bool holding;
 	protected InputValues input;
-	public int playerNumber;
     Transform heldObject;
 
     void Start()
@@ -175,5 +175,15 @@ public class PlayerController : MonoBehaviour
 		if (asq > bsq)
 			return a;
 		return b;
+	}
+
+	public bool isHolding()
+	{
+		return holding;
+	}
+
+	public void setHolding(bool state)
+	{
+		holding = state;
 	}
 }

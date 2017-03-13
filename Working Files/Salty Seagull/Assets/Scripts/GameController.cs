@@ -18,36 +18,42 @@ public class SeagullLimits
 
 public class GameController : MonoBehaviour
 {
-
+	public int autowinScore;
 	public float timeLimitSeconds, warmupTime;
 	public Transform sea;
 	public Boundary boundary;
 	public SeagullLimits seagullLimits;
 
-	private float currentTime;
+	private float currentTime, currentWarmup;
 	private int minutes, seconds;
 	private bool paused;
+	private Dictionary<int, PlayerController> players;
+	private Dictionary<int, int> scores;
 
 	// Use this for initialization
 	void Start ()
 	{
 		currentTime = timeLimitSeconds;
-		paused = false;
+		currentWarmup = warmupTime;
+		Pause (false);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (currentTime > 0) {
-			currentTime -= Time.deltaTime;
-			minutes = ((int)currentTime) / 60;
-			seconds = ((int)currentTime) % 60;
+		if (currentWarmup > 0) {
+			currentWarmup -= Time.deltaTime;
+		} else {
+			if (currentTime > 0) {
+				currentTime -= Time.deltaTime;
+				minutes = ((int)currentTime) / 60;
+				seconds = ((int)currentTime) % 60;
 
-			Text[] timers = GameObject.FindObjectsOfType (typeof(Text)) as Text[];
-			foreach (Text timer in timers)
-			{
-				if (timer.CompareTag ("timer")) {
-					timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+				Text[] timers = GameObject.FindObjectsOfType (typeof(Text)) as Text[];
+				foreach (Text timer in timers) {
+					if (timer.CompareTag ("timer")) {
+						timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+					}
 				}
 			}
 		}
@@ -65,7 +71,7 @@ public class GameController : MonoBehaviour
 
 	public bool GameStarted()
 	{
-		return true;
+		return currentWarmup <= 0;
 	}
 
 	public bool isPaused()
@@ -81,6 +87,24 @@ public class GameController : MonoBehaviour
 
 	public void ShowMenu(bool state)
 	{
-		
+		GameObject pauseMenu = GameObject.Find ("PauseMenu");
+		if (pauseMenu != null)
+		{
+			pauseMenu.SetActive (state);
+		}
+	}
+
+	public bool RegisterPlayer(PlayerController player)
+	{
+		if (players.ContainsKey (player.playerNumber))
+		{
+			return false;
+		}
+		else
+		{
+			players.Add (player.playerNumber, player);
+			scores.Add (player.playerNumber, 0); 
+			return true;
+		}
 	}
 }
