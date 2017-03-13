@@ -19,7 +19,6 @@ public class Pickups : MonoBehaviour
     void Start()
     {
         gravityActive = false;
-		pointVal = 1;
 		offset = transform.FindChild("MountPoint").transform.position;
 		startingRotation = transform.eulerAngles;
     }

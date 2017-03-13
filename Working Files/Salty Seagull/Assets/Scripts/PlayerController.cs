@@ -95,12 +95,6 @@ public class PlayerController : MonoBehaviour
 			heldObject.position = transform.FindChild("MountPoint").transform.position - (heldObject.FindChild("MountPoint").transform.position - heldObject.position);
 		
 			heldObject.eulerAngles = heldObject.gameObject.GetComponent<Pickups>().startingRotation + transform.eulerAngles;
-
-			//Hard coding picking up a clam for now
-			if (heldObject.gameObject.name.Contains("Clam"))
-			{
-				heldObject.eulerAngles = new Vector3(heldObject.eulerAngles.x, heldObject.eulerAngles.y, -90f);
-			}
 		}
 
 		if (input.drop > 0 && holding)
