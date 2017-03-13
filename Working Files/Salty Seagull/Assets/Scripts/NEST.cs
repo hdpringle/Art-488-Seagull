@@ -9,6 +9,8 @@ public class NEST : MonoBehaviour {
 	void Start ()
 	{
 		itemsInNest = new ArrayList();
+		Vector4 color = this.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material.color;
+		this.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material.color = new Vector4(color.x, color.y, color.z, 0f);
 	}
 	
 	// Update is called once per frame
