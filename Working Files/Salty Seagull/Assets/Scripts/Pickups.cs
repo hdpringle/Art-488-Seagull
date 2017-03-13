@@ -14,12 +14,14 @@ public class Pickups : MonoBehaviour
 	public float gravityStrength = 0.075f;
 	public int heldByPlayer = 0;
 	public Vector3 offset;
+	public Vector3 startingRotation;
     // Use this for initialization
     void Start()
     {
         gravityActive = false;
 		pointVal = 1;
 		offset = transform.FindChild("MountPoint").transform.position;
+		startingRotation = transform.eulerAngles;
     }
 
     // Update is called once per frame
@@ -40,8 +42,10 @@ public class Pickups : MonoBehaviour
 		{
 			playerName = playerName + heldByPlayer;
 		}
-
-		gravityActive = false;
+		if (!other.CompareTag("pickup"))
+		{
+			gravityActive = false;
+		}
 		if (other.CompareTag("nest"))
 		{
 			//only give points to the player for dropping in their own nest
@@ -51,6 +55,7 @@ public class Pickups : MonoBehaviour
 				GameObject.Find(playerName).GetComponent<PlayerController>().holding = false;
 				GameObject.Find(playerName).GetComponent<PlayerController>().count+=pointVal;
 				GameObject.Find(playerName).GetComponent<PlayerController>().updateScore();
+				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
 		}
 	}
