@@ -78,10 +78,8 @@ public class PlayerController : MonoBehaviour
 		}
 
 		rb.AddRelativeForce(movement);
-
-		// rb.MoveRotation (rb.rotation * Quaternion.Euler( new Vector3 (pitch, yaw, 0)));
+		
 		rb.rotation = Quaternion.Euler(pitch, yaw, input.turnLR * -game.seagullLimits.tilt);
-		// rb.rotation = Quaternion.Euler (pitch, yaw, 0);
 
 		rb.position = new Vector3
 			(
@@ -94,14 +92,15 @@ public class PlayerController : MonoBehaviour
 		//move the held object with you
 		if(holding)
 		{
-			/*
-			//should set the held objects mount point's position equal to the seagull's mount point position
-            heldObject.FindChild("MountPoint").transform.position = transform.FindChild("MountPoint").transform.position;
-
-			//should update the object to move with it's mount point
-			heldObject.position = heldObject.Find("MountPoint").transform.position - heldObject.GetComponent<Pickups>().offset;
-			*/
 			heldObject.position = transform.FindChild("MountPoint").transform.position - (heldObject.FindChild("MountPoint").transform.position - heldObject.position);
+		
+			heldObject.eulerAngles = heldObject.gameObject.GetComponent<Pickups>().startingRotation + transform.eulerAngles;
+
+			//Hard coding picking up a clam for now
+			if (heldObject.gameObject.name.Contains("Clam"))
+			{
+				heldObject.eulerAngles = new Vector3(heldObject.eulerAngles.x, heldObject.eulerAngles.y, -90f);
+			}
 		}
 
 		if (input.drop > 0 && holding)
