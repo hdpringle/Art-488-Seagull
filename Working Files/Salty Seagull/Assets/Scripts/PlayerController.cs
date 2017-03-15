@@ -14,8 +14,7 @@ public class InputValues
 public class PlayerController : MonoBehaviour
 {
 
-    public Text scoreText, winText, warnText, timer;
-    public int requiredScore = 10;
+    public Text scoreText, winText;
 	public GameController game;
 	public int playerNumber;
 
@@ -44,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
 		if (!game.GameStarted () || game.GameEnded () || game.isPaused ())
 		{
+			rb.velocity = Vector3.zero;
 			return;
 		}
 
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
 			count = 0;
 		}
         scoreText.text = "Score: " + count.ToString();
-        if (count >= requiredScore)
+		if (count >= game.autowinScore)
         {
             winText.text = "YOU WIN!!";
         }

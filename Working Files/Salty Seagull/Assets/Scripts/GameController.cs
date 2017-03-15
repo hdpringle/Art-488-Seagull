@@ -13,10 +13,9 @@ public class Boundary
 public class SeagullLimits
 {
 	public float upAngle = 50f, downAngle = 35f, accelSpeed = 6f, glideDecel = 0.005f, antiDrift = 3f, rotationLR = 3f, rotationUD = 3f, maxSpeed = 10f, tilt = 35f;
-	// public float upAngle = 50, downAngle = 35, accelSpeed = 6, glideDecel = 0.005, antiDrift = 3, rotationLR = 3, rotationUD = 3, maxSpeed = 10, tilt = 35;
 }
 
-public class GameController : MonoBehaviour
+public class GameController : MainMenu
 {
 	public int autowinScore;
 	public float timeLimitSeconds, warmupTime;
@@ -41,18 +40,26 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (currentWarmup > 0) {
-			currentWarmup -= Time.deltaTime;
-		} else {
-			if (currentTime > 0) {
-				currentTime -= Time.deltaTime;
-				minutes = ((int)currentTime) / 60;
-				seconds = ((int)currentTime) % 60;
+		if (Input.GetAxis ("Pause") != 0 || Input.GetAxis ("Cancel") != 0)
+		{
+			Pause (true);
+		}
 
-				Text[] timers = GameObject.FindObjectsOfType (typeof(Text)) as Text[];
-				foreach (Text timer in timers) {
-					if (timer.CompareTag ("timer")) {
-						timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+		if (!paused)
+		{
+			if (currentWarmup > 0) {
+				currentWarmup -= Time.deltaTime;
+			} else {
+				if (currentTime > 0) {
+					currentTime -= Time.deltaTime;
+					minutes = ((int)currentTime) / 60;
+					seconds = ((int)currentTime) % 60;
+
+					Text[] timers = GameObject.FindObjectsOfType (typeof(Text)) as Text[];
+					foreach (Text timer in timers) {
+						if (timer.CompareTag ("timer")) {
+							timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+						}
 					}
 				}
 			}
@@ -82,16 +89,7 @@ public class GameController : MonoBehaviour
 	public void Pause(bool state)
 	{
 		paused = state;
-		ShowMenu (state);
-	}
-
-	public void ShowMenu(bool state)
-	{
-		GameObject pauseMenu = GameObject.Find ("PauseMenu");
-		if (pauseMenu != null)
-		{
-			pauseMenu.SetActive (state);
-		}
+		ShowPauseMenu (state);
 	}
 
 	public bool RegisterPlayer(PlayerController player)
@@ -103,7 +101,7 @@ public class GameController : MonoBehaviour
 		else
 		{
 			players.Add (player.playerNumber, player);
-			scores.Add (player.playerNumber, 0); 
+			scores.Add (player.playerNumber, 0);
 			return true;
 		}
 	}
