@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
         {
             if(holding)
             {
-                // Display warning message
+                // Display warning message?
             }
             else
 			{
@@ -135,9 +135,8 @@ public class PlayerController : MonoBehaviour
         }
         if(other.CompareTag("nest"))
         {
-			if(other.gameObject.GetComponent<NEST>().nestId == playerNumber)
+			if(holding && other.gameObject.GetComponent<NEST>().nestId == playerNumber)
 			{
-				//count++;
 				holding = false;
 				updateScore();
 				other.gameObject.GetComponent<NEST>().addObject(heldObject.gameObject);
