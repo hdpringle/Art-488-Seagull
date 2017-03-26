@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public GameObject mainMenu, pauseMenu, settingsMenu;
+	public GameObject rootMenu, settingsMenu;
 
 	public void ChangeScene(string name)
 	{
@@ -34,19 +34,11 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	public void ShowMainMenu(bool state)
+	public void ShowRootMenu(bool state)
 	{
-		if (mainMenu != null)
+		if (rootMenu != null)
 		{
-			mainMenu.SetActive (state);
-		}
-	}
-
-	public void ShowPauseMenu(bool state)
-	{
-		if (pauseMenu != null)
-		{
-			pauseMenu.SetActive (state);
+			rootMenu.SetActive (state);
 		}
 	}
 

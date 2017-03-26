@@ -89,7 +89,7 @@ public class GameController : MainMenu
 	public void Pause(bool state)
 	{
 		paused = state;
-		ShowPauseMenu (state);
+		ShowRootMenu (state);
 	}
 
 	public bool RegisterPlayer(PlayerController player)

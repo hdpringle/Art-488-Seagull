@@ -54,10 +54,21 @@ public class PlayerController : MonoBehaviour
 
 	protected virtual void GetControls()
 	{
-		input.moveForward = Input.GetAxis("Forward");
-		input.turnUD = FABS (Input.GetAxis ("Vertical"), Input.GetAxis ("Mouse Y"));
-		input.turnLR = FABS (Input.GetAxis("Horizontal"), Input.GetAxis("Mouse X"));
-		input.drop = Input.GetAxis ("Drop");
+		switch (playerNumber)
+		{
+		case 2:
+			input.moveForward = Input.GetAxis ("P2 Forward");
+			input.turnUD = FABS (Input.GetAxis ("P2 Vertical"), Input.GetAxis ("P2 Mouse Y"));
+			input.turnLR = FABS (Input.GetAxis ("P2 Horizontal"), Input.GetAxis ("P2 Mouse X"));
+			input.drop = Input.GetAxis ("P2 Drop");
+			break;
+		default:
+			input.moveForward = Input.GetAxis ("Forward");
+			input.turnUD = FABS (Input.GetAxis ("Vertical"), Input.GetAxis ("Mouse Y"));
+			input.turnLR = FABS (Input.GetAxis ("Horizontal"), Input.GetAxis ("Mouse X"));
+			input.drop = Input.GetAxis ("Drop");
+			break;
+		}
 	}
 
 	protected void DoMotion()
