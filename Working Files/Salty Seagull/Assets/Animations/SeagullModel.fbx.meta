@@ -1,50 +1,52 @@
 fileFormatVersion: 2
-guid: cda873a5add652046906feab0eda056f
+guid: d3f81dd2d11c8ae4b8f0af265a150447
+timeCreated: 1490647968
+licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: also_base_
-    100004: base
-    100006: bottom_beak_end
-    100008: chest
-    100010: head
-    100012: hip
-    100014: jaw
-    100016: joint21
-    100018: joint22
-    100020: joint23
-    100022: joint37
-    100024: joint38
-    100026: joint39
-    100028: L_arm
-    100030: L_finger
-    100032: L_foot
-    100034: L_forearm
-    100036: L_hand
-    100038: L_knee
-    100040: L_shoulder
-    100042: L_thigh
-    100044: L_toes
-    100046: neck_bottom
-    100048: pCylinder1
-    100050: pCylinder2
-    100052: polySurface1
-    100054: polySurface2
-    100056: pSphere1
-    100058: pSphere2
-    100060: R_arm
-    100062: R_finger
-    100064: R_foot
-    100066: R_forearm
-    100068: R_hand
-    100070: R_knee
-    100072: R_shoulder
-    100074: R_thigh
-    100076: R_toes
-    100078: Seagull_bound
-    100080: Seagull_bound1
-    100082: Seagull_bound2
+    100000: also_base_
+    100002: base
+    100004: bottom_beak_end
+    100006: chest
+    100008: head
+    100010: hip
+    100012: jaw
+    100014: joint21
+    100016: joint22
+    100018: joint23
+    100020: joint37
+    100022: joint38
+    100024: joint39
+    100026: L_arm
+    100028: L_finger
+    100030: L_foot
+    100032: L_forearm
+    100034: L_hand
+    100036: L_knee
+    100038: L_shoulder
+    100040: L_thigh
+    100042: L_toes
+    100044: neck_bottom
+    100046: pCylinder1
+    100048: pCylinder2
+    100050: polySurface1
+    100052: polySurface2
+    100054: pSphere1
+    100056: pSphere2
+    100058: R_arm
+    100060: R_finger
+    100062: R_foot
+    100064: R_forearm
+    100066: R_hand
+    100068: R_knee
+    100070: R_shoulder
+    100072: R_thigh
+    100074: R_toes
+    100076: Seagull_bound
+    100078: Seagull_bound1
+    100080: Seagull_bound2
+    100082: //RootNode
     100084: tail_end
     100086: tail_start
     100088: top_beak_end
@@ -54,48 +56,48 @@ ModelImporter:
     100096: transform4
     100098: transform5
     100100: transform6
-    400000: //RootNode
-    400002: also_base_
-    400004: base
-    400006: bottom_beak_end
-    400008: chest
-    400010: head
-    400012: hip
-    400014: jaw
-    400016: joint21
-    400018: joint22
-    400020: joint23
-    400022: joint37
-    400024: joint38
-    400026: joint39
-    400028: L_arm
-    400030: L_finger
-    400032: L_foot
-    400034: L_forearm
-    400036: L_hand
-    400038: L_knee
-    400040: L_shoulder
-    400042: L_thigh
-    400044: L_toes
-    400046: neck_bottom
-    400048: pCylinder1
-    400050: pCylinder2
-    400052: polySurface1
-    400054: polySurface2
-    400056: pSphere1
-    400058: pSphere2
-    400060: R_arm
-    400062: R_finger
-    400064: R_foot
-    400066: R_forearm
-    400068: R_hand
-    400070: R_knee
-    400072: R_shoulder
-    400074: R_thigh
-    400076: R_toes
-    400078: Seagull_bound
-    400080: Seagull_bound1
-    400082: Seagull_bound2
+    400000: also_base_
+    400002: base
+    400004: bottom_beak_end
+    400006: chest
+    400008: head
+    400010: hip
+    400012: jaw
+    400014: joint21
+    400016: joint22
+    400018: joint23
+    400020: joint37
+    400022: joint38
+    400024: joint39
+    400026: L_arm
+    400028: L_finger
+    400030: L_foot
+    400032: L_forearm
+    400034: L_hand
+    400036: L_knee
+    400038: L_shoulder
+    400040: L_thigh
+    400042: L_toes
+    400044: neck_bottom
+    400046: pCylinder1
+    400048: pCylinder2
+    400050: polySurface1
+    400052: polySurface2
+    400054: pSphere1
+    400056: pSphere2
+    400058: R_arm
+    400060: R_finger
+    400062: R_foot
+    400064: R_forearm
+    400066: R_hand
+    400068: R_knee
+    400070: R_shoulder
+    400072: R_thigh
+    400074: R_toes
+    400076: Seagull_bound
+    400078: Seagull_bound1
+    400080: Seagull_bound2
+    400082: //RootNode
     400084: tail_end
     400086: tail_start
     400088: top_beak_end
@@ -112,7 +114,6 @@ ModelImporter:
     4300000: pSphere1
     4300002: pSphere2
     4300004: Seagull_bound2
-    7400000: Take 001
     9500000: //RootNode
     13700000: Seagull_bound2
   materials:
@@ -139,7 +140,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
