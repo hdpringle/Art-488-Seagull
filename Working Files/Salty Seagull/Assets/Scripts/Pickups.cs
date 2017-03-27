@@ -52,8 +52,6 @@ public class Pickups : MonoBehaviour
 			{
 				gravityActive = true;
 				GameObject.Find(playerName).GetComponent<PlayerController>().setHolding (false);
-				GameObject.Find(playerName).GetComponent<PlayerController>().count+=pointVal;
-				GameObject.Find(playerName).GetComponent<PlayerController>().updateScore();
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
 		}

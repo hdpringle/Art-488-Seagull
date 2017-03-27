@@ -5,6 +5,8 @@ using UnityEngine;
 public class NEST : MonoBehaviour {
 	public ArrayList itemsInNest;
 	public int nestId;
+	private int count;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -18,6 +20,7 @@ public class NEST : MonoBehaviour {
 	{
 		
 	}
+
 	public bool isInNest(GameObject obj)
 	{
 		if(itemsInNest.Contains(obj))
@@ -26,13 +29,21 @@ public class NEST : MonoBehaviour {
 		}
 		return false;
 	}
+
 	public void addObject(GameObject obj)
 	{
 		itemsInNest.Add(obj);
+		count += obj.GetComponent<Pickups> ().pointVal;
 	}
+
 	public void removeFromNest(GameObject obj)
 	{
 		itemsInNest.Remove(obj);
+		count -= obj.GetComponent<Pickups> ().pointVal;
 	}
 
+	public int GetScore()
+	{
+		return count;
+	}
 }

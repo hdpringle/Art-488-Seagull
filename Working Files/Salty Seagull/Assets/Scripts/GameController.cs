@@ -27,7 +27,6 @@ public class GameController : MainMenu
 	private int minutes, seconds;
 	private bool paused;
 	private Dictionary<int, PlayerController> players;
-	private Dictionary<int, int> scores;
 
 	// Use this for initialization
 	void Start ()
@@ -101,8 +100,12 @@ public class GameController : MainMenu
 		else
 		{
 			players.Add (player.playerNumber, player);
-			scores.Add (player.playerNumber, 0);
 			return true;
 		}
+	}
+
+	public int GetScore(int id)
+	{
+		return GameObject.Find ("NEST" + id).GetComponent<NEST> ().GetScore ();
 	}
 }
