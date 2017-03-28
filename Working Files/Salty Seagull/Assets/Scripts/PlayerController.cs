@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
 			} else {
 				movement.z = movement.z / game.seagullLimits.antiDrift * game.seagullLimits.glideDecel;
 			}
-
 			rb.AddRelativeForce (movement);
 			
 			rb.rotation = Quaternion.Euler (pitch, yaw, input.turnLR * -game.seagullLimits.tilt);
@@ -103,10 +102,23 @@ public class PlayerController : MonoBehaviour
 				Mathf.Clamp (rb.position.y, game.sea.position.y, game.boundary.yMax),
 				Mathf.Clamp (rb.position.z, game.boundary.zMin, game.boundary.zMax)
 			);
+
+			Vector3 speed = rb.velocity;
+
+			//if we get to slow, start falling slowly
+			if(speed.magnitude < 1)
+			{
+				rb.AddRelativeForce(new Vector3(0,-0.5f,0));
+			}
+
+			//increase flapping speed!
+			GetComponent<Animator>().speed = Mathf.Max(speed.magnitude, 0.75f);
 		}
 		else { // walking
 			
 		}
+
+
 
 		//move the held object with you
 		if(holding)
