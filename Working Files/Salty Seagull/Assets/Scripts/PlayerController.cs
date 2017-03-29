@@ -124,7 +124,6 @@ public class PlayerController : MonoBehaviour
 		if(holding)
 		{
 			heldObject.position = transform.FindChild("MountPoint").transform.position - (heldObject.FindChild("MountPoint").transform.position - heldObject.position);
-		
 			heldObject.eulerAngles = heldObject.gameObject.GetComponent<Pickups>().startingRotation + transform.eulerAngles;
 		}
 
@@ -169,6 +168,19 @@ public class PlayerController : MonoBehaviour
 				other.gameObject.GetComponent<NEST>().addObject(heldObject.gameObject);
 			}
         }
+		else if(other.CompareTag("Player"))
+		{
+			if(!holding)
+			{
+				//You get the item
+				heldObject = other.gameObject.GetComponent<PlayerController>().heldObject;
+				heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;
+				holding = true;
+
+				//they lose the item
+				other.gameObject.GetComponent<PlayerController>().holding = false;
+			}
+		}
     }
 
 	/**

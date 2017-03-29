@@ -26,9 +26,9 @@ public class Pickups : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gravityActive)
-        {
-			transform.Translate(Vector3.down* gravityStrength , Space.World);
+		if (gravityActive)
+		{
+			transform.Translate(Vector3.down * gravityStrength, Space.World);
 		}
     }
 
@@ -41,16 +41,16 @@ public class Pickups : MonoBehaviour
 		{
 			playerName = playerName + heldByPlayer;
 		}
-		if (!other.CompareTag("pickup"))
+		if(!other.CompareTag("pickup"))
 		{
 			gravityActive = false;
 		}
 		if (other.CompareTag("nest"))
 		{
+			gravityActive = true;
 			//only give points to the player for dropping in their own nest
 			if (other.gameObject.GetComponent<NEST>().nestId == heldByPlayer)
 			{
-				gravityActive = true;
 				GameObject.Find(playerName).GetComponent<PlayerController>().setHolding (false);
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
