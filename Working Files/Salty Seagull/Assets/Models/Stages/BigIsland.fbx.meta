@@ -1,0 +1,215 @@
+fileFormatVersion: 2
+guid: bb71488e5842eb14d87bfc1a04936204
+timeCreated: 1490818203
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Boat
+    100004: Island
+    100006: Lighthouse:pCube4
+    100008: Lighthouse:pCylinder3
+    100010: LightNHouse
+    100012: Ocean
+    100014: Pier
+    100016: PierPost1
+    100018: Pierpost2
+    100020: Pierpost3
+    100022: Pierpost4
+    100024: SeagullStage_v4:pCube10
+    100026: SeagullStage_v4:pCube11
+    100028: SeagullStage_v4:pCube12
+    100030: SeagullStage_v4:pCube13
+    100032: SeagullStage_v4:pCube14
+    100034: SeagullStage_v4:pCube15
+    100036: SeagullStage_v4:pCube2
+    100038: SeagullStage_v4:pCube3
+    100040: SeagullStage_v4:pCube4
+    100042: SeagullStage_v4:pCube5
+    100044: SeagullStage_v4:pCube6
+    100046: SeagullStage_v4:pCube7
+    100048: SeagullStage_v4:pCube8
+    100050: SeagullStage_v4:pCube9
+    100052: stalag1
+    100054: stalag2
+    100056: stalag3
+    400000: //RootNode
+    400002: Boat
+    400004: Island
+    400006: Lighthouse:pCube4
+    400008: Lighthouse:pCylinder3
+    400010: LightNHouse
+    400012: Ocean
+    400014: Pier
+    400016: PierPost1
+    400018: Pierpost2
+    400020: Pierpost3
+    400022: Pierpost4
+    400024: SeagullStage_v4:pCube10
+    400026: SeagullStage_v4:pCube11
+    400028: SeagullStage_v4:pCube12
+    400030: SeagullStage_v4:pCube13
+    400032: SeagullStage_v4:pCube14
+    400034: SeagullStage_v4:pCube15
+    400036: SeagullStage_v4:pCube2
+    400038: SeagullStage_v4:pCube3
+    400040: SeagullStage_v4:pCube4
+    400042: SeagullStage_v4:pCube5
+    400044: SeagullStage_v4:pCube6
+    400046: SeagullStage_v4:pCube7
+    400048: SeagullStage_v4:pCube8
+    400050: SeagullStage_v4:pCube9
+    400052: stalag1
+    400054: stalag2
+    400056: stalag3
+    2300000: Boat
+    2300002: Island
+    2300004: Lighthouse:pCube4
+    2300006: Lighthouse:pCylinder3
+    2300008: Ocean
+    2300010: Pier
+    2300012: PierPost1
+    2300014: Pierpost2
+    2300016: Pierpost3
+    2300018: Pierpost4
+    2300020: SeagullStage_v4:pCube10
+    2300022: SeagullStage_v4:pCube11
+    2300024: SeagullStage_v4:pCube12
+    2300026: SeagullStage_v4:pCube13
+    2300028: SeagullStage_v4:pCube14
+    2300030: SeagullStage_v4:pCube15
+    2300032: SeagullStage_v4:pCube2
+    2300034: SeagullStage_v4:pCube3
+    2300036: SeagullStage_v4:pCube4
+    2300038: SeagullStage_v4:pCube5
+    2300040: SeagullStage_v4:pCube6
+    2300042: SeagullStage_v4:pCube7
+    2300044: SeagullStage_v4:pCube8
+    2300046: SeagullStage_v4:pCube9
+    2300048: stalag1
+    2300050: stalag2
+    2300052: stalag3
+    3300000: Boat
+    3300002: Island
+    3300004: Lighthouse:pCube4
+    3300006: Lighthouse:pCylinder3
+    3300008: Ocean
+    3300010: Pier
+    3300012: PierPost1
+    3300014: Pierpost2
+    3300016: Pierpost3
+    3300018: Pierpost4
+    3300020: SeagullStage_v4:pCube10
+    3300022: SeagullStage_v4:pCube11
+    3300024: SeagullStage_v4:pCube12
+    3300026: SeagullStage_v4:pCube13
+    3300028: SeagullStage_v4:pCube14
+    3300030: SeagullStage_v4:pCube15
+    3300032: SeagullStage_v4:pCube2
+    3300034: SeagullStage_v4:pCube3
+    3300036: SeagullStage_v4:pCube4
+    3300038: SeagullStage_v4:pCube5
+    3300040: SeagullStage_v4:pCube6
+    3300042: SeagullStage_v4:pCube7
+    3300044: SeagullStage_v4:pCube8
+    3300046: SeagullStage_v4:pCube9
+    3300048: stalag1
+    3300050: stalag2
+    3300052: stalag3
+    4300000: Island
+    4300002: Ocean
+    4300004: Pier
+    4300006: PierPost1
+    4300008: SeagullStage_v4:pCube2
+    4300010: SeagullStage_v4:pCube3
+    4300012: SeagullStage_v4:pCube4
+    4300014: SeagullStage_v4:pCube5
+    4300016: Boat
+    4300018: SeagullStage_v4:pCube6
+    4300020: SeagullStage_v4:pCube7
+    4300022: SeagullStage_v4:pCube8
+    4300024: SeagullStage_v4:pCube9
+    4300026: SeagullStage_v4:pCube10
+    4300028: SeagullStage_v4:pCube11
+    4300030: SeagullStage_v4:pCube12
+    4300032: SeagullStage_v4:pCube13
+    4300034: SeagullStage_v4:pCube14
+    4300036: SeagullStage_v4:pCube15
+    4300038: Pierpost2
+    4300040: Pierpost3
+    4300042: Pierpost4
+    4300044: Lighthouse:pCube4
+    4300046: Lighthouse:pCylinder3
+    4300048: stalag1
+    4300050: stalag2
+    4300052: stalag3
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
