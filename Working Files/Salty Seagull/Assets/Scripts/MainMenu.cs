@@ -49,4 +49,14 @@ public class MainMenu : MonoBehaviour {
 			settingsMenu.SetActive (state);
 		}
 	}
+
+	public float DegreesToRadians (float degrees)
+	{
+		return degrees * Mathf.PI / 180;
+	}
+
+	public float RadiansToDegrees (float radians)
+	{
+		return radians * 180 / Mathf.PI;
+	}
 }

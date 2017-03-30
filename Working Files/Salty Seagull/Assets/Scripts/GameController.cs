@@ -12,7 +12,19 @@ public class Boundary
 [System.Serializable]
 public class SeagullLimits
 {
-	public float upAngle = 50f, downAngle = 35f, accelSpeed = 6f, glideDecel = 0.005f, antiDrift = 3f, rotationLR = 3f, rotationUD = 3f, maxSpeed = 10f, tilt = 35f;
+	public float upAngle = 50f,
+			downAngle = 35f,
+			accelSpeed = 6f,
+			glideDecel = 0.005f,
+			antiDrift = 3f,
+			rotationLR = 3f,
+			rotationUD = 3f,
+			maxSpeed = 10f,
+			tilt = 35f,
+			walkSpeed = 0.125f,
+			walkGravity = 9.8f,
+			flyGravity = 9.8f,
+			itemGravity = 9.8f;
 }
 
 public class GameController : MainMenu
@@ -107,5 +119,15 @@ public class GameController : MainMenu
 	public int GetScore(int id)
 	{
 		return GameObject.Find ("NEST" + id).GetComponent<NEST> ().GetScore ();
+	}
+
+	public float DTR (float degrees)
+	{
+		return DegreesToRadians (degrees);
+	}
+
+	public float RTD (float radians)
+	{
+		return RadiansToDegrees (radians);
 	}
 }

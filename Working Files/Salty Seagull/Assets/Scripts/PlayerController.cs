@@ -5,21 +5,23 @@ using UnityEngine.UI;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography.X509Certificates;
 using System;
+using System.Xml.Linq;
 
 public class InputValues
 {
-	public float moveForward, turnUD, turnLR, drop;
+	public float moveForward, moveSideways, turnUD, turnLR, drop, flyWalk;
 }
 
 public class PlayerController : MonoBehaviour
 {
-
     public Text scoreText, winText;
 	public GameController game;
 	public int playerNumber;
 
     private Rigidbody rb;
-    private float yaw, pitch;
+	private CharacterController cc;
+	private Animator animator;
+    private float yaw, pitch, worldy, sinr, cosr;
     private bool holding, flying;
 	protected InputValues input;
     Transform heldObject;
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		cc = GetComponent<CharacterController> ();
+		animator = GetComponent<Animator> ();
         yaw = transform.rotation.eulerAngles.y;
         pitch = transform.rotation.eulerAngles.x;
         winText.text = "";
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
     // Called for physics
     void FixedUpdate()
     {
+		
 		if (!game.GameStarted () || game.GameEnded () || game.isPaused ())
 		{
 			rb.velocity = Vector3.zero;
@@ -66,15 +71,19 @@ public class PlayerController : MonoBehaviour
 		{
 		case 2:
 			input.moveForward = Input.GetAxis ("P2 Forward");
+			input.moveSideways = Input.GetAxis ("P2 Sideways");
 			input.turnUD = Input.GetAxis ("P2 Vertical");
-			input.turnLR = FABS (Input.GetAxis ("P2 Horizontal"), Input.GetAxis ("P2 Sideways"));
+			input.turnLR = Input.GetAxis ("P2 Horizontal");
 			input.drop = Input.GetAxis ("P2 Drop");
+			input.flyWalk = Input.GetAxis ("P2 Crouch");
 			break;
 		default:
 			input.moveForward = Input.GetAxis ("Forward");
+			input.moveSideways = Input.GetAxis ("Sideways");
 			input.turnUD = Input.GetAxis ("Vertical");
-			input.turnLR = FABS (Input.GetAxis ("Horizontal"), Input.GetAxis ("Sideways"));
+			input.turnLR = Input.GetAxis ("Horizontal");
 			input.drop = Input.GetAxis ("Drop");
+			input.flyWalk = Input.GetAxis ("Crouch");
 			break;
 		}
 	}
@@ -83,7 +92,22 @@ public class PlayerController : MonoBehaviour
 	{
 		yaw += game.seagullLimits.rotationLR * input.turnLR;
 
-		if (flying) {
+		if (input.flyWalk > 0)
+		{
+			if (flying)
+			{
+				pitch = 0;
+				cc.enabled = true;
+			}
+			else
+			{
+				cc.enabled = false;
+			}
+			flying = !flying;
+		}
+
+		if (flying)
+		{
 			pitch -= game.seagullLimits.rotationUD * input.turnUD;
 			pitch = Mathf.Clamp (pitch, -game.seagullLimits.upAngle, game.seagullLimits.downAngle);
 
@@ -97,28 +121,36 @@ public class PlayerController : MonoBehaviour
 			
 			rb.rotation = Quaternion.Euler (pitch, yaw, input.turnLR * -game.seagullLimits.tilt);
 
-			rb.position = new Vector3 (
-				Mathf.Clamp (rb.position.x, game.boundary.xMin, game.boundary.xMax),
-				Mathf.Clamp (rb.position.y, game.sea.position.y, game.boundary.yMax),
-				Mathf.Clamp (rb.position.z, game.boundary.zMin, game.boundary.zMax)
-			);
-
 			Vector3 speed = rb.velocity;
 
 			//if we get to slow, start falling slowly
 			if(speed.magnitude < 1)
 			{
-				rb.AddRelativeForce(new Vector3(0,-0.5f,0));
+				rb.AddForce(new Vector3(0,-0.5f,0));
 			}
 
 			//increase flapping speed!
-			GetComponent<Animator>().speed = Mathf.Max(speed.magnitude, 0.75f);
+			animator.speed = Mathf.Max(speed.magnitude, 0.75f);
 		}
-		else { // walking
-			
+		else
+		{ // walking
+			rb.rotation = Quaternion.Euler (0, yaw, 0);
+			worldy = game.DTR (transform.eulerAngles.y) ;
+			sinr = Mathf.Sin (worldy);
+			cosr = Mathf.Cos (worldy);
+
+			cc.Move (new Vector3(
+				(cosr * input.moveSideways + sinr * input.moveForward) * game.seagullLimits.walkSpeed,
+				game.seagullLimits.walkGravity * Time.deltaTime,
+				(sinr * -input.moveSideways + cosr * input.moveForward) * game.seagullLimits.walkSpeed
+			));
 		}
 
-
+		rb.position = new Vector3 (
+			Mathf.Clamp (rb.position.x, game.boundary.xMin, game.boundary.xMax),
+			Mathf.Clamp (rb.position.y, game.sea.position.y, game.boundary.yMax),
+			Mathf.Clamp (rb.position.z, game.boundary.zMin, game.boundary.zMax)
+		);
 
 		//move the held object with you
 		if(holding)
