@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private float yaw, pitch, worldy, sinr, cosr;
     private bool holding, flying;
 	protected InputValues input;
+	private Vector3 speed;
     Transform heldObject;
 
     void Start()
@@ -121,7 +122,7 @@ public class PlayerController : MonoBehaviour
 			
 			rb.rotation = Quaternion.Euler (pitch, yaw, input.turnLR * -game.seagullLimits.tilt);
 
-			Vector3 speed = rb.velocity;
+			speed = rb.velocity;
 
 			//if we get to slow, start falling slowly
 			if(speed.magnitude < 1)
@@ -129,8 +130,6 @@ public class PlayerController : MonoBehaviour
 				rb.AddForce(new Vector3(0,-0.5f,0));
 			}
 
-			//increase flapping speed!
-			animator.speed = Mathf.Max(speed.magnitude, 0.75f);
 		}
 		else
 		{ // walking
@@ -164,8 +163,21 @@ public class PlayerController : MonoBehaviour
 			holding = false;
 			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
 		}
-	}
 
+		speed = rb.velocity;
+		//gets the flight animations
+		CheckAnimator(speed);
+	}
+	
+	protected void CheckAnimator(Vector3 speed)
+	{
+		//increase speed of animations to match the speed of the seagull
+		animator.speed = Mathf.Max(speed.magnitude, 0.75f);
+
+		//will transition from wing flaps to gliding
+		animator.SetFloat("Speed", Mathf.Max(speed.magnitude, 0.75f));
+
+	}
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("pickup"))
