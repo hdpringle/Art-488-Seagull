@@ -37,6 +37,7 @@ public class GameController : MainMenu
 
 	private float currentTime, currentWarmup;
 	private int minutes, seconds;
+	private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused;
 	private Dictionary<int, PlayerController> players;
 
@@ -58,9 +59,12 @@ public class GameController : MainMenu
 
 		if (!paused)
 		{
+			//lets the game count down from 5
 			if (currentWarmup > 0) {
 				currentWarmup -= Time.deltaTime;
 			} else {
+
+				//only play while timer ticks down
 				if (currentTime > 0) {
 					currentTime -= Time.deltaTime;
 					minutes = ((int)currentTime) / 60;
@@ -72,11 +76,52 @@ public class GameController : MainMenu
 							timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 						}
 					}
+					
+
+					//This section works, but we should not use spawning until the world map is full of stuff
+					/*
+					//Spawn Any pick ups that use this time
+					if (!(minutes == lastMinutes && seconds == lastSeconds))
+					{
+						SpawnPickups(minutes, seconds);
+					}
+					*/
+					lastMinutes = minutes;
+					lastSeconds = seconds;
 				}
 			}
 		}
 	}
 
+	/*
+	 * Will check to see if the spawn time of a pickup prefab
+	 * matches the current time. Then will spawn the item in one of 
+	 * the given spawn locations
+	 */ 
+	public void SpawnPickups(int mins, int secs)
+	{
+		//I found code here that helped me with this: http://answers.unity3d.com/questions/35509/how-can-i-select-all-prefabs-that-contain-a-certai.html
+		var allPrefabs = Resources.LoadAll<UnityEngine.Object>("Prefabs/Pickups/");
+		foreach (var obj in allPrefabs)
+		{
+			GameObject gObj = obj as GameObject;
+
+			//look at all of the prefab's pickups script
+			if(gObj.GetComponent<Pickups>() != null)
+			{
+				//check if the spawn time of the prefab matches the current time, then if so spawn one
+				if (gObj.GetComponent<Pickups>().spawnTime == (mins*60+secs))
+				{
+					GameObject inGame = Instantiate(gObj);
+
+					//make this part random later!
+					//or we can have all of the instanses spawn in at once, if we use a variable to mark how many
+					//of the object needs to be spawned as part of the prefab
+					inGame.transform.position = inGame.GetComponent<Pickups>().startingPosition0;
+				}
+			}
+		}
+	}
 	public void Restart()
 	{
 		// Move along, nothing to see here

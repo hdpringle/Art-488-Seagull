@@ -15,9 +15,11 @@ public class InputValues
 public class PlayerController : MonoBehaviour
 {
     public Text scoreText, winText;
-	public GameController game;
+	//public GameController game;
 	public int playerNumber;
 
+
+	private GameController game;
     private Rigidbody rb;
 	private CharacterController cc;
 	private Animator animator;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
 		holding = false;
 		flying = true;
 		input = new InputValues ();
+		game = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
 	void Update()
