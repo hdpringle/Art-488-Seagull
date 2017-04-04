@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Configuration;
+
+public class SessionSettings
+{
+	public int numPlayers = 1;
+}
 
 public class MainMenu : MonoBehaviour {
+
+	public static SessionSettings settings = new SessionSettings ();
 
 	public GameObject rootMenu, settingsMenu;
 
@@ -23,7 +31,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void Exit()
 	{
-		Scene current = SceneManager.GetActiveScene ();
+		Scene current = SceneManager.GetActiveScene (); Debug.Log ("num: " + settings.numPlayers);
 		if (current.buildIndex == 0)
 		{
 			Application.Quit ();

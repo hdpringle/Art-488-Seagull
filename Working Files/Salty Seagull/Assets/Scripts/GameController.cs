@@ -40,6 +40,7 @@ public class GameController : MainMenu
 	private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused;
 	private Dictionary<int, PlayerController> players;
+	private Dictionary<int, NEST> nests;
 
 	// Use this for initialization
 	void Start ()
