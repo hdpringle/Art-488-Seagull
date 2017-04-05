@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 8d20bb329c7734b4daaf21209f955523
-timeCreated: 1491429702
+guid: c9eed7c81ee7341f3b4db893cc1f5337
+timeCreated: 1491431855
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: ButzBag
+    4300000: Butz_ChipBag
     9500000: //RootNode
   materials:
     importMaterials: 1
