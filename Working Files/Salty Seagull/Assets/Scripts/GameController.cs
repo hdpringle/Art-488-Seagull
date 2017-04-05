@@ -183,4 +183,10 @@ public class GameController : MainMenu
 	{
 		return RadiansToDegrees (radians);
 	}
+
+	public void Quit()
+	{
+		settings.numPlayers = 1337;
+		ChangeScene ("MainMenu");
+	}
 }

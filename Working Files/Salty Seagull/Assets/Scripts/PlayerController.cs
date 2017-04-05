@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 			break;
 
 		default:
-			input.moveForward = Input.GetAxis("P"+playerNumber+" Forward");
+			input.moveForward = Input.GetAxis("P" + playerNumber + " Forward");
 			input.moveSideways = Input.GetAxis("P" + playerNumber + " Sideways");
 			input.turnUD = Input.GetAxis("P" + playerNumber +" Vertical");
 			input.turnLR = Input.GetAxis("P" + playerNumber +" Horizontal");

@@ -34,15 +34,8 @@ public class MainMenu : MonoBehaviour {
 
 	public void Exit()
 	{
-		Scene current = SceneManager.GetActiveScene (); Debug.Log ("num: " + settings.numPlayers);
-		if (current.buildIndex == 0)
-		{
-			Application.Quit ();
-		}
-		else
-		{
-			SceneManager.SetActiveScene (SceneManager.GetSceneAt (0));
-		}
+		Debug.Log ("num: " + settings.numPlayers);
+		Application.Quit ();
 	}
 
 	//Shows the pause menu
