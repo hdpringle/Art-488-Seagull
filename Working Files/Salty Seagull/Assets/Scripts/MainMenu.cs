@@ -13,8 +13,11 @@ public class MainMenu : MonoBehaviour {
 
 	public static SessionSettings settings = new SessionSettings ();
 
+	//rootMenu is the pause screen
+	//settings menu is a nonexistent settings screen
 	public GameObject rootMenu, settingsMenu;
 
+	//changes the scene to some new screen
 	public void ChangeScene(string name)
 	{
 		Scene myScene = SceneManager.GetSceneByName (name);
@@ -42,14 +45,16 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
+	//Shows the pause menu
 	public void ShowRootMenu(bool state)
 	{
 		if (rootMenu != null)
 		{
-			rootMenu.SetActive (state);
+			rootMenu.SetActive(state);
 		}
 	}
 
+	//Displays the settings
 	public void ShowSettingsMenu(bool state)
 	{
 		if (settingsMenu != null)

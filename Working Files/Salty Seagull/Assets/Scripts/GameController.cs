@@ -47,15 +47,17 @@ public class GameController : MainMenu
 	{
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
+		rootMenu = GameObject.Find("Pause Menu");
 		Pause (false);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetAxis ("Pause") != 0 || Input.GetAxis ("Cancel") != 0)
+		//if you hit the pause button, toggle "paused"
+		if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))
 		{
-			Pause (true);
+			Pause (!paused);
 		}
 
 		if (!paused)
@@ -123,6 +125,7 @@ public class GameController : MainMenu
 			}
 		}
 	}
+
 	public void Restart()
 	{
 		// Move along, nothing to see here
@@ -143,9 +146,13 @@ public class GameController : MainMenu
 		return paused;
 	}
 
+	//sets the pause value to whatever state is
+	//shows the pause menu if it says to
 	public void Pause(bool state)
 	{
+		print(state);
 		paused = state;
+		//should toggle the pause menu
 		ShowRootMenu (state);
 	}
 

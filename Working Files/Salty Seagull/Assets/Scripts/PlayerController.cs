@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 		{
 			winText.text = "YOU WIN!!";
 		}
+		
 	}
 
     // Called for physics
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
 			input.flyWalk = Input.GetAxis("P" + playerNumber +" Crouch");
 			break;
 		}
+		
 	}
 
 	protected void DoMotion()
@@ -167,11 +169,14 @@ public class PlayerController : MonoBehaviour
 			heldObject.eulerAngles = heldObject.gameObject.GetComponent<Pickups>().startingRotation + transform.eulerAngles;
 		}
 
+		//we can only drop an object we are holding
 		if (input.drop > 0 && holding)
 		{
 			holding = false;
+			//give the pickup gravity
 			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
 		}
+
 
 		speed = rb.velocity;
 		//gets the flight animations
