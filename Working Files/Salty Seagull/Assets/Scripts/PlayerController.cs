@@ -14,7 +14,7 @@ public class InputValues
 
 public class PlayerController : MonoBehaviour
 {
-    public Text scoreText, winText;
+    private Text scoreText, winText;
 	//public GameController game;
 	public int playerNumber;
 
@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
+		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
+
+		rb = GetComponent<Rigidbody>();
 		cc = GetComponent<CharacterController> ();
 		animator = GetComponent<Animator> ();
         yaw = transform.rotation.eulerAngles.y;
@@ -42,7 +45,8 @@ public class PlayerController : MonoBehaviour
 		flying = true;
 		input = new InputValues ();
 		game = GameObject.Find("GameController").GetComponent<GameController>();
-    }
+		
+	}
 
 	void Update()
 	{
@@ -73,21 +77,22 @@ public class PlayerController : MonoBehaviour
 	{
 		switch (playerNumber)
 		{
-		case 2:
-			input.moveForward = Input.GetAxis ("P2 Forward");
-			input.moveSideways = Input.GetAxis ("P2 Sideways");
-			input.turnUD = Input.GetAxis ("P2 Vertical");
-			input.turnLR = Input.GetAxis ("P2 Horizontal");
-			input.drop = Input.GetAxis ("P2 Drop");
-			input.flyWalk = Input.GetAxis ("P2 Crouch");
+		case 1:
+			input.moveForward = Input.GetAxis("Forward");
+			input.moveSideways = Input.GetAxis("Sideways");
+			input.turnUD = Input.GetAxis("Vertical");
+			input.turnLR = Input.GetAxis("Horizontal");
+			input.drop = Input.GetAxis("Drop");
+			input.flyWalk = Input.GetAxis("Crouch");
 			break;
+
 		default:
-			input.moveForward = Input.GetAxis ("Forward");
-			input.moveSideways = Input.GetAxis ("Sideways");
-			input.turnUD = Input.GetAxis ("Vertical");
-			input.turnLR = Input.GetAxis ("Horizontal");
-			input.drop = Input.GetAxis ("Drop");
-			input.flyWalk = Input.GetAxis ("Crouch");
+			input.moveForward = Input.GetAxis("P"+playerNumber+" Forward");
+			input.moveSideways = Input.GetAxis("P" + playerNumber + " Sideways");
+			input.turnUD = Input.GetAxis("P" + playerNumber +" Vertical");
+			input.turnLR = Input.GetAxis("P" + playerNumber +" Horizontal");
+			input.drop = Input.GetAxis("P" + playerNumber +" Drop");
+			input.flyWalk = Input.GetAxis("P" + playerNumber +" Crouch");
 			break;
 		}
 	}
@@ -101,6 +106,7 @@ public class PlayerController : MonoBehaviour
 			if (flying)
 			{
 				pitch = 0;
+				//enables walking controls
 				cc.enabled = true;
 			}
 			else
