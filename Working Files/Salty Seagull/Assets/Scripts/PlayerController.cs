@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
 	private GameController game;
     private Rigidbody rb;
-	private CharacterController cc;
+	private CharacterController charCon;
 	private Animator animator;
     private float yaw, pitch, worldy, sinr, cosr;
     private bool holding, flying;
@@ -31,11 +31,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
-		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
-
 		rb = GetComponent<Rigidbody>();
-		cc = GetComponent<CharacterController> ();
+		charCon = GetComponent<CharacterController> ();
 		animator = GetComponent<Animator> ();
         yaw = transform.rotation.eulerAngles.y;
         pitch = transform.rotation.eulerAngles.x;
@@ -45,7 +42,8 @@ public class PlayerController : MonoBehaviour
 		flying = true;
 		input = new InputValues ();
 		game = GameObject.Find("GameController").GetComponent<GameController>();
-		
+		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
+		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
 	}
 
 	void Update()
@@ -109,11 +107,11 @@ public class PlayerController : MonoBehaviour
 			{
 				pitch = 0;
 				//enables walking controls
-				cc.enabled = true;
+				charCon.enabled = true;
 			}
 			else
 			{
-				cc.enabled = false;
+				charCon.enabled = false;
 			}
 			flying = !flying;
 		}
@@ -149,7 +147,7 @@ public class PlayerController : MonoBehaviour
 			sinr = Mathf.Sin (worldy);
 			cosr = Mathf.Cos (worldy);
 
-			cc.Move (new Vector3(
+			charCon.Move (new Vector3(
 				(cosr * input.moveSideways + sinr * input.moveForward) * game.seagullLimits.walkSpeed,
 				game.seagullLimits.walkGravity * Time.deltaTime,
 				(sinr * -input.moveSideways + cosr * input.moveForward) * game.seagullLimits.walkSpeed

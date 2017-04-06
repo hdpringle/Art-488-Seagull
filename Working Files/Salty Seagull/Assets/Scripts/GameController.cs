@@ -27,8 +27,16 @@ public class SeagullLimits
 			itemGravity = 9.8f;
 }
 
-public class GameController : MainMenu
+public class PlayerSpawnInfo
 {
+	public PlayerController player;
+	public NEST nest;
+	public int spawnPoint;
+}
+
+public class GameController : MainMenuController
+{
+	public GameObject playerPrefab, nestPrefab;
 	public int autowinScore;
 	public float timeLimitSeconds, warmupTime;
 	public Transform sea;
@@ -39,14 +47,29 @@ public class GameController : MainMenu
 	private int minutes, seconds;
 	private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused;
-	private Dictionary<int, PlayerController> players;
-	private Dictionary<int, NEST> nests;
+	private Dictionary<int, PlayerSpawnInfo> playerInfo;
 
 	// Use this for initialization
 	void Start ()
 	{
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
+
+		GameObject pSpawnList = GameObject.Find ("PlayerSpawnPoints");
+		GameObject nSpawnList = GameObject.Find ("NestSpawnPoints");
+		if (pSpawnList != null)
+		{
+			Transform[] pspawnpoints = pSpawnList.GetComponentsInChildren<Transform> ();
+			Transform[] nspawnpoints = nSpawnList.GetComponentsInChildren<Transform> ();
+			for (int i = 1; i <= settings.numPlayers; i++)
+			{
+				PlayerSpawnInfo info = new PlayerSpawnInfo ();
+				int sp = Random.Range (0, pspawnpoints.Length - 1);
+				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp]);
+				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp]);
+			}
+		}
+
 		rootMenu = GameObject.Find("Pause Menu");
 		Pause (false);
 	}
@@ -156,7 +179,7 @@ public class GameController : MainMenu
 		ShowRootMenu (state);
 	}
 
-	public bool RegisterPlayer(PlayerController player)
+	/*public bool RegisterPlayer(PlayerController player)
 	{
 		if (players.ContainsKey (player.playerNumber))
 		{
@@ -167,7 +190,7 @@ public class GameController : MainMenu
 			players.Add (player.playerNumber, player);
 			return true;
 		}
-	}
+	}*/
 
 	public int GetScore(int id)
 	{

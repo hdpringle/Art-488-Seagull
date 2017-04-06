@@ -9,13 +9,25 @@ public class SessionSettings
 	public int numPlayers = 1;
 }
 
-public class MainMenu : MonoBehaviour {
+public class MainMenuController : MonoBehaviour {
 
 	public static SessionSettings settings = new SessionSettings ();
 
-	//rootMenu is the pause screen
+	//rootMenu is the pause screen in-game and the main menu in the MainMenu scene
 	//settings menu is a nonexistent settings screen
 	public GameObject rootMenu, settingsMenu;
+
+	// currentMenu is the currently open menu, if there is one
+	// parentMenu is the menu from which this one was accessed, in the case of nesting
+	private GameObject currentMenu, parentMenu;
+
+	void Update()
+	{
+		if (Input.GetButtonDown("Cancel"))
+		{
+			
+		}
+	}
 
 	//changes the scene to some new screen
 	public void ChangeScene(string name)
