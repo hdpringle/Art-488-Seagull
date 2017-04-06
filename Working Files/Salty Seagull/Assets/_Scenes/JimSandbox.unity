@@ -3634,6 +3634,9 @@ MonoBehaviour:
   rootMenu: {fileID: 1825249204}
   settingsMenu: {fileID: 1149951469805234, guid: 89638ad0c3498864abb0ceacaef90a76,
     type: 2}
+  playerPrefab: {fileID: 1735639688326304, guid: e1162df096dd9374bb9254970a6d0617,
+    type: 2}
+  nestPrefab: {fileID: 1260426849838384, guid: 6454490946bbf7c449a8218fe131d79a, type: 2}
   autowinScore: 30
   timeLimitSeconds: 300
   warmupTime: 3
