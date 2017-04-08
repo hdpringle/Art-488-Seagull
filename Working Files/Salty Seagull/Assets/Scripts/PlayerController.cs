@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+		game = GameObject.Find("GameController").GetComponent<GameController>();
+		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
+		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
+
 		rb = GetComponent<Rigidbody>();
 		charCon = GetComponent<CharacterController> ();
 		animator = GetComponent<Animator> ();
@@ -41,9 +46,6 @@ public class PlayerController : MonoBehaviour
 		holding = false;
 		flying = true;
 		input = new InputValues ();
-		game = GameObject.Find("GameController").GetComponent<GameController>();
-		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
-		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
 	}
 
 	void Update()
@@ -200,11 +202,11 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("pickup"))
         {
-            if(holding)
-            {
-                // Display warning message?
-            }
-            else
+			if (holding)
+			{
+				// Display warning message?
+			}
+			else
 			{
 				//Check to see if the object we collided with is in our own nest
 				if (!GameObject.Find("NEST" + playerNumber).GetComponent<NEST>().isInNest(other.gameObject))
@@ -215,10 +217,13 @@ public class PlayerController : MonoBehaviour
 					holding = true;
 				}
 
-				//if you stole this item, let the nest know its gone
-				if(playerNumber != 0 && GameObject.Find("NEST"+(playerNumber%2+1)).GetComponent<NEST>().isInNest(other.gameObject))
+				for (int i = 1; i <= game.numberOfNests; i++)
 				{
-					GameObject.Find("NEST" + (playerNumber % 2 + 1)).GetComponent<NEST>().removeFromNest(other.gameObject);
+					//if you stole this item, let the nest know its gone
+					if (playerNumber != i && GameObject.Find("NEST" + i).GetComponent<NEST>().isInNest(other.gameObject))
+					{
+						GameObject.Find("NEST" + i).GetComponent<NEST>().removeFromNest(other.gameObject);
+					}
 				}
             }
         }
