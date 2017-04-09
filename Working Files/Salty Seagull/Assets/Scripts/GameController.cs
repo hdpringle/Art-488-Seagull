@@ -31,10 +31,10 @@ public class PlayerSpawnInfo
 {
 	public PlayerController player;
 	public NEST nest;
-	public int spawnPoint;
+	public int id;
 }
 
-public class GameController : MainMenuController
+public class GameController : MenuController
 {
 	public GameObject playerPrefab, nestPrefab;
 	public int autowinScore;
@@ -61,12 +61,27 @@ public class GameController : MainMenuController
 		{
 			Transform[] pspawnpoints = pSpawnList.GetComponentsInChildren<Transform> ();
 			Transform[] nspawnpoints = nSpawnList.GetComponentsInChildren<Transform> ();
+
+			List<int> pointNumbers = new List<int>();
+			for (int i = 0; i < pspawnpoints.Length; i++)
+			{
+				pointNumbers.Add (i);
+			}
+
 			for (int i = 1; i <= settings.numPlayers; i++)
 			{
 				PlayerSpawnInfo info = new PlayerSpawnInfo ();
-				int sp = Random.Range (0, pspawnpoints.Length - 1);
-				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp]);
-				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp]);
+				int sp;
+				do {
+					sp = Random.Range (0, pspawnpoints.Length - 1);
+				} while (!pointNumbers.Contains (sp));
+				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
+				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, pspawnpoints[sp].rotation);
+				info.id = sp;
+				info.player = newplayer.GetComponent<PlayerController> ();
+				info.nest = newnest.GetComponent<NEST> ();
+				playerInfo [sp] = info;
+				pointNumbers.Remove (sp);
 			}
 		}
 

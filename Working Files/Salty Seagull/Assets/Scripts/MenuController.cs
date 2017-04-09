@@ -9,7 +9,7 @@ public class SessionSettings
 	public int numPlayers = 1;
 }
 
-public class MainMenuController : MonoBehaviour {
+public class MenuController : MonoBehaviour {
 
 	public static SessionSettings settings = new SessionSettings ();
 
