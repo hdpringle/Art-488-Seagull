@@ -103,7 +103,7 @@ public class GameController : MenuController
 				info.player.playerNumber = i;
 				info.nest = newnest.GetComponent<NEST> ();
 				info.nest.nestId = i;
-				newplayer.transform.FindChild ("Sphere").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
+				newplayer.transform.FindChild ("Identifier").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
@@ -271,19 +271,6 @@ public class GameController : MenuController
 		//should toggle the pause menu
 		ShowRootMenu (state);
 	}
-
-	/*public bool RegisterPlayer(PlayerController player)
-	{
-		if (players.ContainsKey (player.playerNumber))
-		{
-			return false;
-		}
-		else
-		{
-			players.Add (player.playerNumber, player);
-			return true;
-		}
-	}*/
 
 	public int GetScore(int id)
 	{

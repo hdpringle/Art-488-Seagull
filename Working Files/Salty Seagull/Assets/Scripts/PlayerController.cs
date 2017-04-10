@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
 			charCon.Move (new Vector3(
 				(cosr * input.moveSideways + sinr * input.moveForward) * game.seagullLimits.walkSpeed,
-				game.seagullLimits.walkGravity * Time.deltaTime,
+				-game.seagullLimits.walkGravity * Time.deltaTime,
 				(sinr * -input.moveSideways + cosr * input.moveForward) * game.seagullLimits.walkSpeed
 			));
 		}
