@@ -29,6 +29,8 @@ public class SeagullLimits
 
 public class PlayerSpawnInfo
 {
+	public Camera camera;
+	public GameObject playerObject;
 	public PlayerController player;
 	public NEST nest;
 	public int id;
@@ -55,8 +57,11 @@ public class GameController : MenuController
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
 
+		// This block randomly chooses a set of spawn points for each player and nest
+		playerInfo = new Dictionary<int, PlayerSpawnInfo> ();
 		GameObject pSpawnList = GameObject.Find ("PlayerSpawnPoints");
 		GameObject nSpawnList = GameObject.Find ("NestSpawnPoints");
+		// If the spawnpoint system does not exist, do not run this code
 		if (pSpawnList != null)
 		{
 			Transform[] pspawnpoints = pSpawnList.GetComponentsInChildren<Transform> ();
@@ -68,20 +73,78 @@ public class GameController : MenuController
 				pointNumbers.Add (i);
 			}
 
+			// Assure we don't try to use more players than spawnpoints
+			settings.numPlayers = Mathf.Min (settings.numPlayers, pointNumbers.Count);
+
 			for (int i = 1; i <= settings.numPlayers; i++)
 			{
+				Debug.Log ("About to setup player " + i);
 				PlayerSpawnInfo info = new PlayerSpawnInfo ();
+
+				// Randomly select an available spawn position
 				int sp;
 				do {
-					sp = Random.Range (0, pspawnpoints.Length - 1);
+					sp = Random.Range (0, pointNumbers.Count);
+					Debug.Log ("Spawn position: " + sp);
 				} while (!pointNumbers.Contains (sp));
+
 				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
-				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, pspawnpoints[sp].rotation);
-				info.id = sp;
+				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, nspawnpoints[sp].rotation);
+				Material[] beacons = Resources.LoadAll<Material> ("Materials");
+
+				newplayer.name = "Player" + i;
+				newnest.name = "Nest" + i;
+				info.id = i;
+				info.playerObject = newplayer;
 				info.player = newplayer.GetComponent<PlayerController> ();
+				info.player.playerNumber = i;
 				info.nest = newnest.GetComponent<NEST> ();
-				playerInfo [sp] = info;
+				info.nest.nestId = i;
+				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[i];
+				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
+				Debug.Log ("Done setting up player " + i);
+			}
+
+			// Set up cameras
+			Camera mainCamera = GameObject.FindObjectOfType<Camera> ();
+			playerInfo [1].camera = mainCamera;
+			mainCamera.GetComponent<TransformFollower> ().target = playerInfo[1].playerObject.transform;
+			for (int i = 2; i <= settings.numPlayers; i++)
+			{
+				Debug.Log ("About to set up camera " + i);
+				Camera newCam = Instantiate<Camera> (mainCamera);
+				newCam.name = "Camera(P" + i + ")";
+				newCam.GetComponent<AudioListener> ().enabled = false;
+				newCam.GetComponent<TransformFollower> ().target = playerInfo[i].playerObject.transform;
+				playerInfo [i].camera = newCam;
+				Debug.Log ("Done setting up camera " + i);
+			}
+
+			switch (settings.numPlayers)
+			{
+			case 1:
+				Debug.Log ("Resizing cameras for 1 player.");
+				playerInfo [1].camera.rect = new Rect (0f, 1f, 0f, 1f);
+				break;
+			case 2:
+				Debug.Log ("Resizing cameras for 2 players.");
+				playerInfo [1].camera.rect = new Rect (0f, 0f, 0.5f, 1f);
+				playerInfo [2].camera.rect = new Rect (0.5f, 0f, 0.5f, 1f);
+				break;
+			case 3:
+				Debug.Log ("Resizing cameras for 3 players.");
+				playerInfo [1].camera.rect = new Rect (0f, 0f, 1f, 0.5f);
+				playerInfo [2].camera.rect = new Rect (0f, 0.5f, 0.5f, 0.5f);
+				playerInfo [3].camera.rect = new Rect (0.5f, 0.5f, 0.5f, 0.5f);
+				break;
+			case 4:
+				Debug.Log ("Resizing cameras for 4 players.");
+				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 0f, 0.5f);
+				playerInfo [2].camera.rect = new Rect (0.5f, 1f, 0f, 0.5f);
+				playerInfo [3].camera.rect = new Rect (0f, 0.5f, 0.5f, 1f);
+				playerInfo [4].camera.rect = new Rect (0.5f, 1f, 0.5f, 1f);
+				break;
 			}
 		}
 
@@ -129,6 +192,20 @@ public class GameController : MenuController
 					*/
 					lastMinutes = minutes;
 					lastSeconds = seconds;
+				}
+				else
+				{
+					int topScore = -1;
+					int topScorer = -1;
+					foreach (PlayerSpawnInfo info in playerInfo.Values)
+					{
+						if (info.nest.GetScore () > topScore)
+						{
+							topScore = info.nest.GetScore ();
+							topScorer = info.id;
+						}
+					}
+					GameObject.Find ("Win Text").GetComponent<Text> ().text = "Player " + topScorer + " wins!";
 				}
 			}
 		}
@@ -209,7 +286,7 @@ public class GameController : MenuController
 
 	public int GetScore(int id)
 	{
-		return GameObject.Find ("NEST" + id).GetComponent<NEST> ().GetScore ();
+		return playerInfo[id].nest.GetScore ();
 	}
 
 	public float DTR (float degrees)
@@ -224,7 +301,7 @@ public class GameController : MenuController
 
 	public void Quit()
 	{
-		settings.numPlayers = 1337;
+		settings.numPlayers = (settings.numPlayers + 1) % 4;
 		ChangeScene ("MainMenu");
 	}
 }
