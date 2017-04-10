@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
 		game = GameObject.Find("GameController").GetComponent<GameController>();
 		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
 		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
@@ -50,13 +49,7 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		int score = game.GetScore (playerNumber);
-		scoreText.text = "Score: " + score.ToString();
-		if (score >= game.autowinScore)
-		{
-			winText.text = "YOU WIN!!";
-		}
-		
+		scoreText.text = "Score: " + game.GetScore (playerNumber).ToString();
 	}
 
     // Called for physics

@@ -101,7 +101,7 @@ public class GameController : MenuController
 				info.player.playerNumber = i;
 				info.nest = newnest.GetComponent<NEST> ();
 				info.nest.nestId = i;
-				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[i];
+				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[sp];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
 				Debug.Log ("Done setting up player " + i);
