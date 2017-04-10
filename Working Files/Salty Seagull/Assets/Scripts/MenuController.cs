@@ -6,7 +6,7 @@ using System.Configuration;
 
 public class SessionSettings
 {
-	public int numPlayers = 4;
+	public int numPlayers = 3;
 }
 
 public class MenuController : MonoBehaviour {
@@ -76,5 +76,10 @@ public class MenuController : MonoBehaviour {
 	public float RadiansToDegrees (float radians)
 	{
 		return radians * 180 / Mathf.PI;
+	}
+
+	public void changePlayerNumber(int num)
+	{
+		settings.numPlayers = num;
 	}
 }
