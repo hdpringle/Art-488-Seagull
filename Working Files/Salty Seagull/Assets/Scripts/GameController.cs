@@ -44,6 +44,7 @@ public class GameController : MenuController
 	public Transform sea;
 	public Boundary boundary;
 	public SeagullLimits seagullLimits;
+	public int numberOfNests; //used so the seagulls know whos nest they stole from (see playerController)
 
 	private float currentTime, currentWarmup;
 	private int minutes, seconds;
