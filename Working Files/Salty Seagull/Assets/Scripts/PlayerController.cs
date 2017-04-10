@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
 			if (!holding)
 			{
 				//Check to see if the object we collided with is in our own nest
-				if (!GameObject.Find("NEST" + playerNumber).GetComponent<NEST>().isInNest(other.gameObject))
+				if (!GameObject.Find("Nest" + playerNumber).GetComponent<NEST>().isInNest(other.gameObject))
 				{
 					//other.gameObject.SetActive(false);
 					heldObject = other.transform;
@@ -209,9 +209,9 @@ public class PlayerController : MonoBehaviour
 				for (int i = 1; i <= game.numberOfNests; i++)
 				{
 					//if you stole this item, let the nest know its gone
-					if (playerNumber != i && GameObject.Find("NEST" + i).GetComponent<NEST>().isInNest(other.gameObject))
+					if (playerNumber != i && GameObject.Find("Nest" + i).GetComponent<NEST>().isInNest(other.gameObject))
 					{
-						GameObject.Find("NEST" + i).GetComponent<NEST>().removeFromNest(other.gameObject);
+						GameObject.Find("Nest" + i).GetComponent<NEST>().removeFromNest(other.gameObject);
 					}
 				}
             }
