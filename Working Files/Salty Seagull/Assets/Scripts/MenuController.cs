@@ -77,4 +77,8 @@ public class MenuController : MonoBehaviour {
 	{
 		return radians * 180 / Mathf.PI;
 	}
+	public void changePlayerNumber(int num)
+	{
+		settings.numPlayers = num;
+	}
 }

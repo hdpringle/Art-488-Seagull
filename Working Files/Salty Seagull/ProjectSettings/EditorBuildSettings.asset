@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/SinglePlayer.unity
   - enabled: 1
     path: Assets/_Scenes/2pSplitScreen.unity
+  - enabled: 1
+    path: Assets/_Scenes/JimSandbox.unity
