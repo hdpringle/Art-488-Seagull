@@ -126,7 +126,7 @@ public class GameController : MenuController
 			{
 			case 1:
 				Debug.Log ("Resizing cameras for 1 player.");
-				playerInfo [1].camera.rect = new Rect (0f, 1f, 0f, 1f);
+				playerInfo [1].camera.rect = new Rect (0f, 0f, 1f, 1f);
 				break;
 			case 2:
 				Debug.Log ("Resizing cameras for 2 players.");
@@ -135,16 +135,16 @@ public class GameController : MenuController
 				break;
 			case 3:
 				Debug.Log ("Resizing cameras for 3 players.");
-				playerInfo [1].camera.rect = new Rect (0f, 0f, 1f, 0.5f);
-				playerInfo [2].camera.rect = new Rect (0f, 0.5f, 0.5f, 0.5f);
-				playerInfo [3].camera.rect = new Rect (0.5f, 0.5f, 0.5f, 0.5f);
+				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 1f, 0.5f);
+				playerInfo [2].camera.rect = new Rect (0f, 0f, 0.5f, 0.5f);
+				playerInfo [3].camera.rect = new Rect (0.5f, 0f, 0.5f, 0.5f);
 				break;
 			case 4:
 				Debug.Log ("Resizing cameras for 4 players.");
-				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 0f, 0.5f);
-				playerInfo [2].camera.rect = new Rect (0.5f, 1f, 0f, 0.5f);
-				playerInfo [3].camera.rect = new Rect (0f, 0.5f, 0.5f, 1f);
-				playerInfo [4].camera.rect = new Rect (0.5f, 1f, 0.5f, 1f);
+				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 0.5f, 0.5f);
+				playerInfo [2].camera.rect = new Rect (0.5f, 0.5f, 0.5f, 0.5f);
+				playerInfo [3].camera.rect = new Rect (0f, 0f, 0.5f, 0.5f);
+				playerInfo [4].camera.rect = new Rect (0.5f, 0f, 0.5f, 0.5f);
 				break;
 			}
 		}

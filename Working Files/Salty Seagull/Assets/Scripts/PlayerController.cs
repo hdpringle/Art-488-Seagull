@@ -202,11 +202,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("pickup"))
         {
-			if (holding)
-			{
-				// Display warning message?
-			}
-			else
+			if (!holding)
 			{
 				//Check to see if the object we collided with is in our own nest
 				if (!GameObject.Find("NEST" + playerNumber).GetComponent<NEST>().isInNest(other.gameObject))
