@@ -6,7 +6,7 @@ using System.Configuration;
 
 public class SessionSettings
 {
-	public int numPlayers = 2;
+	public int numPlayers = 3;
 }
 
 public class MenuController : MonoBehaviour {

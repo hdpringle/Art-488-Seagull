@@ -57,7 +57,7 @@ public class GameController : MenuController
 	{
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
-
+		Debug.Log ("Before getting spawn points objects.");
 		// This block randomly chooses a set of spawn points for each player and nest
 		playerInfo = new Dictionary<int, PlayerSpawnInfo> ();
 		GameObject pSpawnList = GameObject.Find ("PlayerSpawnPoints");
@@ -71,7 +71,7 @@ public class GameController : MenuController
 			List<int> pointNumbers = new List<int>();
 			for (int i = 1; i < pspawnpoints.Length; i++)
 			{
-				pointNumbers.Add (i - 1);
+				pointNumbers.Add (i);
 			}
 
 			// Assure we don't try to use more players than spawnpoints
@@ -85,13 +85,13 @@ public class GameController : MenuController
 				// Randomly select an available spawn position
 				int sp;
 				do {
-					sp = Random.Range (0, pointNumbers.Count);
+					sp = Random.Range (1, pspawnpoints.Length);
 					Debug.Log ("Spawn position: " + sp);
 				} while (!pointNumbers.Contains (sp));
 
 				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
 				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, nspawnpoints[sp].rotation);
-				List<Material> beacons = new List<Material>(Resources.LoadAll<Material> ("Materials"));
+				Material[] beacons = Resources.LoadAll<Material> ("Materials");
 
 				newplayer.name = "Player" + i;
 				newnest.name = "Nest" + i;
@@ -101,7 +101,7 @@ public class GameController : MenuController
 				info.player.playerNumber = i;
 				info.nest = newnest.GetComponent<NEST> ();
 				info.nest.nestId = i;
-				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[sp];
+				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
 				Debug.Log ("Done setting up player " + i);
@@ -302,7 +302,7 @@ public class GameController : MenuController
 
 	public void Quit()
 	{
-		settings.numPlayers = (settings.numPlayers + 1) % 4;
+		settings.numPlayers = ((settings.numPlayers + 1) % 4) + 1;
 		ChangeScene ("MainMenu");
 	}
 }
