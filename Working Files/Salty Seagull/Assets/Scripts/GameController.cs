@@ -69,9 +69,9 @@ public class GameController : MenuController
 			Transform[] nspawnpoints = nSpawnList.GetComponentsInChildren<Transform> ();
 
 			List<int> pointNumbers = new List<int>();
-			for (int i = 0; i < pspawnpoints.Length; i++)
+			for (int i = 1; i < pspawnpoints.Length; i++)
 			{
-				pointNumbers.Add (i);
+				pointNumbers.Add (i - 1);
 			}
 
 			// Assure we don't try to use more players than spawnpoints
@@ -91,7 +91,7 @@ public class GameController : MenuController
 
 				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
 				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, nspawnpoints[sp].rotation);
-				Material[] beacons = Resources.LoadAll<Material> ("Materials");
+				List<Material> beacons = new List<Material>(Resources.LoadAll<Material> ("Materials"));
 
 				newplayer.name = "Player" + i;
 				newnest.name = "Nest" + i;
