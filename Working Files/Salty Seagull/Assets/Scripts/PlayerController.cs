@@ -9,12 +9,13 @@ using System.Xml.Linq;
 
 public class InputValues
 {
-	public float moveForward, moveSideways, turnUD, turnLR, drop, flyWalk;
+	public float moveForward, moveSideways, turnUD, turnLR, drop;
+	public bool flyWalk;
 }
 
 public class PlayerController : MonoBehaviour
 {
-    private Text scoreText, winText;
+    private Text scoreText;
 	//public GameController game;
 	public int playerNumber;
 
@@ -33,14 +34,12 @@ public class PlayerController : MonoBehaviour
     {
 		game = GameObject.Find("GameController").GetComponent<GameController>();
 		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
-		winText = GameObject.Find("Canvas").transform.FindChild("Win Text").GetComponent<Text>();
 
 		rb = GetComponent<Rigidbody>();
 		charCon = GetComponent<CharacterController> ();
 		animator = GetComponent<Animator> ();
         yaw = transform.rotation.eulerAngles.y;
         pitch = transform.rotation.eulerAngles.x;
-        winText.text = "";
         rb.freezeRotation = true;
 		holding = false;
 		flying = true;
@@ -77,7 +76,7 @@ public class PlayerController : MonoBehaviour
 			input.turnUD = Input.GetAxis("Vertical");
 			input.turnLR = Input.GetAxis("Horizontal");
 			input.drop = Input.GetAxis("Drop");
-			input.flyWalk = Input.GetAxis("Crouch");
+			input.flyWalk = Input.GetButtonDown("Crouch");
 			break;
 
 		default:
@@ -86,7 +85,7 @@ public class PlayerController : MonoBehaviour
 			input.turnUD = Input.GetAxis("P" + playerNumber +" Vertical");
 			input.turnLR = Input.GetAxis("P" + playerNumber +" Horizontal");
 			input.drop = Input.GetAxis("P" + playerNumber +" Drop");
-			input.flyWalk = Input.GetAxis("P" + playerNumber +" Crouch");
+			input.flyWalk = Input.GetButtonDown("P" + playerNumber +" Crouch");
 			break;
 		}
 		
@@ -96,7 +95,7 @@ public class PlayerController : MonoBehaviour
 	{
 		yaw += game.seagullLimits.rotationLR * input.turnLR;
 
-		if (input.flyWalk > 0)
+		if (input.flyWalk)
 		{
 			if (flying)
 			{

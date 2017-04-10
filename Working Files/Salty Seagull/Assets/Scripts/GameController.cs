@@ -46,6 +46,7 @@ public class GameController : MenuController
 	public SeagullLimits seagullLimits;
 	public int numberOfNests; //used so the seagulls know whos nest they stole from (see playerController)
 
+	private Text winText;
 	private float currentTime, currentWarmup;
 	private int minutes, seconds;
 	private int lastMinutes, lastSeconds; //needed to not recheck spawn times
@@ -57,7 +58,9 @@ public class GameController : MenuController
 	{
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
-		Debug.Log ("Before getting spawn points objects.");
+		winText = GameObject.Find ("WinText").GetComponent<Text> ();
+		winText.text = "";
+
 		// This block randomly chooses a set of spawn points for each player and nest
 		playerInfo = new Dictionary<int, PlayerSpawnInfo> ();
 		GameObject pSpawnList = GameObject.Find ("PlayerSpawnPoints");
@@ -79,7 +82,6 @@ public class GameController : MenuController
 
 			for (int i = 1; i <= settings.numPlayers; i++)
 			{
-				Debug.Log ("About to setup player " + i);
 				PlayerSpawnInfo info = new PlayerSpawnInfo ();
 
 				// Randomly select an available spawn position
@@ -101,10 +103,10 @@ public class GameController : MenuController
 				info.player.playerNumber = i;
 				info.nest = newnest.GetComponent<NEST> ();
 				info.nest.nestId = i;
+				newplayer.transform.FindChild ("Sphere").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
-				Debug.Log ("Done setting up player " + i);
 			}
 
 			// Set up cameras
@@ -113,13 +115,11 @@ public class GameController : MenuController
 			mainCamera.GetComponent<TransformFollower> ().target = playerInfo[1].playerObject.transform;
 			for (int i = 2; i <= settings.numPlayers; i++)
 			{
-				Debug.Log ("About to set up camera " + i);
 				Camera newCam = Instantiate<Camera> (mainCamera);
 				newCam.name = "Camera(P" + i + ")";
 				newCam.GetComponent<AudioListener> ().enabled = false;
 				newCam.GetComponent<TransformFollower> ().target = playerInfo[i].playerObject.transform;
 				playerInfo [i].camera = newCam;
-				Debug.Log ("Done setting up camera " + i);
 			}
 
 			switch (settings.numPlayers)
@@ -206,7 +206,7 @@ public class GameController : MenuController
 							topScorer = info.id;
 						}
 					}
-					GameObject.Find ("Win Text").GetComponent<Text> ().text = "Player " + topScorer + " wins!";
+					winText.text = "Player " + topScorer + " wins!";
 				}
 			}
 		}
