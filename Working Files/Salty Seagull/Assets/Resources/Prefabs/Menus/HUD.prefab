@@ -92,7 +92,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0:19
+  m_Text: TIMER
 --- !u!114 &114716193599886076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Score: -1'
 --- !u!222 &222840826239353776
 CanvasRenderer:
   m_ObjectHideFlags: 1
