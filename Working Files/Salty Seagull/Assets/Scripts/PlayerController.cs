@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 		game = GameObject.Find("GameController").GetComponent<GameController>();
-		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD " + playerNumber).transform.FindChild("Score").GetComponent<Text>();
+		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD" + playerNumber).transform.FindChild("Score").GetComponent<Text>();
 
 		rb = GetComponent<Rigidbody>();
 		charCon = GetComponent<CharacterController> ();

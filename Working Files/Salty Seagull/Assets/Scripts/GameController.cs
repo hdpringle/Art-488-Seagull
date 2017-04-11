@@ -29,16 +29,17 @@ public class SeagullLimits
 
 public class PlayerSpawnInfo
 {
+	public int id;
+	public GameObject hud;
 	public Camera camera;
 	public GameObject playerObject;
 	public PlayerController player;
 	public NEST nest;
-	public int id;
 }
 
 public class GameController : MenuController
 {
-	public GameObject playerPrefab, nestPrefab;
+	public GameObject playerPrefab, nestPrefab, hudPrefab;
 	public int autowinScore;
 	public float timeLimitSeconds, warmupTime;
 	public Transform sea;
@@ -49,13 +50,14 @@ public class GameController : MenuController
 	private Text winText;
 	private float currentTime, currentWarmup;
 	private int minutes, seconds;
-	private int lastMinutes, lastSeconds; //needed to not recheck spawn times
-	private bool paused;
+	//private int lastMinutes, lastSeconds; //needed to not recheck spawn times
+	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
 
 	// Use this for initialization
 	void Start ()
 	{
+		gameOver = false;
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
@@ -88,13 +90,14 @@ public class GameController : MenuController
 				int sp;
 				do {
 					sp = Random.Range (1, pspawnpoints.Length);
-					Debug.Log ("Spawn position: " + sp);
 				} while (!pointNumbers.Contains (sp));
 
+				GameObject newHUD = GameObject.Instantiate (hudPrefab, GameObject.Find ("Canvas").transform);
 				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
 				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, nspawnpoints[sp].rotation);
 				Material[] beacons = Resources.LoadAll<Material> ("Materials");
 
+				newHUD.name = "HUD" + i;
 				newplayer.name = "Player" + i;
 				newnest.name = "Nest" + i;
 				info.id = i;
@@ -103,6 +106,8 @@ public class GameController : MenuController
 				info.player.playerNumber = i;
 				info.nest = newnest.GetComponent<NEST> ();
 				info.nest.nestId = i;
+				info.hud = newHUD;
+				info.hud.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
 				newplayer.transform.FindChild ("Identifier").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				newnest.transform.FindChild ("Beacon").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				playerInfo [i] = info;
@@ -122,6 +127,7 @@ public class GameController : MenuController
 				playerInfo [i].camera = newCam;
 			}
 
+			// Scale cameras and HUDs
 			switch (settings.numPlayers)
 			{
 			case 1:
@@ -132,12 +138,16 @@ public class GameController : MenuController
 				Debug.Log ("Resizing cameras for 2 players.");
 				playerInfo [1].camera.rect = new Rect (0f, 0f, 0.5f, 1f);
 				playerInfo [2].camera.rect = new Rect (0.5f, 0f, 0.5f, 1f);
+				playerInfo [2].hud.GetComponent<RectTransform> ().anchorMin = new Vector2(0.5f, 1f);
 				break;
 			case 3:
 				Debug.Log ("Resizing cameras for 3 players.");
 				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 1f, 0.5f);
 				playerInfo [2].camera.rect = new Rect (0f, 0f, 0.5f, 0.5f);
 				playerInfo [3].camera.rect = new Rect (0.5f, 0f, 0.5f, 0.5f);
+				playerInfo [2].hud.GetComponent<RectTransform> ().anchorMax = new Vector2(0f, 0.5f);
+				playerInfo [3].hud.GetComponent<RectTransform> ().anchorMin = new Vector2(0.5f, 0f);
+				playerInfo [3].hud.GetComponent<RectTransform> ().anchorMax = new Vector2(1f, 0.5f);
 				break;
 			case 4:
 				Debug.Log ("Resizing cameras for 4 players.");
@@ -145,9 +155,20 @@ public class GameController : MenuController
 				playerInfo [2].camera.rect = new Rect (0.5f, 0.5f, 0.5f, 0.5f);
 				playerInfo [3].camera.rect = new Rect (0f, 0f, 0.5f, 0.5f);
 				playerInfo [4].camera.rect = new Rect (0.5f, 0f, 0.5f, 0.5f);
+				playerInfo [2].hud.GetComponent<RectTransform> ().anchorMin = new Vector2(0.5f, 0f);
+				playerInfo [3].hud.GetComponent<RectTransform> ().anchorMax = new Vector2(0f, 0.5f);
+				playerInfo [4].hud.GetComponent<RectTransform> ().anchorMin = new Vector2(0.5f, 0f);
+				playerInfo [4].hud.GetComponent<RectTransform> ().anchorMax = new Vector2(1f, 0.5f);
 				break;
 			}
 		}
+
+		RectTransform rect = playerInfo [1].hud.GetComponent<RectTransform> ();
+		Debug.Log ("Rect: " + rect.rect);
+		Debug.Log ("AP: " + rect.anchoredPosition);
+		Debug.Log ("Amin: " + rect.anchorMin);
+		Debug.Log ("Omin: " + rect.offsetMin);
+		Debug.Log ("Pivot: " + rect.pivot);
 
 		rootMenu = GameObject.Find("Pause Menu");
 		Pause (false);
@@ -162,7 +183,7 @@ public class GameController : MenuController
 			Pause (!paused);
 		}
 
-		if (!paused)
+		if (!(paused || gameOver))
 		{
 			//lets the game count down from 5
 			if (currentWarmup > 0) {
@@ -190,9 +211,9 @@ public class GameController : MenuController
 					{
 						SpawnPickups(minutes, seconds);
 					}
-					*/
 					lastMinutes = minutes;
 					lastSeconds = seconds;
+					*/
 				}
 				else
 				{
@@ -207,6 +228,7 @@ public class GameController : MenuController
 						}
 					}
 					winText.text = "Player " + topScorer + " wins!";
+					gameOver = true;
 				}
 			}
 		}
