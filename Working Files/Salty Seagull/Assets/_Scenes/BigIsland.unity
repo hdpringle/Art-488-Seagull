@@ -5501,6 +5501,10 @@ Prefab:
       propertyPath: m_Name
       value: Island
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b9a41a131f7f34e6091297a4ca7e32f6, type: 3}
+      propertyPath: m_TagString
+      value: Island
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9a41a131f7f34e6091297a4ca7e32f6, type: 3}
   m_IsPrefabParent: 0
@@ -5513,6 +5517,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: b9a41a131f7f34e6091297a4ca7e32f6, type: 3}
   m_PrefabInternal: {fileID: 1910527825}
 --- !u!64 &1910527828
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1910527827}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b9a41a131f7f34e6091297a4ca7e32f6, type: 3}
+--- !u!64 &1910527832
 MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}

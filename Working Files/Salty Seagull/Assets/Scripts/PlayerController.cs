@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
 		if (input.flyWalk)
 		{
+			animator.SetTrigger("Falling");
 			if (flying)
 			{
 				pitch = 0;
@@ -236,6 +237,11 @@ public class PlayerController : MonoBehaviour
 				other.gameObject.GetComponent<PlayerController>().holding = false;
 			}
 		}
+		else if(other.CompareTag("Island"))
+		{
+			animator.SetTrigger("Walking");
+		}
+		print(other.tag);
     }
 
 	/**
