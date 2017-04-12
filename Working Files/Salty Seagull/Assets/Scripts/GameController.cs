@@ -163,13 +163,6 @@ public class GameController : MenuController
 			}
 		}
 
-		RectTransform rect = playerInfo [1].hud.GetComponent<RectTransform> ();
-		Debug.Log ("Rect: " + rect.rect);
-		Debug.Log ("AP: " + rect.anchoredPosition);
-		Debug.Log ("Amin: " + rect.anchorMin);
-		Debug.Log ("Omin: " + rect.offsetMin);
-		Debug.Log ("Pivot: " + rect.pivot);
-
 		rootMenu = GameObject.Find("Pause Menu");
 		Pause (false);
 	}
