@@ -108,6 +108,7 @@ public class GameController : MenuController
 				info.nest = newnest.GetComponent<NEST> ();
 				info.nest.nestId = i;
 				info.hud = newHUD;
+				info.hud.transform.SetSiblingIndex (0);
 				info.hud.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
 				newplayer.transform.FindChild ("Identifier").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
 				newnest.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material = beacons[sp - 1];
@@ -132,17 +133,14 @@ public class GameController : MenuController
 			switch (settings.numPlayers)
 			{
 			case 1:
-				Debug.Log ("Resizing cameras for 1 player.");
 				playerInfo [1].camera.rect = new Rect (0f, 0f, 1f, 1f);
 				break;
 			case 2:
-				Debug.Log ("Resizing cameras for 2 players.");
 				playerInfo [1].camera.rect = new Rect (0f, 0f, 0.5f, 1f);
 				playerInfo [2].camera.rect = new Rect (0.5f, 0f, 0.5f, 1f);
 				playerInfo [2].hud.GetComponent<RectTransform> ().anchorMin = new Vector2(0.5f, 1f);
 				break;
 			case 3:
-				Debug.Log ("Resizing cameras for 3 players.");
 				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 1f, 0.5f);
 				playerInfo [2].camera.rect = new Rect (0f, 0f, 0.5f, 0.5f);
 				playerInfo [3].camera.rect = new Rect (0.5f, 0f, 0.5f, 0.5f);
@@ -151,7 +149,6 @@ public class GameController : MenuController
 				playerInfo [3].hud.GetComponent<RectTransform> ().anchorMax = new Vector2(1f, 0.5f);
 				break;
 			case 4:
-				Debug.Log ("Resizing cameras for 4 players.");
 				playerInfo [1].camera.rect = new Rect (0f, 0.5f, 0.5f, 0.5f);
 				playerInfo [2].camera.rect = new Rect (0.5f, 0.5f, 0.5f, 0.5f);
 				playerInfo [3].camera.rect = new Rect (0f, 0f, 0.5f, 0.5f);
