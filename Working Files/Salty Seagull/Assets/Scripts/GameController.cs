@@ -42,10 +42,10 @@ public class GameController : MenuController
 	public GameObject playerPrefab, nestPrefab, hudPrefab;
 	public int autowinScore;
 	public float timeLimitSeconds, warmupTime;
-	public Transform sea;
 	public Boundary boundary;
 	public SeagullLimits seagullLimits;
 	public int numberOfNests; //used so the seagulls know whos nest they stole from (see playerController)
+	public Transform sea;
 
 	private Text winText;
 	private float currentTime, currentWarmup;
@@ -60,6 +60,7 @@ public class GameController : MenuController
 		gameOver = false;
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
+		sea = GameObject.Find ("Sea").transform;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
 		winText.text = "";
 
@@ -281,7 +282,6 @@ public class GameController : MenuController
 	//shows the pause menu if it says to
 	public void Pause(bool state)
 	{
-		print(state);
 		paused = state;
 		//should toggle the pause menu
 		ShowRootMenu (state);
