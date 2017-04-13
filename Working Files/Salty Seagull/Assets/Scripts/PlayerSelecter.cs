@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerSelecter : MonoBehaviour {
+public class PlayerSelecter : MenuController {
+
 	const int NUMBER_OF_SEAGULLS = 4;//can update when more seagull skins come
 
 	public int playerNumber;
@@ -23,6 +24,12 @@ public class PlayerSelecter : MonoBehaviour {
 	{
 		input = new InputValues();
 		chosen = false;
+
+		//dont show players that are not in this game
+		if(settings.numPlayers < playerNumber)
+		{
+			this.gameObject.SetActive(false);
+		}
 		//constantly calls an update function, every 0.25 seconds. Lets us get delays on the controller input.
 		InvokeRepeating("BestUpdate", 0f, 0.25f);
 	}
@@ -47,11 +54,13 @@ public class PlayerSelecter : MonoBehaviour {
 		if(chosen)
 		{
 			transform.FindChild("Text").GetComponent<Text>().text = "DONE!";
+			ChangeScene("BigIsland");
 		}
 		else
 		{
-				transform.FindChild("Text").GetComponent<Text>().text = "Choosing";
+			transform.FindChild("Text").GetComponent<Text>().text = "Choosing";
 		}
+		
 
 		//get the controls
 		GetControls();
@@ -88,12 +97,12 @@ public class PlayerSelecter : MonoBehaviour {
 		switch (playerNumber)
 		{
 			case 1:
-				input.turnLR = Input.GetAxis("Horizontal");
+				input.turnLR = Input.GetAxis("Sideways");
 				input.select = Input.GetAxis("Submit");
 				break;
 
 			default:
-				input.turnLR = Input.GetAxis("P" + playerNumber + " Horizontal");
+				input.turnLR = Input.GetAxis("P" + playerNumber + " Sideways");
 				break;
 		}
 	}

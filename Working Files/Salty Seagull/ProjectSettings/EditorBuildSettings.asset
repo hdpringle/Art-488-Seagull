@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Cove.unity
   - enabled: 1
     path: Assets/_Scenes/BigIsland.unity
+  - enabled: 1
+    path: Assets/_Scenes/PlayerSelect.unity
