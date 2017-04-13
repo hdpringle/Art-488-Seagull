@@ -809,10 +809,10 @@ InputManager:
     m_Name: P2 Submit
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: return
-    altNegativeButton: joystick 2 button 1
-    altPositiveButton: joystick 2 button 0
+    negativeButton: joystick 2 button 1
+    positiveButton: joystick 2 button 0
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -861,6 +861,22 @@ InputManager:
     positiveButton: enter
     altNegativeButton: 
     altPositiveButton: space
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: P2 Submit
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: +
+    altNegativeButton: 
+    altPositiveButton: .
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

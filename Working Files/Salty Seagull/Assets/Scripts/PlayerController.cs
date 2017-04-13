@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     private float yaw, pitch, worldy, sinr, cosr;
     private bool holding, flying;
 	protected InputValues input;
-	private Vector3 speed;
     Transform heldObject;
 
     void Start()
@@ -93,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
 	protected void DoMotion()
 	{
+		Vector3 speed;
 		yaw += game.seagullLimits.rotationLR * input.turnLR;
 
 		if (input.flyWalk)
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 			animator.speed = 1;
 		}
 		//will transition from wing flaps to gliding
-		animator.SetFloat("Speed", Mathf.Max(speed.magnitude, 0.75f));
+		animator.SetFloat("Speed", Mathf.Max(input.moveForward, 0f));
 
 	}
     private void OnTriggerEnter(Collider other)

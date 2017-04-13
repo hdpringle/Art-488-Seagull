@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerSelecter : MenuController {
+public class PlayerSelecter : MonoBehaviour
+{ 
 
 	const int NUMBER_OF_SEAGULLS = 4;//can update when more seagull skins come
 
@@ -25,11 +26,6 @@ public class PlayerSelecter : MenuController {
 		input = new InputValues();
 		chosen = false;
 
-		//dont show players that are not in this game
-		if(settings.numPlayers < playerNumber)
-		{
-			this.gameObject.SetActive(false);
-		}
 		//constantly calls an update function, every 0.25 seconds. Lets us get delays on the controller input.
 		InvokeRepeating("BestUpdate", 0f, 0.25f);
 	}
@@ -54,7 +50,6 @@ public class PlayerSelecter : MenuController {
 		if(chosen)
 		{
 			transform.FindChild("Text").GetComponent<Text>().text = "DONE!";
-			ChangeScene("BigIsland");
 		}
 		else
 		{
@@ -103,6 +98,7 @@ public class PlayerSelecter : MenuController {
 
 			default:
 				input.turnLR = Input.GetAxis("P" + playerNumber + " Sideways");
+				input.select = Input.GetAxis("P" + playerNumber + " Submit");
 				break;
 		}
 	}
