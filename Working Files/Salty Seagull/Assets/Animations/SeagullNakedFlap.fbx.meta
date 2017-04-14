@@ -1,0 +1,321 @@
+fileFormatVersion: 2
+guid: 62314d88d6c0df54a9ba11519194db4b
+timeCreated: 1492133705
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: also_base_
+    100002: base
+    100004: bottom_beak_end
+    100006: chest
+    100008: head
+    100010: hip
+    100012: jaw
+    100014: joint21
+    100016: joint22
+    100018: joint23
+    100020: joint37
+    100022: joint38
+    100024: joint39
+    100026: L_arm
+    100028: L_finger
+    100030: L_foot
+    100032: L_forearm
+    100034: L_hand
+    100036: L_knee
+    100038: L_shoulder
+    100040: L_thigh
+    100042: L_toes
+    100044: neck_bottom
+    100046: nurbsCircle1
+    100048: pCylinder1
+    100050: pCylinder2
+    100052: polySurface1
+    100054: polySurface2
+    100056: pSphere1
+    100058: pSphere2
+    100060: R_arm
+    100062: R_finger
+    100064: R_foot
+    100066: R_forearm
+    100068: R_hand
+    100070: R_knee
+    100072: R_shoulder
+    100074: R_thigh
+    100076: R_toes
+    100078: Seagull_bound
+    100080: Seagull_bound1
+    100082: Seagull_bound2
+    100084: //RootNode
+    100086: tail_end
+    100088: tail_start
+    100090: top_beak_end
+    100092: transform1
+    100094: transform2
+    100096: transform3
+    100098: transform4
+    100100: transform5
+    100102: transform6
+    400000: also_base_
+    400002: base
+    400004: bottom_beak_end
+    400006: chest
+    400008: head
+    400010: hip
+    400012: jaw
+    400014: joint21
+    400016: joint22
+    400018: joint23
+    400020: joint37
+    400022: joint38
+    400024: joint39
+    400026: L_arm
+    400028: L_finger
+    400030: L_foot
+    400032: L_forearm
+    400034: L_hand
+    400036: L_knee
+    400038: L_shoulder
+    400040: L_thigh
+    400042: L_toes
+    400044: neck_bottom
+    400046: nurbsCircle1
+    400048: pCylinder1
+    400050: pCylinder2
+    400052: polySurface1
+    400054: polySurface2
+    400056: pSphere1
+    400058: pSphere2
+    400060: R_arm
+    400062: R_finger
+    400064: R_foot
+    400066: R_forearm
+    400068: R_hand
+    400070: R_knee
+    400072: R_shoulder
+    400074: R_thigh
+    400076: R_toes
+    400078: Seagull_bound
+    400080: Seagull_bound1
+    400082: Seagull_bound2
+    400084: //RootNode
+    400086: tail_end
+    400088: tail_start
+    400090: top_beak_end
+    400092: transform1
+    400094: transform2
+    400096: transform3
+    400098: transform4
+    400100: transform5
+    400102: transform6
+    2300000: pSphere1
+    2300002: pSphere2
+    3300000: pSphere1
+    3300002: pSphere2
+    4300000: pSphere1
+    4300002: pSphere2
+    4300004: Seagull_bound2
+    7400000: Naked Flap
+    9500000: //RootNode
+    13700000: Seagull_bound2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Naked Flap
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: base
+        weight: 1
+      - path: base/also_base_
+        weight: 1
+      - path: base/also_base_/hip
+        weight: 1
+      - path: base/also_base_/hip/chest
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/joint21
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/joint22
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/L_hand
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/L_hand/joint23
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/L_hand/L_finger
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head/jaw
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head/jaw/bottom_beak_end
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head/top_beak_end
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/joint39
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/joint38
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/R_hand
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/R_hand/joint37
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/R_hand/R_finger
+        weight: 1
+      - path: base/also_base_/hip/L_thigh
+        weight: 1
+      - path: base/also_base_/hip/L_thigh/L_knee
+        weight: 1
+      - path: base/also_base_/hip/L_thigh/L_knee/L_foot
+        weight: 1
+      - path: base/also_base_/hip/L_thigh/L_knee/L_foot/L_toes
+        weight: 1
+      - path: base/also_base_/hip/R_thigh
+        weight: 1
+      - path: base/also_base_/hip/R_thigh/R_knee
+        weight: 1
+      - path: base/also_base_/hip/R_thigh/R_knee/R_foot
+        weight: 1
+      - path: base/also_base_/hip/R_thigh/R_knee/R_foot/R_toes
+        weight: 1
+      - path: base/also_base_/tail_start
+        weight: 1
+      - path: base/also_base_/tail_start/tail_end
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: pCylinder1
+        weight: 1
+      - path: pCylinder1/transform4
+        weight: 1
+      - path: pCylinder2
+        weight: 1
+      - path: pCylinder2/transform3
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      - path: polySurface1/transform2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform1
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      - path: Seagull_bound
+        weight: 1
+      - path: Seagull_bound/transform6
+        weight: 1
+      - path: Seagull_bound1
+        weight: 1
+      - path: Seagull_bound1/transform5
+        weight: 1
+      - path: Seagull_bound2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

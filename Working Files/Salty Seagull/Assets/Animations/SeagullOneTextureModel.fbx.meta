@@ -106,11 +106,11 @@ ModelImporter:
     4300000: pSphere1
     4300002: pSphere2
     4300004: Seagull_bound2
-    7400000: Glide
-    7400002: StartDescend
-    7400004: Descend
-    7400006: Walking
-    7400008: Landing
+    7400000: NakedGlide
+    7400002: NakedStartDescend
+    7400004: NakedDescend
+    7400006: NakedWalking
+    7400008: NakedLanding
     9500000: //RootNode
     13700000: Seagull_bound2
   materials:
@@ -135,7 +135,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Glide
+      name: NakedGlide
       takeName: Take 001
       firstFrame: 40
       lastFrame: 90
@@ -257,7 +257,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: StartDescend
+      name: NakedStartDescend
       takeName: Take 001
       firstFrame: 90
       lastFrame: 100
@@ -379,7 +379,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Descend
+      name: NakedDescend
       takeName: Take 001
       firstFrame: 100
       lastFrame: 111
@@ -501,7 +501,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walking
+      name: NakedWalking
       takeName: Take 001
       firstFrame: 123
       lastFrame: 138
@@ -623,7 +623,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Landing
+      name: NakedLanding
       takeName: Take 001
       firstFrame: 111
       lastFrame: 123

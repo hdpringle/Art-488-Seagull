@@ -474,11 +474,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4715998889554418}
   - component: {fileID: 95577522221814376}
-  - component: {fileID: 64131282503499866}
-  - component: {fileID: 64600196402826060}
   - component: {fileID: 54581989082240910}
   - component: {fileID: 114970050538792314}
   - component: {fileID: 143292223178227648}
+  - component: {fileID: 136272064623450304}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -1308,7 +1307,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1637141641583856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.18, y: -5.65, z: 59.40827}
+  m_LocalPosition: {x: -52.7976, y: 21.740187, z: -167.84375}
   m_LocalScale: {x: 5, y: 3, z: 5}
   m_Children:
   - {fileID: 4568384871625092}
@@ -1574,34 +1573,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64131282503499866
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637141641583856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
---- !u!64 &64600196402826060
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637141641583856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
 --- !u!95 &95577522221814376
 Animator:
   serializedVersion: 3
@@ -1611,7 +1582,7 @@ Animator:
   m_GameObject: {fileID: 1637141641583856}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bbeaefc9d882b554080f15b4fc81b17b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e26b7aca9068a9148b155326663d7ca3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1642,6 +1613,19 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136272064623450304
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1637141641583856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.02
+  m_Height: 0.13
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137307136008652270
 SkinnedMeshRenderer:

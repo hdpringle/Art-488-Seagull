@@ -110,8 +110,8 @@ public class GameController : MenuController
 				info.hud = newHUD;
 				info.hud.transform.SetSiblingIndex (0);
 				info.hud.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
-				newplayer.transform.FindChild ("Identifier").GetComponent<MeshRenderer> ().material = beacons[sp - 1];
-				newnest.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material = beacons[sp - 1];
+				newplayer.transform.FindChild ("Identifier").GetComponent<MeshRenderer> ().material = beacons[info.player.playerNumber-1];
+				newnest.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material = beacons[info.player.playerNumber-1];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
 			}

@@ -178,15 +178,10 @@ public class PlayerController : MonoBehaviour
 	
 	protected void CheckAnimator(Vector3 speed)
 	{
-		if (speed.magnitude/5 > 1)
-		{
-			//increase speed of animations to match the speed of the seagull
-			animator.speed = Mathf.Max((speed.magnitude) / 5, 0.75f);
-		}
-		else
-		{
-			animator.speed = 1;
-		}
+		
+		//increase speed of animations to match the speed of the seagull
+		animator.speed = Mathf.Max((speed.magnitude) / 5, 0.25f);
+
 		//will transition from wing flaps to gliding
 		animator.SetFloat("Speed", Mathf.Max(input.moveForward, 0f));
 
