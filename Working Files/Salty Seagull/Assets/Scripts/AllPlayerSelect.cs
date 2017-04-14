@@ -24,6 +24,11 @@ public class AllPlayerSelect : MenuController {
 	{
 		for(int i = 0; i < settings.numPlayers; i++)
 		{
+			settings.skinNumbers[i] = players[i].GetComponent<PlayerSelecter>().currentSeagull;
+		}
+
+		for(int i = 0; i < settings.numPlayers; i++)
+		{
 			if(!players[i].GetComponent<PlayerSelecter>().chosen)
 			{
 				return;

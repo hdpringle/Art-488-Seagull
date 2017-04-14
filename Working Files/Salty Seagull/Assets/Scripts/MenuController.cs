@@ -7,6 +7,10 @@ using System.Configuration;
 public class SessionSettings
 {
 	public int numPlayers = 3;
+
+	//The number refers to which skin material to load ("seagullSkin#" is the name of each material)
+	//the index is the player number
+	public int[] skinNumbers = { 1, 1, 1, 1 };
 }
 
 public class MenuController : MonoBehaviour {

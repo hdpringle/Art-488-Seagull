@@ -35,6 +35,7 @@ public class PlayerSpawnInfo
 	public GameObject playerObject;
 	public PlayerController player;
 	public NEST nest;
+	public int seagullSkinNumber;
 }
 
 public class GameController : MenuController
@@ -114,7 +115,10 @@ public class GameController : MenuController
 				newnest.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material = beacons[info.player.playerNumber-1];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
+				info.player.gameObject.transform.FindChild("Seagull_bound2").GetComponent<SkinnedMeshRenderer>().material = Resources.Load("Materials/SeagullSkin"+settings.skinNumbers[info.player.playerNumber-1], typeof(Material)) as Material;
+
 			}
+
 
 			// Set up cameras
 			Camera mainCamera = GameObject.FindObjectOfType<Camera> ();
