@@ -53,14 +53,15 @@ public class PlayerController : MonoBehaviour
     // Called for physics
     void FixedUpdate()
     {
-		
+
+		GetControls();
+
 		if (!game.GameStarted () || game.GameEnded () || game.isPaused ())
 		{
 			rb.velocity = Vector3.zero;
 			return;
 		}
 
-		GetControls ();
 
 		DoMotion ();
     }
