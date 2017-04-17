@@ -3,14 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Configuration;
+using System;
 
 public class SessionSettings
 {
 	public int numPlayers = 3;
+	public String mapChosen;
+
+	public static int MAX_PLAYERS_BIG_ISLAND
+	{
+		get { return 4; }
+	}
+	public static int MAX_PLAYERS_ISLAND
+	{
+		get { return 3; }
+	}
+	public static int MAX_PLAYERS_COVE
+	{
+		get { return 2; }
+	}
+
+	// State refers to whether the player's pitch controls are flipped
+	public bool[] inversions = { false, false, false, false };
 
 	//The number refers to which skin material to load ("seagullSkin#" is the name of each material)
 	//the index is the player number
 	public int[] skinNumbers = { 1, 1, 1, 1 };
+
+	// 0-1 how pumped up are the jams?
+	public float musicVolume = 1f;
 }
 
 public class MenuController : MonoBehaviour {
