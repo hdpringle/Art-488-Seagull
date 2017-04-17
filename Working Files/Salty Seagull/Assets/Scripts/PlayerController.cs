@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
 		if (input.flyWalk)
 		{
-			animator.SetTrigger("Falling");
 			if (flying)
 			{
 				pitch = 0;
@@ -110,6 +109,7 @@ public class PlayerController : MonoBehaviour
 				charCon.enabled = false;
 			}
 			flying = !flying;
+			animator.SetTrigger("Falling");
 		}
 
 		if (flying)
@@ -176,14 +176,20 @@ public class PlayerController : MonoBehaviour
 		//gets the flight animations
 		CheckAnimator(speed);
 	}
-	
+
 	protected void CheckAnimator(Vector3 speed)
 	{
-		
-		//increase speed of animations to match the speed of the seagull
-		animator.speed = Mathf.Max((speed.magnitude) / 5, 0.25f);
 
-		//will transition from wing flaps to gliding
+		if (flying)
+		{ 
+			//increase speed of animations to match the speed of the seagull
+			animator.speed = Mathf.Max((speed.magnitude) / 5, 1f);
+		}
+		else
+		{
+			animator.speed = Mathf.Max(speed.magnitude/5, 1f);
+		}
+		//will transition from wing flaps to gliding and walking to standing
 		animator.SetFloat("Speed", Mathf.Max(input.moveForward, 0f));
 
 	}

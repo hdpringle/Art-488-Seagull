@@ -111,6 +111,7 @@ ModelImporter:
     7400004: NakedDescend
     7400006: NakedWalking
     7400008: NakedLanding
+    7400010: NakedStanding
     9500000: //RootNode
     13700000: Seagull_bound2
   materials:
@@ -503,7 +504,7 @@ ModelImporter:
     - serializedVersion: 16
       name: NakedWalking
       takeName: Take 001
-      firstFrame: 123
+      firstFrame: 124
       lastFrame: 138
       wrapMode: 0
       orientationOffsetY: 0
@@ -635,6 +636,128 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: base
+        weight: 1
+      - path: base/also_base_
+        weight: 1
+      - path: base/also_base_/hip
+        weight: 1
+      - path: base/also_base_/hip/chest
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/joint21
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/joint22
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/L_hand
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/L_hand/joint23
+        weight: 1
+      - path: base/also_base_/hip/chest/L_shoulder/L_arm/L_forearm/L_hand/L_finger
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head/jaw
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head/jaw/bottom_beak_end
+        weight: 1
+      - path: base/also_base_/hip/chest/neck_bottom/head/top_beak_end
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/joint39
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/joint38
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/R_hand
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/R_hand/joint37
+        weight: 1
+      - path: base/also_base_/hip/chest/R_shoulder/R_arm/R_forearm/R_hand/R_finger
+        weight: 1
+      - path: base/also_base_/hip/L_thigh
+        weight: 1
+      - path: base/also_base_/hip/L_thigh/L_knee
+        weight: 1
+      - path: base/also_base_/hip/L_thigh/L_knee/L_foot
+        weight: 1
+      - path: base/also_base_/hip/L_thigh/L_knee/L_foot/L_toes
+        weight: 1
+      - path: base/also_base_/hip/R_thigh
+        weight: 1
+      - path: base/also_base_/hip/R_thigh/R_knee
+        weight: 1
+      - path: base/also_base_/hip/R_thigh/R_knee/R_foot
+        weight: 1
+      - path: base/also_base_/hip/R_thigh/R_knee/R_foot/R_toes
+        weight: 1
+      - path: base/also_base_/tail_start
+        weight: 1
+      - path: base/also_base_/tail_start/tail_end
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      - path: polySurface1/transform2
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: polySurface2/transform1
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      - path: Seagull_bound
+        weight: 1
+      - path: Seagull_bound/transform6
+        weight: 1
+      - path: Seagull_bound1
+        weight: 1
+      - path: Seagull_bound1/transform5
+        weight: 1
+      - path: Seagull_bound2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: NakedStanding
+      takeName: Take 001
+      firstFrame: 123
+      lastFrame: 124
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

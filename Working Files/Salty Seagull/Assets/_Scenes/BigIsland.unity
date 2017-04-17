@@ -2497,6 +2497,66 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1048904546}
+    - target: {fileID: 114904960233222814, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114904960233222814, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114904960233222814, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776721314789924, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776721314789924, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776721314789924, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114578692302540442, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114578692302540442, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114578692302540442, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831048599256824, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831048599256824, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114831048599256824, guid: 433acb5bc33be804d97cad11b7efc2ca,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.6862745
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 433acb5bc33be804d97cad11b7efc2ca, type: 2}
   m_IsPrefabParent: 0
@@ -3419,7 +3479,7 @@ MonoBehaviour:
   nestPrefab: {fileID: 1260426849838384, guid: 6454490946bbf7c449a8218fe131d79a, type: 2}
   hudPrefab: {fileID: 1110937095506986, guid: 2e90d3a80dfbc2b4c9ba208a25042e7f, type: 2}
   autowinScore: 30
-  timeLimitSeconds: 300
+  timeLimitSeconds: 120
   warmupTime: 3
   boundary:
     xMin: -85
