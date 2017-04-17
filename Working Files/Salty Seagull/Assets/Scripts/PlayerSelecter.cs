@@ -26,6 +26,8 @@ public class PlayerSelecter : MonoBehaviour
 		input = new InputValues();
 		chosen = false;
 
+		print(Input.GetJoystickNames()[0]);
+
 		//constantly calls an update function, every 0.25 seconds. Lets us get delays on the controller input.
 		InvokeRepeating("BestUpdate", 0f, 0.25f);
 	}
