@@ -7,8 +7,8 @@ using System;
 
 public class SessionSettings
 {
-	public int numPlayers = 3;
-	public String mapChosen;
+	public int numPlayers = 2;
+	public String mapChosen = "BigIsland";
 
 	public static int MAX_PLAYERS_BIG_ISLAND
 	{
