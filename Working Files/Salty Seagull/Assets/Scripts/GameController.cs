@@ -58,6 +58,7 @@ public class GameController : MenuController
 	// Use this for initialization
 	void Start ()
 	{
+		paused = false;
 		gameOver = false;
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
@@ -165,7 +166,6 @@ public class GameController : MenuController
 			}
 		}
 
-		rootMenu = GameObject.Find("Pause Menu");
 		Pause (false);
 	}
 	
@@ -286,6 +286,8 @@ public class GameController : MenuController
 		paused = state;
 		//should toggle the pause menu
 		ShowRootMenu (state);
+		if (state)
+			rootMenu.GetComponent<PauseMenu> ().GC = this;
 	}
 
 	public int GetScore(int id)

@@ -39,7 +39,6 @@ public class MenuController : MonoBehaviour {
 	public static SessionSettings settings = new SessionSettings ();
 
 	//rootMenu is the pause screen in-game and the main menu in the MainMenu scene
-	//settings menu is a nonexistent settings screen
 	public GameObject rootMenu, settingsMenu;
 
 	// currentMenu is the currently open menu, if there is one
