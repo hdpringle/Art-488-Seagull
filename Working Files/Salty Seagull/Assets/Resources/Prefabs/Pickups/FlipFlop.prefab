@@ -169,14 +169,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointVal: 1
-  spawnTime: 0
+  spawnTime: 5
   gravityActive: 0
   gravityStrength: 0.1
   heldByPlayer: 0
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
-  startingPosition0: {x: 0, y: 0, z: 0}
-  startingPosition1: {x: 0, y: 0, z: 0}
-  startingPosition2: {x: 0, y: 0, z: 0}
-  startingPosition3: {x: 0, y: 0, z: 0}
-  startingPosition4: {x: 0, y: 0, z: 0}
+  itemName: Flipflop

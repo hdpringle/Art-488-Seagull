@@ -51,9 +51,11 @@ public class GameController : MenuController
 	private Text winText;
 	private float currentTime, currentWarmup;
 	private int minutes, seconds;
+	private int lastChangeInSeconds;
 	//private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
+
 
 	// Use this for initialization
 	void Start ()
@@ -197,18 +199,16 @@ public class GameController : MenuController
 							timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 						}
 					}
-					
 
-					//This section works, but we should not use spawning until the world map is full of stuff
-					/*
-					//Spawn Any pick ups that use this time
-					if (!(minutes == lastMinutes && seconds == lastSeconds))
+
+					//check how many seconds have passed, if it has been a second since we tried to spawn something,
+					//try to spawn something new!
+					int s = (int)(timeLimitSeconds-currentTime);
+					if (lastChangeInSeconds != s)
 					{
-						SpawnPickups(minutes, seconds);
+						lastChangeInSeconds = s;
+						SpawnPickups(s);
 					}
-					lastMinutes = minutes;
-					lastSeconds = seconds;
-					*/
 				}
 				else
 				{
@@ -234,8 +234,9 @@ public class GameController : MenuController
 	 * matches the current time. Then will spawn the item in one of 
 	 * the given spawn locations
 	 */ 
-	public void SpawnPickups(int mins, int secs)
+	public void SpawnPickups(int secs)
 	{
+		print(secs);
 		//I found code here that helped me with this: http://answers.unity3d.com/questions/35509/how-can-i-select-all-prefabs-that-contain-a-certai.html
 		var allPrefabs = Resources.LoadAll<UnityEngine.Object>("Prefabs/Pickups/");
 		foreach (var obj in allPrefabs)
@@ -246,14 +247,22 @@ public class GameController : MenuController
 			if(gObj.GetComponent<Pickups>() != null)
 			{
 				//check if the spawn time of the prefab matches the current time, then if so spawn one
-				if (gObj.GetComponent<Pickups>().spawnTime == (mins*60+secs))
+				if (gObj.GetComponent<Pickups>().spawnTime == secs)
 				{
-					GameObject inGame = Instantiate(gObj);
+					Transform[] spawnLocation = GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform.GetComponentsInChildren<Transform>();
+					for (int i = 0; i < spawnLocation.Length; i++)
+					{
+						if (spawnLocation[i] != GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform)
+						{ 
+							GameObject inGame = Instantiate(gObj);
 
-					//make this part random later!
-					//or we can have all of the instanses spawn in at once, if we use a variable to mark how many
-					//of the object needs to be spawned as part of the prefab
-					inGame.transform.position = inGame.GetComponent<Pickups>().startingPosition0;
+							//make this part random later!
+							//or we can have all of the instanses spawn in at once, if we use a variable to mark how many
+							//of the object needs to be spawned as part of the prefab
+							inGame.transform.position = spawnLocation[i].position;
+							inGame.transform.rotation = spawnLocation[i].rotation;
+						}
+					}
 				}
 			}
 		}

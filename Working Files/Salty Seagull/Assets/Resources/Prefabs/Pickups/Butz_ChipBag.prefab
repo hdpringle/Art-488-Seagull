@@ -171,11 +171,7 @@ MonoBehaviour:
   spawnTime: 0
   gravityActive: 0
   gravityStrength: 0.075
-  heldByPlayer: 0
+  heldByPlayer: 5
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
-  startingPosition0: {x: 0, y: 0, z: 0}
-  startingPosition1: {x: 0, y: 0, z: 0}
-  startingPosition2: {x: 0, y: 0, z: 0}
-  startingPosition3: {x: 0, y: 0, z: 0}
-  startingPosition4: {x: 0, y: 0, z: 0}
+  itemName: ChipBag

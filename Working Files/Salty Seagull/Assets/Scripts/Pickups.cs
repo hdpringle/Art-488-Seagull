@@ -15,12 +15,7 @@ public class Pickups : MonoBehaviour
 	public int heldByPlayer = 0;
 	public Vector3 offset;
 	public Vector3 startingRotation;
-
-	public Vector3 startingPosition0;
-	public Vector3 startingPosition1;
-	public Vector3 startingPosition2;
-	public Vector3 startingPosition3;
-	public Vector3 startingPosition4;
+	public string itemName;
 
 
 	private GameController game;
