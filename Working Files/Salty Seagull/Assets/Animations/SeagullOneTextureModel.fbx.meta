@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: bbeaefc9d882b554080f15b4fc81b17b
 timeCreated: 1492037039
+=======
+<<<<<<< HEAD
+guid: 2301993b9391f423f9b5177e8436e505
+timeCreated: 1492037484
+=======
+guid: bbeaefc9d882b554080f15b4fc81b17b
+timeCreated: 1492037039
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -106,12 +116,22 @@ ModelImporter:
     4300000: pSphere1
     4300002: pSphere2
     4300004: Seagull_bound2
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    7400000: Take 001
+=======
+>>>>>>> Stashed changes
     7400000: NakedGlide
     7400002: NakedStartDescend
     7400004: NakedDescend
     7400006: NakedWalking
     7400008: NakedLanding
     7400010: NakedStanding
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
     9500000: //RootNode
     13700000: Seagull_bound2
   materials:
@@ -134,6 +154,12 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    clipAnimations: []
+=======
+>>>>>>> Stashed changes
     clipAnimations:
     - serializedVersion: 16
       name: NakedGlide
@@ -867,6 +893,10 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
     isReadable: 1
   meshes:
     lODScreenPercentages: []
