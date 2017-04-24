@@ -86,7 +86,6 @@ public class GameController : MenuController
 
 			// Assure we don't try to use more players than spawnpoints
 			settings.numPlayers = Mathf.Min (settings.numPlayers, pointNumbers.Count);
-
 			for (int i = 1; i <= settings.numPlayers; i++)
 			{
 				PlayerSpawnInfo info = new PlayerSpawnInfo ();
@@ -98,7 +97,7 @@ public class GameController : MenuController
 				} while (!pointNumbers.Contains (sp));
 
 				GameObject newHUD = GameObject.Instantiate (hudPrefab, GameObject.Find ("Canvas").transform);
-				GameObject newplayer = GameObject.Instantiate (playerPrefab, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
+				GameObject newplayer = GameObject.Instantiate (playerPrefab.transform.FindChild("Character"+settings.skinNumbers[i-1]).gameObject, pspawnpoints[sp].position, pspawnpoints[sp].rotation);
 				GameObject newnest = GameObject.Instantiate (nestPrefab, nspawnpoints[sp].position, nspawnpoints[sp].rotation);
 				Material[] beacons = Resources.LoadAll<Material> ("Materials");
 
@@ -118,8 +117,6 @@ public class GameController : MenuController
 				newnest.transform.FindChild("Beacon").GetComponent<MeshRenderer>().material = beacons[info.player.playerNumber-1];
 				playerInfo [i] = info;
 				pointNumbers.Remove (sp);
-				info.player.gameObject.transform.FindChild("Seagull_bound2").GetComponent<SkinnedMeshRenderer>().material = Resources.Load("Materials/SeagullSkin"+settings.skinNumbers[info.player.playerNumber-1], typeof(Material)) as Material;
-
 			}
 
 
@@ -236,7 +233,6 @@ public class GameController : MenuController
 	 */ 
 	public void SpawnPickups(int secs)
 	{
-		print(secs);
 		//I found code here that helped me with this: http://answers.unity3d.com/questions/35509/how-can-i-select-all-prefabs-that-contain-a-certai.html
 		var allPrefabs = Resources.LoadAll<UnityEngine.Object>("Prefabs/Pickups/");
 		foreach (var obj in allPrefabs)

@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 128169b215282db48a45bb4222ec022b
+timeCreated: 1492996268
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: also_base_
+    100002: bottom_beak_end
+    100004: //RootNode
+    100006: chest
+    100008: eye
+    100010: eye1
+    100012: Geometry
+    100014: head
+    100016: hip
+    100018: jaw
+    100020: joint21
+    100022: joint22
+    100024: joint23
+    100026: joint37
+    100028: joint38
+    100030: joint39
+    100032: Joints
+    100034: L_arm
+    100036: L_finger
+    100038: L_foot
+    100040: L_forearm
+    100042: L_hand
+    100044: L_knee
+    100046: L_shoulder
+    100048: L_thigh
+    100050: L_toes
+    100052: neck_bottom
+    100054: nurbsCircle1
+    100056: pCylinder1
+    100058: pCylinder2
+    100060: polySurface1
+    100062: R_arm
+    100064: R_finger
+    100066: R_foot
+    100068: R_forearm
+    100070: R_hand
+    100072: R_knee
+    100074: R_shoulder
+    100076: R_thigh
+    100078: R_toes
+    100080: Seagull_bound
+    100082: Seagull_bound1
+    100084: tail_end
+    100086: tail_start
+    100088: top_beak_end
+    100090: transform2
+    100092: transform3
+    100094: transform4
+    100096: transform6
+    400000: also_base_
+    400002: bottom_beak_end
+    400004: //RootNode
+    400006: chest
+    400008: eye
+    400010: eye1
+    400012: Geometry
+    400014: head
+    400016: hip
+    400018: jaw
+    400020: joint21
+    400022: joint22
+    400024: joint23
+    400026: joint37
+    400028: joint38
+    400030: joint39
+    400032: Joints
+    400034: L_arm
+    400036: L_finger
+    400038: L_foot
+    400040: L_forearm
+    400042: L_hand
+    400044: L_knee
+    400046: L_shoulder
+    400048: L_thigh
+    400050: L_toes
+    400052: neck_bottom
+    400054: nurbsCircle1
+    400056: pCylinder1
+    400058: pCylinder2
+    400060: polySurface1
+    400062: R_arm
+    400064: R_finger
+    400066: R_foot
+    400068: R_forearm
+    400070: R_hand
+    400072: R_knee
+    400074: R_shoulder
+    400076: R_thigh
+    400078: R_toes
+    400080: Seagull_bound
+    400082: Seagull_bound1
+    400084: tail_end
+    400086: tail_start
+    400088: top_beak_end
+    400090: transform2
+    400092: transform3
+    400094: transform4
+    400096: transform6
+    2300000: eye
+    2300002: eye1
+    3300000: eye
+    3300002: eye1
+    4300000: eye1
+    4300002: eye
+    4300004: Geometry
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Geometry
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
