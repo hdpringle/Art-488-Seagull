@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 			input.flyWalk = Input.GetButtonDown("P" + playerNumber +" Crouch");
 			break;
 		}
-		
+		input.turnUD *= (GameController.settings.inversions [playerNumber - 1] ? -1 : 1);
 	}
 
 	protected void DoMotion()
