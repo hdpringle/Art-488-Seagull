@@ -47,6 +47,7 @@ public class GameController : MenuController
 	public SeagullLimits seagullLimits;
 	public int numberOfNests; //used so the seagulls know whos nest they stole from (see playerController)
 	public Transform sea;
+	public ArrayList filledPickups;
 
 	private Text winText;
 	private float currentTime, currentWarmup;
@@ -55,8 +56,7 @@ public class GameController : MenuController
 	//private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
-	private ArrayList filledPickups;
-
+	
 	// Use this for initialization
 	void Start ()
 	{

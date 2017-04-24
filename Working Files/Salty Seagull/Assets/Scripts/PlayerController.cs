@@ -216,6 +216,10 @@ public class PlayerController : MonoBehaviour
 						GameObject.Find("Nest" + i).GetComponent<NEST>().removeFromNest(other.gameObject);
 					}
 				}
+				if(game.filledPickups.Contains(other.gameObject.transform))
+				{
+					game.filledPickups.Remove(other.gameObject.transform);
+				}
             }
         }
         if(other.CompareTag("nest"))
