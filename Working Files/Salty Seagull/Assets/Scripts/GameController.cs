@@ -55,7 +55,7 @@ public class GameController : MenuController
 	//private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
-
+	private ArrayList filledPickups;
 
 	// Use this for initialization
 	void Start ()
@@ -67,7 +67,7 @@ public class GameController : MenuController
 		sea = GameObject.Find ("Sea").transform;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
 		winText.text = "";
-
+		filledPickups = new ArrayList();
 		// This block randomly chooses a set of spawn points for each player and nest
 		playerInfo = new Dictionary<int, PlayerSpawnInfo> ();
 		GameObject pSpawnList = GameObject.Find ("PlayerSpawnPoints");
@@ -243,21 +243,27 @@ public class GameController : MenuController
 			if(gObj.GetComponent<Pickups>() != null)
 			{
 				//check if the spawn time of the prefab matches the current time, then if so spawn one
-				if (gObj.GetComponent<Pickups>().spawnTime == secs)
+				if (secs % gObj.GetComponent<Pickups>().spawnTime == 0)
 				{
 					Transform[] spawnLocation = GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform.GetComponentsInChildren<Transform>();
-					for (int i = 0; i < spawnLocation.Length; i++)
+					var chosenLocation = 0;
+					var timesLoaded = 0;
+					do
 					{
-						if (spawnLocation[i] != GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform)
-						{ 
-							GameObject inGame = Instantiate(gObj);
+						chosenLocation = Random.Range(0,spawnLocation.Length);
+						//only try 20 times, if you cant spawn anything, just give up
+						timesLoaded++;
+					} while ((spawnLocation[chosenLocation] == GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform || filledPickups.Contains(spawnLocation[chosenLocation])) && timesLoaded < 20);
+					if (timesLoaded < 20)
+					{
+						filledPickups.Add(spawnLocation[chosenLocation]);
+						GameObject inGame = Instantiate(gObj);
 
-							//make this part random later!
-							//or we can have all of the instanses spawn in at once, if we use a variable to mark how many
-							//of the object needs to be spawned as part of the prefab
-							inGame.transform.position = spawnLocation[i].position;
-							inGame.transform.rotation = spawnLocation[i].rotation;
-						}
+						//make this part random later!
+						//or we can have all of the instanses spawn in at once, if we use a variable to mark how many
+						//of the object needs to be spawned as part of the prefab
+						inGame.transform.position = spawnLocation[chosenLocation].position;
+						inGame.transform.rotation = spawnLocation[chosenLocation].rotation;
 					}
 				}
 			}

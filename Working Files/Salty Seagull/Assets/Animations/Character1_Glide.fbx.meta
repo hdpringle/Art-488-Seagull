@@ -116,6 +116,7 @@ ModelImporter:
     7400006: New Land
     7400008: New Walk
     7400010: New Stand
+    7400012: Walking
     9500000: //RootNode
     13700000: Geometry
   materials:
