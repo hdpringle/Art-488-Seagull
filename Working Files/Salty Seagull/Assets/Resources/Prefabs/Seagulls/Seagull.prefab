@@ -3855,7 +3855,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1677675770498856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.9409776, y: 18.640764, z: 60.331856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4792366569192808}
@@ -5455,7 +5455,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1678547238149876}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.609, z: 0}
+  m_LocalPosition: {x: 0, y: 0.609, z: -9.58}
   m_LocalScale: {x: 5, y: 3, z: 5}
   m_Children:
   - {fileID: 4457646580315332}
@@ -7061,10 +7061,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 0.0625
+  m_Radius: 0.015625
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.009375
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -7078,10 +7078,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 0.0625
+  m_Radius: 0.015625
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.009375
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -7095,10 +7095,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 0.0625
+  m_Radius: 0.015625
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.009375
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -7112,10 +7112,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 0.0625
+  m_Radius: 0.015625
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.009375
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
