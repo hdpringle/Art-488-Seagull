@@ -55,6 +55,7 @@ public class PlayerSelecter : MonoBehaviour
 		else
 		{
 			transform.FindChild("Text").GetComponent<Text>().text = "Choosing";
+			transform.FindChild("Button").SetAsFirstSibling();
 		}
 		
 

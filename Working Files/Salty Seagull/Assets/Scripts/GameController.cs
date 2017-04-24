@@ -64,6 +64,7 @@ public class GameController : MenuController
 		gameOver = false;
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
+		numberOfNests = settings.numPlayers; 
 		sea = GameObject.Find ("Sea").transform;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
 		winText.text = "";
@@ -303,7 +304,7 @@ public class GameController : MenuController
 
 	public int GetScore(int id)
 	{
-		return playerInfo[id].nest.GetScore ();
+		return playerInfo[id].nest.GetScore();
 	}
 
 	public float DTR (float degrees)
