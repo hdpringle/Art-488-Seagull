@@ -207,6 +207,10 @@ public class GameController : MenuController
 						lastChangeInSeconds = s;
 						SpawnPickups(s);
 					}
+					if((int)currentTime <= 10)
+					{
+						winText.text = ""+(int)currentTime;
+					}
 				}
 				else
 				{
