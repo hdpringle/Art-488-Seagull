@@ -34,6 +34,6 @@ public class AllPlayerSelect : MenuController {
 				return;
 			}
 		}
-		ChangeScene("BigIsland");
+		ChangeScene(settings.mapChosen);
 	}
 }

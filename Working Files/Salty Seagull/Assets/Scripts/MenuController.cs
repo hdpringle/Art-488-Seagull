@@ -43,7 +43,7 @@ public class MenuController : MonoBehaviour {
 
 	// currentMenu is the currently open menu, if there is one
 	// parentMenu is the menu from which this one was accessed, in the case of nesting
-	private GameObject currentMenu, parentMenu;
+	protected GameObject currentMenu, parentMenu;
 
 	void Update()
 	{
@@ -70,7 +70,6 @@ public class MenuController : MonoBehaviour {
 
 	public void Exit()
 	{
-		Debug.Log ("num: " + settings.numPlayers);
 		Application.Quit ();
 	}
 
