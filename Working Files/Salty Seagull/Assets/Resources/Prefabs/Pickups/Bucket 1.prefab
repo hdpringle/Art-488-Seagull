@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointVal: 1
-  spawnTime: 2
+  spawnTime: 5
   gravityActive: 0
   gravityStrength: 0.075
   heldByPlayer: 0

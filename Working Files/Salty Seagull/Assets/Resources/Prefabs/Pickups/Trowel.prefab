@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6716d46e015ab654980293748b33635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointVal: 1
+  pointVal: 2
   spawnTime: 10
   gravityActive: 0
   gravityStrength: 0.1

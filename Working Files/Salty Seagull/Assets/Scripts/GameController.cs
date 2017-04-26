@@ -56,12 +56,15 @@ public class GameController : MenuController
 	//private int lastMinutes, lastSeconds; //needed to not recheck spawn times
 	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
+	private GameObject gameOverMenu;
 	
 	// Use this for initialization
 	void Start ()
 	{
 		paused = false;
 		gameOver = false;
+		gameOverMenu = GameObject.Find("GameOverMenu");
+		gameOverMenu.SetActive(false);
 		currentTime = timeLimitSeconds;
 		currentWarmup = warmupTime;
 		numberOfNests = settings.numPlayers; 
@@ -226,6 +229,8 @@ public class GameController : MenuController
 					}
 					winText.text = "Player " + topScorer + " wins!";
 					gameOver = true;
+					gameOverMenu.SetActive(true); 
+
 				}
 			}
 		}
