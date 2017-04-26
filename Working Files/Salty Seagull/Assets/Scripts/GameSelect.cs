@@ -7,14 +7,14 @@ using System.Runtime.InteropServices;
 
 public class GameSelect : MenuController {
 
-	private const int NUMFIELDS = 2;
+	private const int NUMFIELDS = 4;
 	
 	// map - see below
 	// field:
 	//		0 - map select
 	//		1 - player count select
 	private int map, field;
-	private Slider players;
+	private Slider players, playTime, winScore;
 
 	private string[] maps = { "BigIsland", "Cove" };
 	private GameObject[] fieldHighlights;
@@ -39,6 +39,8 @@ public class GameSelect : MenuController {
 		map = 0;
 		field = 0;
 		players = GameObject.Find ("PlayerSlider").GetComponent<Slider> ();
+		playTime = GameObject.Find ("TimeSlider").GetComponent<Slider> ();
+		winScore = GameObject.Find ("ScoreSlider").GetComponent<Slider> ();
 		inputs = new GSI ();
 
 		relations = new Dictionary<int, MapRelations> ();
@@ -105,6 +107,14 @@ public class GameSelect : MenuController {
 			case 1:
 				players.value = Mathf.Clamp (players.value + (inputs.leftright > 0 ? 1 : -1), players.minValue, players.maxValue);
 				settings.numPlayers = (int) players.value;
+				break;
+			case 2:
+				playTime.value = Mathf.Clamp (playTime.value + (inputs.leftright > 0 ? 1 : -1), playTime.minValue, playTime.maxValue);
+				settings.matchLengthSeconds = (int) playTime.value * 60;
+				break;
+			case 3:
+				winScore.value = Mathf.Clamp (winScore.value + (inputs.leftright > 0 ? 1 : -1), winScore.minValue, winScore.maxValue);
+				settings.autoWinScore = (int) winScore.value * 10;
 				break;
 			}
 		}
