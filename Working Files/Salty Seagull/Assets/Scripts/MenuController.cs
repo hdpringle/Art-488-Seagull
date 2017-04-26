@@ -9,6 +9,8 @@ public class SessionSettings
 {
 	public int numPlayers = 4;
 	public String mapChosen = "BigIsland";
+	public int matchLengthSeconds = 180;
+	public int autoWinScore = 30;
 
 	public static int MAX_PLAYERS_BIG_ISLAND
 	{

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -41,8 +42,7 @@ public class PlayerSpawnInfo
 public class GameController : MenuController
 {
 	public GameObject playerPrefab, nestPrefab, hudPrefab;
-	public int autowinScore;
-	public float timeLimitSeconds, warmupTime;
+	public float warmupTime;
 	public Boundary boundary;
 	public SeagullLimits seagullLimits;
 	public int numberOfNests; //used so the seagulls know whos nest they stole from (see playerController)
@@ -65,7 +65,7 @@ public class GameController : MenuController
 		gameOver = false;
 		gameOverMenu = GameObject.Find("GameOverMenu");
 		gameOverMenu.SetActive(false);
-		currentTime = timeLimitSeconds;
+		currentTime = settings.matchLengthSeconds;
 		currentWarmup = warmupTime;
 		numberOfNests = settings.numPlayers; 
 		sea = GameObject.Find ("Sea").transform;
@@ -178,17 +178,22 @@ public class GameController : MenuController
 	// Update is called once per frame
 	void Update ()
 	{
+		if (gameOver)
+			return;
+		
 		//if you hit the pause button, toggle "paused"
 		if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))
 		{
 			Pause (!paused);
 		}
 
-		if (!(paused || gameOver))
+		if (!paused)
 		{
 			//lets the game count down from 5
 			if (currentWarmup > 0) {
 				currentWarmup -= Time.deltaTime;
+				seconds = ((int)currentWarmup) % 60;
+				winText.text = seconds.ToString ();
 			} else {
 
 				//only play while timer ticks down
@@ -197,46 +202,56 @@ public class GameController : MenuController
 					minutes = ((int)currentTime) / 60;
 					seconds = ((int)currentTime) % 60;
 
-					Text[] timers = GameObject.FindObjectsOfType (typeof(Text)) as Text[];
-					foreach (Text timer in timers) {
-						if (timer.CompareTag ("timer")) {
-							timer.text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-						}
-					}
-
-
 					//check how many seconds have passed, if it has been a second since we tried to spawn something,
 					//try to spawn something new!
-					int s = (int)(timeLimitSeconds-currentTime);
+					int s = (int)(settings.matchLengthSeconds - currentTime);
 					if (lastChangeInSeconds != s)
 					{
 						lastChangeInSeconds = s;
 						SpawnPickups(s);
 					}
+
+					// Display final countdown
 					if((int)currentTime <= 10)
 					{
 						winText.text = ""+(int)currentTime;
 					}
+					else {
+						winText.text = "";
+					}
+
+					// Update HUDs
+					foreach (PlayerSpawnInfo info in playerInfo.Values)
+					{
+						info.hud.transform.Find ("Timer").GetComponent<Text> ().text = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+						if (info.nest.GetScore () >= settings.autoWinScore)
+							EndGame ();
+						info.hud.transform.Find ("Score").GetComponent<Text> ().text = "Score: " + info.nest.GetScore ();
+					}
 				}
 				else
 				{
-					int topScore = -1;
-					int topScorer = -1;
-					foreach (PlayerSpawnInfo info in playerInfo.Values)
-					{
-						if (info.nest.GetScore () > topScore)
-						{
-							topScore = info.nest.GetScore ();
-							topScorer = info.id;
-						}
-					}
-					winText.text = "Player " + topScorer + " wins!";
-					gameOver = true;
-					gameOverMenu.SetActive(true); 
-
+					EndGame ();
 				}
 			}
 		}
+	}
+
+	void EndGame()
+	{
+		int topScore = -1;
+		int topScorer = -1;
+		foreach (PlayerSpawnInfo info in playerInfo.Values)
+		{
+			if (info.nest.GetScore () > topScore)
+			{
+				topScore = info.nest.GetScore ();
+				topScorer = info.id;
+			}
+		}
+		winText.text = "Player " + topScorer + " wins!";
+		gameOver = true;
+		gameOverMenu.SetActive(true); 
 	}
 
 	/*
@@ -285,12 +300,12 @@ public class GameController : MenuController
 
 	public void Restart()
 	{
-		// Move along, nothing to see here
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
 
 	public bool GameEnded()
 	{
-		return currentTime <= 0;
+		return gameOver;
 	}
 
 	public bool GameStarted()

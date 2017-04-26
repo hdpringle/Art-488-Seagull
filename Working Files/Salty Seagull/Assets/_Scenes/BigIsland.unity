@@ -3611,9 +3611,7 @@ MonoBehaviour:
     type: 2}
   nestPrefab: {fileID: 1260426849838384, guid: 6454490946bbf7c449a8218fe131d79a, type: 2}
   hudPrefab: {fileID: 1110937095506986, guid: 2e90d3a80dfbc2b4c9ba208a25042e7f, type: 2}
-  autowinScore: 30
-  timeLimitSeconds: 180
-  warmupTime: 1
+  warmupTime: 4
   boundary:
     xMin: -85
     xMax: 85
@@ -6791,8 +6789,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1048904546}
-        m_MethodName: ChangeScene
-        m_Mode: 5
+        m_MethodName: Restart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

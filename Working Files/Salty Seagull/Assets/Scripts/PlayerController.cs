@@ -15,10 +15,7 @@ public class InputValues
 
 public class PlayerController : MonoBehaviour
 {
-    private Text scoreText;
-	//public GameController game;
-	public int playerNumber;
-
+    public int playerNumber;
 
 	private GameController game;
     private Rigidbody rb;
@@ -32,7 +29,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 		game = GameObject.Find("GameController").GetComponent<GameController>();
-		scoreText = GameObject.Find("Canvas").transform.FindChild("HUD" + playerNumber).transform.FindChild("Score").GetComponent<Text>();
 
 		rb = GetComponent<Rigidbody>();
 		charCon = GetComponent<CharacterController> ();
@@ -43,11 +39,6 @@ public class PlayerController : MonoBehaviour
 		holding = false;
 		flying = true;
 		input = new InputValues ();
-	}
-
-	void Update()
-	{
-		scoreText.text = "Score: " + game.GetScore (playerNumber).ToString();
 	}
 
     // Called for physics
