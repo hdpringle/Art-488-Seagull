@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerSelecter : MonoBehaviour
@@ -43,6 +44,19 @@ public class PlayerSelecter : MonoBehaviour
 		//hit b, you unchose
 		else if(input.select < 0)
 		{
+			if(!chosen)
+			{
+				Scene myScene = SceneManager.GetSceneByName("GameSetup");
+				if (!myScene.isLoaded)
+				{
+					SceneManager.LoadScene("GameSetup");
+				}
+
+				if (myScene.isLoaded && myScene.IsValid())
+				{
+					SceneManager.SetActiveScene(myScene);
+				}
+			}
 			chosen = false;
 		}
 
