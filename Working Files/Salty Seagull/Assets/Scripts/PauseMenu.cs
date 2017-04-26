@@ -44,7 +44,6 @@ public class PauseMenu : MenuController {
 	private void Settings ()
 	{
 		GC.ShowSettingsMenu (true);
-		GC.settingsMenu.GetComponent<SettingsMenu> ().Master = GC;
 		gameObject.SetActive (false);
 	}
 

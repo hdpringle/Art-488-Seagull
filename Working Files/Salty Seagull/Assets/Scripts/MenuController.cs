@@ -110,6 +110,7 @@ public class MenuController : MonoBehaviour {
 			{
 				settingsMenu.SetActive (state);
 				currentMenu = settingsMenu;
+				settingsMenu.GetComponent<SettingsMenu> ().Master = this;
 				navigator.SetSelectedGameObject (settingsMenu.transform.GetChild (1).gameObject);
 			} else {
 				settingsMenu.SetActive (false);
