@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -67,7 +68,8 @@ public class GameController : MenuController
 		gameOverMenu.SetActive(false);
 		currentTime = settings.matchLengthSeconds;
 		currentWarmup = warmupTime;
-		numberOfNests = settings.numPlayers; 
+		numberOfNests = settings.numPlayers;
+		navigator = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();
 		sea = GameObject.Find ("Sea").transform;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
 		winText.text = "";
@@ -182,9 +184,22 @@ public class GameController : MenuController
 			return;
 		
 		//if you hit the pause button, toggle "paused"
-		if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))
+		if (Input.GetButtonDown("Pause"))
 		{
 			Pause (!paused);
+		}
+
+		if (Input.GetButtonDown("Cancel"))
+		{
+			if (currentMenu == rootMenu)
+				Pause (false);
+			else if (currentMenu == settingsMenu)
+				ShowSettingsMenu (false);
+		}
+
+		if (currentMenu != null && !navigator.currentSelectedGameObject.transform.IsChildOf (currentMenu.transform))
+		{
+			navigator.SetSelectedGameObject (currentMenu.transform.GetChild (1).gameObject);
 		}
 
 		if (!paused)
@@ -251,7 +266,8 @@ public class GameController : MenuController
 		}
 		winText.text = "Player " + topScorer + " wins!";
 		gameOver = true;
-		gameOverMenu.SetActive(true); 
+		gameOverMenu.SetActive(true);
+		navigator.SetSelectedGameObject (gameOverMenu.transform.GetChild (0).gameObject);
 	}
 
 	/*
@@ -322,11 +338,18 @@ public class GameController : MenuController
 	//shows the pause menu if it says to
 	public void Pause(bool state)
 	{
-		paused = state;
-		//should toggle the pause menu
-		ShowRootMenu (state);
 		if (state)
+		{
+			ShowRootMenu (state);
+			currentMenu = rootMenu;
 			rootMenu.GetComponent<PauseMenu> ().GC = this;
+		} else if (currentMenu == rootMenu)
+		{
+			paused = state;
+			//should toggle the pause menu
+			ShowRootMenu (state);
+			currentMenu = null;
+		}
 	}
 
 	public int GetScore(int id)

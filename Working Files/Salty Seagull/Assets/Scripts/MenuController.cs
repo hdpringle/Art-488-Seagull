@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Configuration;
 using System;
@@ -45,13 +46,29 @@ public class MenuController : MonoBehaviour {
 
 	// currentMenu is the currently open menu, if there is one
 	// parentMenu is the menu from which this one was accessed, in the case of nesting
-	protected GameObject currentMenu, parentMenu;
+	protected GameObject currentMenu;
+
+	protected EventSystem navigator;
+
+	void Start()
+	{
+		currentMenu = rootMenu;
+		navigator = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();
+	}
 
 	void Update()
 	{
 		if (Input.GetButtonDown("Cancel"))
 		{
-			
+			if (currentMenu == settingsMenu)
+			{
+				ShowSettingsMenu (false);
+			}
+		}
+
+		if (currentMenu != null && !navigator.currentSelectedGameObject.transform.IsChildOf (currentMenu.transform))
+		{
+			navigator.SetSelectedGameObject (currentMenu.transform.GetChild (1).gameObject);
 		}
 	}
 
@@ -89,7 +106,16 @@ public class MenuController : MonoBehaviour {
 	{
 		if (settingsMenu != null)
 		{
-			settingsMenu.SetActive (state);
+			if (state)
+			{
+				settingsMenu.SetActive (state);
+				currentMenu = settingsMenu;
+				navigator.SetSelectedGameObject (settingsMenu.transform.GetChild (1).gameObject);
+			} else {
+				settingsMenu.SetActive (false);
+				currentMenu = rootMenu;
+				navigator.SetSelectedGameObject (rootMenu.transform.GetChild (1).gameObject);
+			}
 		}
 	}
 
