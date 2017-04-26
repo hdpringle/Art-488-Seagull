@@ -8,6 +8,19 @@ public class SettingsMenu : MenuController {
 	private Button back;
 	private Toggle[] inverts;
 
+	public MenuController Master
+	{
+		set
+		{
+			if (master == null)
+			{
+				master = value;
+			}
+		}
+		get { return master; }
+	}
+	private MenuController master;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -35,7 +48,8 @@ public class SettingsMenu : MenuController {
 
 	private void ExitSettings ()
 	{
-		gameObject.SetActive (false);
+		master.ShowRootMenu (true);
+		master.ShowSettingsMenu (false);
 	}
 
 	private void Toggle1 (bool value)

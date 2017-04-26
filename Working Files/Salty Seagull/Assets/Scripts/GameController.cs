@@ -194,12 +194,10 @@ public class GameController : MenuController
 			if (currentMenu == rootMenu)
 				Pause (false);
 			else if (currentMenu == settingsMenu)
+			{
 				ShowSettingsMenu (false);
-		}
-
-		if (currentMenu != null && !navigator.currentSelectedGameObject.transform.IsChildOf (currentMenu.transform))
-		{
-			navigator.SetSelectedGameObject (currentMenu.transform.GetChild (1).gameObject);
+				ShowRootMenu (true);
+			}	
 		}
 
 		if (!paused)
