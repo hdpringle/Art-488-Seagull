@@ -132,10 +132,13 @@ public class GameController : MenuController
 			{
 				Camera newCam = Instantiate<Camera> (mainCamera);
 				newCam.name = "Camera(P" + i + ")";
-				newCam.GetComponent<AudioListener> ().enabled = false;
 				newCam.GetComponent<TransformFollower> ().target = playerInfo[i].playerObject.transform;
 				playerInfo [i].camera = newCam;
 			}
+
+			// Play that funky music! But only from one camera
+			mainCamera.GetComponent<AudioListener> ().enabled = true;
+			mainCamera.GetComponent<AudioSource> ().enabled = true;
 
 			// Scale cameras and HUDs
 			switch (settings.numPlayers)
