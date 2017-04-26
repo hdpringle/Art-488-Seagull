@@ -825,8 +825,8 @@ InputManager:
     m_Name: P3 Submit
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: +
+    negativeButton: joystick 3 button 1
+    positiveButton: joystick 3 button 0
     altNegativeButton: 
     altPositiveButton: .
     gravity: 1000
@@ -841,8 +841,8 @@ InputManager:
     m_Name: P4 Submit
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: +
+    negativeButton: joystick 4 button 1
+    positiveButton: joystick 4 button 0
     altNegativeButton: 
     altPositiveButton: .
     gravity: 1000

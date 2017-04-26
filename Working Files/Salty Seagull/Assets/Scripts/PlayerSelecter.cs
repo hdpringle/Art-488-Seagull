@@ -44,12 +44,12 @@ public class PlayerSelecter : MonoBehaviour
 		//hit b, you unchose
 		else if(input.select < 0)
 		{
-			if(!chosen)
+			if (!chosen)
 			{
-				Scene myScene = SceneManager.GetSceneByName("GameSetup");
+				Scene myScene = SceneManager.GetSceneByName("MainMenu");
 				if (!myScene.isLoaded)
 				{
-					SceneManager.LoadScene("GameSetup");
+					SceneManager.LoadScene("MainMenu");
 				}
 
 				if (myScene.isLoaded && myScene.IsValid())

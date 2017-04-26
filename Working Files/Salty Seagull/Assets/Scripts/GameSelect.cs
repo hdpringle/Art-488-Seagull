@@ -16,7 +16,7 @@ public class GameSelect : MenuController {
 	private int map, field;
 	private Slider players, playTime, winScore;
 
-	private string[] maps = { "BigIsland", "Cove" };
+	private string[] maps = { "BigIsland" };
 	private GameObject[] fieldHighlights;
 
 	private class GSI
