@@ -1349,8 +1349,8 @@ GameObject:
   - component: {fileID: 23382001697404620}
   - component: {fileID: 95828815998587026}
   - component: {fileID: 54530455309973224}
-  - component: {fileID: 135629170238706718}
   - component: {fileID: 114991972774630356}
+  - component: {fileID: 136955224075419494}
   m_Layer: 0
   m_Name: NEST0
   m_TagString: nest
@@ -2849,7 +2849,7 @@ GameObject:
   - component: {fileID: 23269147395476860}
   m_Layer: 0
   m_Name: Beacon
-  m_TagString: Untagged
+  m_TagString: nest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6101,8 +6101,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599946732448544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.5, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0.1967, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.2, z: 0.02}
   m_Children: []
   m_Father: {fileID: 4851007780079004}
   m_RootOrder: 27
@@ -7970,8 +7970,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260426849838384}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.8, y: 12.542, z: -4.87}
-  m_LocalScale: {x: 50, y: 100, z: 50}
+  m_LocalPosition: {x: 42.087517, y: -2.7763221, z: -51.42707}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 4597944182501478}
   - {fileID: 4667969537019080}
@@ -18895,8 +18895,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nestId: 0
---- !u!135 &135629170238706718
-SphereCollider:
+--- !u!136 &136955224075419494
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -18904,6 +18904,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.007
+  m_Height: 0.5
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

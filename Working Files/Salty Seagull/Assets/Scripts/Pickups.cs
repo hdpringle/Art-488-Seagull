@@ -46,10 +46,6 @@ public class Pickups : MonoBehaviour
 		{
 			playerName = playerName + heldByPlayer;
 		}
-		if(!other.CompareTag("pickup"))
-		{
-			gravityActive = false;
-		}
 		if (other.CompareTag("nest"))
 		{
 			gravityActive = true;
@@ -59,6 +55,10 @@ public class Pickups : MonoBehaviour
 				GameObject.Find(playerName).GetComponent<PlayerController>().setHolding (false);
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
+		}
+		else if (!other.CompareTag("pickup"))
+		{
+			gravityActive = false;
 		}
 	}
 }
