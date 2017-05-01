@@ -54,6 +54,7 @@ public class MenuController : MonoBehaviour {
 	{
 		currentMenu = rootMenu;
 		navigator = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<AudioSource> ().volume = settings.musicVolume;
 	}
 
 	void Update()

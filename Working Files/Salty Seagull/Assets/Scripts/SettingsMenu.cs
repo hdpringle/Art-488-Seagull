@@ -9,6 +9,7 @@ public class SettingsMenu : MenuController {
 	private Toggle[] inverts;
 	private Slider musicVolume;
 	private Text mvDisplay;
+	private AudioSource music;
 
 	public MenuController Master
 	{
@@ -43,11 +44,13 @@ public class SettingsMenu : MenuController {
 		inverts[3].onValueChanged.AddListener (Toggle4);
 
 		musicVolume = transform.Find ("MusicSlider").GetComponent<Slider> ();
-		musicVolume.value = settings.musicVolume;
+		musicVolume.value = (int) (settings.musicVolume * 100 / 5);
 		musicVolume.onValueChanged.AddListener (MusicChange);
 
 		mvDisplay = transform.Find ("MusicText").GetComponent<Text> ();
-		mvDisplay.text = "Music Volume: " + ((int)settings.musicVolume * 100);
+		mvDisplay.text = "Music Volume: " + (int) (settings.musicVolume * 100);
+
+		music = Component.FindObjectOfType<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -83,7 +86,8 @@ public class SettingsMenu : MenuController {
 
 	private void MusicChange (float val)
 	{
-		settings.musicVolume = musicVolume.value;
+		settings.musicVolume = musicVolume.value * 5 / 100;
 		mvDisplay.text = "Music Volume: " + (int) (settings.musicVolume * 100);
+		music.volume = settings.musicVolume;
 	}
 }
