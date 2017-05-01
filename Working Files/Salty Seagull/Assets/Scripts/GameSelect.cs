@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 public class GameSelect : MenuController {
 
-	private const int NUMFIELDS = 4;
+	private const int NUMFIELDS = 3;
 	
 	// map - see below
 	// field:
@@ -42,17 +42,7 @@ public class GameSelect : MenuController {
 		playTime = GameObject.Find ("TimeSlider").GetComponent<Slider> ();
 		winScore = GameObject.Find ("ScoreSlider").GetComponent<Slider> ();
 		inputs = new GSI ();
-
-		relations = new Dictionary<int, MapRelations> ();
-		for (int i = 0; i < maps.Length; i++)
-		{
-			MapRelations relation = new MapRelations ();
-			relation.name = maps [i];
-			relation.highlight = GameObject.Find (relation.name + "Highlight");
-			relation.toggle = GameObject.Find (relation.name + "Toggle").GetComponent<Toggle> ();
-			relations [i] = relation;
-		}
-
+		
 		fieldHighlights = new GameObject[NUMFIELDS];
 		for (int i = 0; i < NUMFIELDS; i++)
 		{
@@ -60,7 +50,6 @@ public class GameSelect : MenuController {
 		}
 
 		UpdateField ();
-		UpdateMap ();
 		InvokeRepeating("BestUpdate", 0f, 0.25f);
 	}
 	
@@ -71,7 +60,7 @@ public class GameSelect : MenuController {
 
 		if (Input.GetButtonDown ("Submit"))
 		{
-			ChangeScene ("PlayerSelect");
+			ChangeScene ("MapSetup");
 		}
 
 		if (Input.GetButtonDown ("Cancel"))
@@ -101,18 +90,14 @@ public class GameSelect : MenuController {
 			switch (field)
 			{
 			case 0:
-				map = Mathf.Clamp (map + (inputs.leftright > 0 ? 1 : -1), 0, maps.Length - 1);
-				UpdateMap ();
-				break;
-			case 1:
 				players.value = Mathf.Clamp (players.value + (inputs.leftright > 0 ? 1 : -1), players.minValue, players.maxValue);
 				settings.numPlayers = (int) players.value;
 				break;
-			case 2:
+			case 1:
 				playTime.value = Mathf.Clamp (playTime.value + (inputs.leftright > 0 ? 1 : -1), playTime.minValue, playTime.maxValue);
 				settings.matchLengthSeconds = (int) playTime.value * 60;
 				break;
-			case 3:
+			case 2:
 				winScore.value = Mathf.Clamp (winScore.value + (inputs.leftright > 0 ? 1 : -1), winScore.minValue, winScore.maxValue);
 				settings.autoWinScore = (int) winScore.value * 10;
 				break;
@@ -127,25 +112,6 @@ public class GameSelect : MenuController {
 			p.SetActive (p.name.Equals ("Panel" + field));
 		}
 	}
-
-	void UpdateMap()
-	{
-		foreach (KeyValuePair<int,MapRelations> kvp in relations)
-		{
-			if (kvp.Key == map)
-			{
-				settings.mapChosen = kvp.Value.name;
-				kvp.Value.highlight.SetActive (true);
-				kvp.Value.toggle.isOn = true;
-			}
-			else
-			{
-				kvp.Value.highlight.SetActive (false);
-				kvp.Value.toggle.isOn = false;
-			}
-		}
-	}
-
 	protected virtual void GetControls()
 	{
 		inputs.updown = -Input.GetAxis("Forward");

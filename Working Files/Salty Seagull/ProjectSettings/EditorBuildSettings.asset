@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/PlayerSelect.unity
   - enabled: 1
     path: Assets/_Scenes/GameSetup.unity
+  - enabled: 1
+    path: Assets/_Scenes/MapSetup.unity
