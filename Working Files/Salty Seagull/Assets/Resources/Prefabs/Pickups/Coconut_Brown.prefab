@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95999574992294038}
   - component: {fileID: 135624800718125542}
   - component: {fileID: 114722636281675656}
+  - component: {fileID: 122661241183551672}
   m_Layer: 0
   m_Name: Coconut_Brown
   m_TagString: pickup
@@ -65,8 +66,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510369851264302}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1999474, y: -1.6077542, z: 19.077595}
+  m_LocalRotation: {x: -0.0007051007, y: 0.78736484, z: -0.00090054155, w: -0.61648625}
+  m_LocalPosition: {x: -30.918242, y: 0.9740615, z: 16.065851}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 4510810070958520}
@@ -143,10 +144,21 @@ MonoBehaviour:
   spawnTime: 5000
   gravityActive: 0
   gravityStrength: 0.075
-  heldByPlayer: 0
-  offset: {x: 0, y: 0, z: 0}
-  startingRotation: {x: 0, y: 0, z: 0}
+  heldByPlayer: 1
+  offset: {x: -15.409147, y: -1.5175395, z: 18.693405}
+  startingRotation: {x: -0, y: -0, z: -0}
   itemName: 
+--- !u!122 &122661241183551672
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510369851264302}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.35
 --- !u!135 &135624800718125542
 SphereCollider:
   m_ObjectHideFlags: 1

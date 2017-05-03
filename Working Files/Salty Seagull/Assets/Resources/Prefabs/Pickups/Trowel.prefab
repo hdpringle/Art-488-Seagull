@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 54120209955193148}
   - component: {fileID: 65099035130080458}
   - component: {fileID: 114456589915150944}
+  - component: {fileID: 122206725228536874}
   m_Layer: 0
   m_Name: Trowel
   m_TagString: pickup
@@ -175,3 +176,14 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: Trowel
+--- !u!122 &122206725228536874
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385847657548086}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.4

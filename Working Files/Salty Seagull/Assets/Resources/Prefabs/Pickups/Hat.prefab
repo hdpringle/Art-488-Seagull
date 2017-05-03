@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 95077864626827706}
   - component: {fileID: 64185411715449146}
   - component: {fileID: 114443550848856430}
+  - component: {fileID: 122382354088670422}
   m_Layer: 0
   m_Name: Hat
   m_TagString: pickup
@@ -162,3 +163,14 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: Hat
+--- !u!122 &122382354088670422
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576504980340516}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.35

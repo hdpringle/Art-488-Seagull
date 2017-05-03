@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95724732272899324}
   - component: {fileID: 135788536651892214}
   - component: {fileID: 114207567314960886}
+  - component: {fileID: 122305188129038356}
   m_Layer: 0
   m_Name: Coconut_Green
   m_TagString: pickup
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476161319867792}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.51, y: 4.456, z: 16.49}
+  m_LocalPosition: {x: -17.954369, y: 4.8522406, z: 17.19}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 4984326503273840}
@@ -147,6 +148,17 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: 
+--- !u!122 &122305188129038356
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1476161319867792}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.35
 --- !u!135 &135788536651892214
 SphereCollider:
   m_ObjectHideFlags: 1

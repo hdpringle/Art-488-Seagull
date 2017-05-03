@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 54218477970224182}
   - component: {fileID: 65908045108831918}
   - component: {fileID: 114976080135339852}
+  - component: {fileID: 122677139301858302}
   m_Layer: 0
   m_Name: Sunglasses
   m_TagString: pickup
@@ -495,3 +496,14 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: Sunglasses
+--- !u!122 &122677139301858302
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965056135105004}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.3

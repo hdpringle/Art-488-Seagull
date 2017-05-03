@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 23337982817662604}
   - component: {fileID: 114279339724357212}
   - component: {fileID: 135528343139665902}
+  - component: {fileID: 122183048145919700}
   m_Layer: 0
   m_Name: pSphere2
   m_TagString: pickup
@@ -133,9 +134,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1193454363695024}
-  m_LocalRotation: {x: -0, y: 0.953717, z: -0, w: 0.30070582}
-  m_LocalPosition: {x: -139.64307, y: 30.982475, z: 96.23285}
-  m_LocalScale: {x: 15.000011, y: 15, z: 15.000011}
+  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: -108.246284, y: 30.592476, z: 74.00743}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
   - {fileID: 4591045938847720}
   - {fileID: 4656990909594020}
@@ -411,9 +412,20 @@ MonoBehaviour:
   gravityActive: 0
   gravityStrength: 0.075
   heldByPlayer: 0
-  offset: {x: 0, y: 0, z: 0}
-  startingRotation: {x: 0, y: 0, z: 0}
+  offset: {x: -12.908005, y: -6.3513775, z: -28.794228}
+  startingRotation: {x: -0, y: 44.999996, z: -0}
   itemName: 
+--- !u!122 &122183048145919700
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372304871921030}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.3
 --- !u!135 &135528343139665902
 SphereCollider:
   m_ObjectHideFlags: 1

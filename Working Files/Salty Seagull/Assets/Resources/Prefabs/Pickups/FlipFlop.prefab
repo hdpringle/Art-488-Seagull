@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54824411661083362}
   - component: {fileID: 65209930341790612}
   - component: {fileID: 114586405701500092}
+  - component: {fileID: 122223749808588064}
   m_Layer: 0
   m_Name: FlipFlop
   m_TagString: pickup
@@ -176,3 +177,14 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: Flipflop
+--- !u!122 &122223749808588064
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1284831258232752}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.35
