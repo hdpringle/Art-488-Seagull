@@ -55,7 +55,8 @@ public class MapSelect : MenuController
 		{
 			fieldHighlights[i] = GameObject.Find("Panel" + i);
 		}
-		
+
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<AudioSource> ().volume = settings.musicVolume;
 		UpdateMap();
 		InvokeRepeating("BestUpdate", 0f, 0.25f);
 	}

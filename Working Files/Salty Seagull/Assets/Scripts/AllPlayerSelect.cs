@@ -17,6 +17,7 @@ public class AllPlayerSelect : MenuController {
 				players[i].gameObject.SetActive(false);
 			}
 		}
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<AudioSource> ().volume = settings.musicVolume;
 	}
 	
 	// Update is called once per frame
