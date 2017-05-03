@@ -14,7 +14,7 @@ public class MapSelect : MenuController
 	// field:
 	//		0 - map select
 	//		1 - player count select
-	private int map, field;
+	private int map;
 
 	private string[] maps = { "BigIsland","Cove" };
 	private GameObject[] fieldHighlights;
@@ -37,7 +37,6 @@ public class MapSelect : MenuController
 	void Start()
 	{
 		map = 0;
-		field = 0;
 		inputs = new GSI();
 
 		relations = new Dictionary<int, MapRelations>();

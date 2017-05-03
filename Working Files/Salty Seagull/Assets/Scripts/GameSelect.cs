@@ -13,10 +13,9 @@ public class GameSelect : MenuController {
 	// field:
 	//		0 - map select
 	//		1 - player count select
-	private int map, field;
+	private int field;
 	private Slider players, playTime, winScore;
 
-	private string[] maps = { "BigIsland" };
 	private GameObject[] fieldHighlights;
 
 	private class GSI
@@ -25,18 +24,9 @@ public class GameSelect : MenuController {
 	}
 	private GSI inputs;
 
-	private class MapRelations
-	{
-		public string name;
-		public GameObject highlight;
-		public Toggle toggle;
-	}
-	Dictionary<int, MapRelations> relations;
-
 	// Use this for initialization
 	void Start ()
 	{
-		map = 0;
 		field = 0;
 		players = GameObject.Find ("PlayerSlider").GetComponent<Slider> ();
 		playTime = GameObject.Find ("TimeSlider").GetComponent<Slider> ();
