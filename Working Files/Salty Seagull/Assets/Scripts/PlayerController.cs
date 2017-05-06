@@ -213,12 +213,6 @@ public class PlayerController : MonoBehaviour
 				}
             }
         }
-		if(other.CompareTag("Beacon"))
-		{
-			holding = false;
-			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-
-		}
         if(other.CompareTag("nest"))
         {
 			if(holding && other.gameObject.GetComponent<NEST>().nestId == playerNumber)
