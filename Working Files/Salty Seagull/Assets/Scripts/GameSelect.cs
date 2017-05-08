@@ -105,7 +105,7 @@ public class GameSelect : MenuController {
 	}
 	protected virtual void GetControls()
 	{
-		inputs.updown = -Input.GetAxis("Forward");
+		inputs.updown = -Input.GetAxis("PauseUp");
 		inputs.leftright = Input.GetAxis("Sideways");
 	}
 }

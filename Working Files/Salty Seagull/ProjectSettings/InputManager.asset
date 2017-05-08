@@ -307,7 +307,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2 Horizontal
@@ -323,7 +323,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 2
   - serializedVersion: 3
     m_Name: P3 Horizontal
@@ -339,7 +339,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 3
   - serializedVersion: 3
     m_Name: P4 Horizontal
@@ -355,7 +355,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 4
   - serializedVersion: 3
     m_Name: Vertical
@@ -371,7 +371,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 4
+    axis: 1
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2 Vertical
@@ -387,7 +387,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 4
+    axis: 1
     joyNum: 2
   - serializedVersion: 3
     m_Name: P3 Vertical
@@ -403,7 +403,7 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 4
+    axis: 1
     joyNum: 3
   - serializedVersion: 3
     m_Name: P4 Vertical
@@ -419,14 +419,14 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
-    axis: 4
+    axis: 1
     joyNum: 4
   - serializedVersion: 3
     m_Name: Forward
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: joystick 1 button 0
+    positiveButton: joystick 1 button 1
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -434,14 +434,14 @@ InputManager:
     sensitivity: 1
     snap: 0
     invert: 1
-    type: 2
-    axis: 1
+    type: 0
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2 Forward
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick 2 button 0
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -450,7 +450,7 @@ InputManager:
     sensitivity: 1
     snap: 0
     invert: 1
-    type: 2
+    type: 0
     axis: 1
     joyNum: 2
   - serializedVersion: 3

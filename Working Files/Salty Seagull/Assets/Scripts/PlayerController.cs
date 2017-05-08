@@ -62,12 +62,13 @@ public class PlayerController : MonoBehaviour
 		switch (playerNumber)
 		{
 		case 1:
-			input.moveForward = Input.GetAxis("Forward");
+			input.moveForward = Input.GetAxisRaw("Forward");
 			input.moveSideways = Input.GetAxis("Sideways");
 			input.turnUD = Input.GetAxis("Vertical");
 			input.turnLR = Input.GetAxis("Horizontal");
 			input.drop = Input.GetAxis("Drop");
 			input.flyWalk = Input.GetButtonDown("Crouch");
+			//print(input.moveForward);
 			break;
 
 		default:
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 speed;
 		yaw += game.seagullLimits.rotationLR * input.turnLR;
 
-		if (input.flyWalk)
+		/*if (input.flyWalk)
 		{
 			if (flying)
 			{
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
 			flying = !flying;
 			animator.SetTrigger("Falling");
 		}
-
+		*/
 		if (flying)
 		{
 			pitch -= game.seagullLimits.rotationUD * input.turnUD;
@@ -115,7 +116,6 @@ public class PlayerController : MonoBehaviour
 				movement.z = movement.z / game.seagullLimits.antiDrift * game.seagullLimits.glideDecel;
 			}
 			rb.AddRelativeForce (movement);
-			
 			rb.rotation = Quaternion.Euler (pitch, yaw, input.turnLR * -game.seagullLimits.tilt);
 
 			speed = rb.velocity;
@@ -213,12 +213,6 @@ public class PlayerController : MonoBehaviour
 				}
             }
         }
-		if(other.CompareTag("Beacon"))
-		{
-			holding = false;
-			heldObject.gameObject.GetComponent<Pickups>().gravityActive = true;
-
-		}
         if(other.CompareTag("nest"))
         {
 			if(holding && other.gameObject.GetComponent<NEST>().nestId == playerNumber)
