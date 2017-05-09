@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 using System.Configuration;
 using System;
 
+public enum ControlSchemes
+{
+	MARIOKART,
+	FLIGHTSIM
+}
+
 public class SessionSettings
 {
 	public int numPlayers = 4;
 	public String mapChosen = "BigIsland";
 	public int matchLengthSeconds = 180;
-	public int autoWinScore = 30;
+	public int autoWinScore = 100;
 
 	public static int MAX_PLAYERS_BIG_ISLAND
 	{
@@ -28,13 +34,14 @@ public class SessionSettings
 
 	// State refers to whether the player's pitch controls are flipped
 	public bool[] inversions = { false, false, false, false };
+	public ControlSchemes[] schemes = { ControlSchemes.MARIOKART, ControlSchemes.MARIOKART, ControlSchemes.MARIOKART, ControlSchemes.MARIOKART };
 
 	//The number refers to which skin material to load ("seagullSkin#" is the name of each material)
 	//the index is the player number
 	public int[] skinNumbers = { 1, 1, 1, 1 };
 
-	// 0-1 how pumped up are the jams?
-	public float musicVolume = 1f;
+	// 0-100 how pumped up are the jams?
+	public float musicVolume = 100f;
 }
 
 public class MenuController : MonoBehaviour {

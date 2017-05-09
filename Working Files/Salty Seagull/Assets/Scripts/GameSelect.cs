@@ -15,6 +15,7 @@ public class GameSelect : MenuController {
 	//		1 - player count select
 	private int field;
 	private Slider players, playTime, winScore;
+	private Text numText, timeText, scoreText;
 
 	private GameObject[] fieldHighlights;
 
@@ -31,6 +32,10 @@ public class GameSelect : MenuController {
 		players = GameObject.Find ("PlayerSlider").GetComponent<Slider> ();
 		playTime = GameObject.Find ("TimeSlider").GetComponent<Slider> ();
 		winScore = GameObject.Find ("ScoreSlider").GetComponent<Slider> ();
+		players.onValueChanged.AddListener (TestChange);
+		numText = GameObject.Find ("NumPlayerText").GetComponent<Text> ();
+		timeText = GameObject.Find ("TimeText").GetComponent<Text> ();
+		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		inputs = new GSI ();
 		
 		fieldHighlights = new GameObject[NUMFIELDS];
@@ -83,14 +88,17 @@ public class GameSelect : MenuController {
 			case 0:
 				players.value = Mathf.Clamp (players.value + (inputs.leftright > 0 ? 1 : -1), players.minValue, players.maxValue);
 				settings.numPlayers = (int) players.value;
+				numText.text = settings.numPlayers.ToString ();
 				break;
 			case 1:
 				playTime.value = Mathf.Clamp (playTime.value + (inputs.leftright > 0 ? 1 : -1), playTime.minValue, playTime.maxValue);
 				settings.matchLengthSeconds = (int) playTime.value * 60;
+				timeText.text = settings.matchLengthSeconds.ToString ();
 				break;
 			case 2:
 				winScore.value = Mathf.Clamp (winScore.value + (inputs.leftright > 0 ? 1 : -1), winScore.minValue, winScore.maxValue);
-				settings.autoWinScore = (int) winScore.value * 10;
+				settings.autoWinScore = winScore.value > 10 ? 9001 : (int) winScore.value * 10;
+				scoreText.text = settings.autoWinScore > 9000 ? "No Limit" : settings.autoWinScore.ToString ();
 				break;
 			}
 		}
@@ -103,9 +111,15 @@ public class GameSelect : MenuController {
 			p.SetActive (p.name.Equals ("Panel" + field));
 		}
 	}
+
 	protected virtual void GetControls()
 	{
 		inputs.updown = -Input.GetAxis("PauseUp");
 		inputs.leftright = Input.GetAxis("Sideways");
+	}
+
+	private void TestChange (float val)
+	{
+		Debug.Log ("Value changed: " + val);
 	}
 }

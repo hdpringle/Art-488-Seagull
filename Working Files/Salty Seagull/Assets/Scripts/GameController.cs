@@ -129,7 +129,6 @@ public class GameController : MenuController
 			// Set up cameras
 			Camera mainCamera = GameObject.FindObjectOfType<Camera> ();
 			playerInfo [1].camera = mainCamera;
-			mainCamera.GetComponent<AudioSource> ().volume = settings.musicVolume;
 			mainCamera.GetComponent<TransformFollower> ().target = playerInfo[1].playerObject.transform;
 			for (int i = 2; i <= settings.numPlayers; i++)
 			{
@@ -142,6 +141,7 @@ public class GameController : MenuController
 			// Play that funky music! But only from one camera
 			mainCamera.GetComponent<AudioListener> ().enabled = true;
 			mainCamera.GetComponent<AudioSource> ().enabled = true;
+			mainCamera.GetComponent<AudioSource> ().volume = settings.musicVolume / 100f;
 
 			// Scale cameras and HUDs
 			switch (settings.numPlayers)

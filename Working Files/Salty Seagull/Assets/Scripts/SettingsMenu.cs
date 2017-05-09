@@ -44,11 +44,11 @@ public class SettingsMenu : MenuController {
 		inverts[3].onValueChanged.AddListener (Toggle4);
 
 		musicVolume = transform.Find ("MusicSlider").GetComponent<Slider> ();
-		musicVolume.value = (int) (settings.musicVolume * 100 / 5);
+		musicVolume.value = (int) (settings.musicVolume / 5);
 		musicVolume.onValueChanged.AddListener (MusicChange);
 
 		mvDisplay = transform.Find ("MusicText").GetComponent<Text> ();
-		mvDisplay.text = "Music Volume: " + (int) (settings.musicVolume * 100);
+		mvDisplay.text = "Music Volume: " + (int) (settings.musicVolume / 5);
 
 		music = Component.FindObjectOfType<AudioSource> ();
 	}
@@ -86,8 +86,8 @@ public class SettingsMenu : MenuController {
 
 	private void MusicChange (float val)
 	{
-		settings.musicVolume = musicVolume.value * 5 / 100;
-		mvDisplay.text = "Music Volume: " + (int) (settings.musicVolume * 100);
-		music.volume = settings.musicVolume;
+		settings.musicVolume = musicVolume.value * 5;
+		mvDisplay.text = "Music Volume: " + (int) settings.musicVolume;
+		music.volume = settings.musicVolume / 100f;
 	}
 }
