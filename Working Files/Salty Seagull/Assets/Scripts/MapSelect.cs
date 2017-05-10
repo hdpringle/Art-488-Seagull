@@ -16,7 +16,7 @@ public class MapSelect : MenuController
 	//		1 - player count select
 	private int map;
 
-	private string[] maps = { "BigIsland","Cove" };
+	private string[] maps = { "BigIsland", "StiltIsland", "Cove" };
 	private GameObject[] fieldHighlights;
 
 	private class GSI
