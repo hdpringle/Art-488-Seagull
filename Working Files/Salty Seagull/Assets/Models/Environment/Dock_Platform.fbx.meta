@@ -1,22 +1,57 @@
 fileFormatVersion: 2
-guid: c8018310b48ee4aaaa8eabd5313232ef
+guid: af9f1750777714f0ab2afdd2d67476fa
 timeCreated: 1494377387
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Planks
-    100004: Trestle03
+    100002: DockPost2
+    100004: DockPost3
+    100006: DockPost5
+    100008: DockPost6
+    100010: DockPost7
+    100012: DockPost8
+    100014: pCube1
+    100016: Plank5
+    100018: Plank6
     400000: //RootNode
-    400002: Planks
-    400004: Trestle03
-    2300000: Planks
-    2300002: Trestle03
-    3300000: Planks
-    3300002: Trestle03
-    4300000: Planks
-    4300002: Trestle03
+    400002: DockPost2
+    400004: DockPost3
+    400006: DockPost5
+    400008: DockPost6
+    400010: DockPost7
+    400012: DockPost8
+    400014: pCube1
+    400016: Plank5
+    400018: Plank6
+    2300000: DockPost2
+    2300002: DockPost3
+    2300004: DockPost5
+    2300006: DockPost6
+    2300008: DockPost7
+    2300010: DockPost8
+    2300012: pCube1
+    2300014: Plank5
+    2300016: Plank6
+    3300000: DockPost2
+    3300002: DockPost3
+    3300004: DockPost5
+    3300006: DockPost6
+    3300008: DockPost7
+    3300010: DockPost8
+    3300012: pCube1
+    3300014: Plank5
+    3300016: Plank6
+    4300000: DockPost2
+    4300002: DockPost3
+    4300004: Plank5
+    4300006: DockPost5
+    4300008: DockPost6
+    4300010: DockPost7
+    4300012: DockPost8
+    4300014: Plank6
+    4300016: pCube1
     9500000: //RootNode
   materials:
     importMaterials: 1
