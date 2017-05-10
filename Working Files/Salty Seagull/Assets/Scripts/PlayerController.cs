@@ -52,8 +52,10 @@ public class PlayerController : MonoBehaviour
 			rb.velocity = Vector3.zero;
 			return;
 		}
-
-
+		if (heldObject != null)
+		{
+			heldObject.GetComponent<Pickups>().isHeld = holding;
+		}
 		DoMotion ();
     }
 
@@ -226,7 +228,6 @@ public class PlayerController : MonoBehaviour
 				heldObject = other.gameObject.GetComponent<PlayerController>().heldObject;
 				heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;
 				holding = true;
-
 				//they lose the item
 				other.gameObject.GetComponent<PlayerController>().holding = false;
 			}
