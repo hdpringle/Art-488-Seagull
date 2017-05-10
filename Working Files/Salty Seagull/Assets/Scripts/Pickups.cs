@@ -16,6 +16,9 @@ public class Pickups : MonoBehaviour
 	public Vector3 offset;
 	public Vector3 startingRotation;
 	public string itemName;
+	public bool isHeld;
+
+	private Component halo;
 
 
 	private GameController game;
@@ -26,7 +29,8 @@ public class Pickups : MonoBehaviour
         gravityActive = false;
 		offset = transform.FindChild("MountPoint").transform.position;
 		startingRotation = transform.eulerAngles;
-    }
+		halo = GetComponent("Halo");
+	}
 
     // Update is called once per frame
     void Update()
@@ -35,6 +39,7 @@ public class Pickups : MonoBehaviour
 		{
 			transform.Translate(Vector3.down * gravityStrength, Space.World);
 		}
+		halo.GetType().GetProperty("enabled").SetValue(halo, !isHeld, null);
     }
 
 	//we dont need gravity once an object has hit a surface
