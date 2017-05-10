@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 23796630313701582}
   m_Layer: 0
   m_Name: pCube11
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 23386165214132578}
   m_Layer: 0
   m_Name: pCube10
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 23156616613801168}
   m_Layer: 0
   m_Name: pCube9
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 23692094600529076}
   m_Layer: 0
   m_Name: pCube6
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2203,7 +2203,7 @@ GameObject:
   - component: {fileID: 23758954614484180}
   m_Layer: 0
   m_Name: pCube3
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 23045292771206544}
   m_Layer: 0
   m_Name: pCube2
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2762,6 +2762,7 @@ GameObject:
   - component: {fileID: 4894024710016526}
   - component: {fileID: 33725921431032740}
   - component: {fileID: 23113272511200102}
+  - component: {fileID: 65829306603119154}
   m_Layer: 0
   m_Name: twiglayer8
   m_TagString: Island
@@ -2798,7 +2799,7 @@ GameObject:
   - component: {fileID: 23101379342806730}
   m_Layer: 0
   m_Name: pCube4
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2832,7 +2833,7 @@ GameObject:
   - component: {fileID: 23737842010395662}
   m_Layer: 0
   m_Name: pCube1
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3036,7 +3037,7 @@ GameObject:
   - component: {fileID: 23561034003847952}
   m_Layer: 0
   m_Name: pCube5
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3070,7 +3071,7 @@ GameObject:
   - component: {fileID: 23977251910699108}
   m_Layer: 0
   m_Name: pCube7
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3408,6 +3409,7 @@ GameObject:
   - component: {fileID: 4701444346711038}
   - component: {fileID: 33424409493246270}
   - component: {fileID: 23623432993219978}
+  - component: {fileID: 65119709029315348}
   m_Layer: 0
   m_Name: twiglayer9
   m_TagString: Island
@@ -3629,6 +3631,7 @@ GameObject:
   - component: {fileID: 4368782504411440}
   - component: {fileID: 33330073543474324}
   - component: {fileID: 23001902250740650}
+  - component: {fileID: 65161298364340954}
   m_Layer: 0
   m_Name: twiglayer7
   m_TagString: Untagged
@@ -4532,7 +4535,7 @@ GameObject:
   - component: {fileID: 23414886502799858}
   m_Layer: 0
   m_Name: pCube8
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6101,7 +6104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599946732448544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1967, z: 0}
+  m_LocalPosition: {x: 0, y: 0.202, z: 0}
   m_LocalScale: {x: 0.02, y: 0.2, z: 0.02}
   m_Children: []
   m_Father: {fileID: 4851007780079004}
@@ -7970,7 +7973,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260426849838384}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.087517, y: -2.7763221, z: -51.42707}
+  m_LocalPosition: {x: -31.880257, y: -6.57, z: 73.28994}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 4597944182501478}
@@ -18866,6 +18869,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65119709029315348
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1721605325345916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.017373342, y: 0.0017579114, z: 0.024453878}
+  m_Center: {x: -0.0133789405, y: 0.0002509868, z: -0.01043273}
+--- !u!65 &65161298364340954
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1774812295617124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.017373344, y: 0.0017579116, z: 0.02445388}
+  m_Center: {x: -0.013379002, y: 0.00025100174, z: -0.01043297}
+--- !u!65 &65829306603119154
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575943430937094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.017373336, y: 0.0017579114, z: 0.02445387}
+  m_Center: {x: -0.013378817, y: 0.0002509868, z: -0.010432965}
 --- !u!95 &95828815998587026
 Animator:
   serializedVersion: 3
