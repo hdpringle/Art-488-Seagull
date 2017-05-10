@@ -14,7 +14,7 @@ public enum ControlSchemes
 
 public class SessionSettings
 {
-	public int numPlayers = 4;
+	public int numPlayers = 2;
 	public String mapChosen = "BigIsland";
 	public int matchLengthSeconds = 180;
 	public int autoWinScore = 100;

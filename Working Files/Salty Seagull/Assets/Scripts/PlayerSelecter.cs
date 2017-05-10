@@ -105,17 +105,7 @@ public class PlayerSelecter : MonoBehaviour
 	}
 	protected virtual void GetControls()
 	{
-		switch (playerNumber)
-		{
-			case 1:
-				input.turnLR = Input.GetAxis("Sideways");
-				input.select = Input.GetAxis("Submit");
-				break;
-
-			default:
-				input.turnLR = Input.GetAxis("P" + playerNumber + " Sideways");
-				input.select = Input.GetAxis("P" + playerNumber + " Submit");
-				break;
-		}
+		input.turnLR = Input.GetAxis("P" + playerNumber + " Sideways");
+		input.select = Input.GetAxis("P" + playerNumber + " Submit");
 	}
 }

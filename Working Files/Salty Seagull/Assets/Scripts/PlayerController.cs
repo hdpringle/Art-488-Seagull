@@ -59,27 +59,24 @@ public class PlayerController : MonoBehaviour
 
 	protected virtual void GetControls()
 	{
-		switch (playerNumber)
+		switch (GameController.settings.schemes[playerNumber - 1])
 		{
-		case 1:
-			input.moveForward = Input.GetAxisRaw("Forward");
-			input.moveSideways = Input.GetAxis("Sideways");
-			input.turnUD = Input.GetAxis("Vertical");
-			input.turnLR = Input.GetAxis("Horizontal");
-			input.drop = Input.GetAxis("Drop");
-			input.flyWalk = Input.GetButtonDown("Crouch");
-			//print(input.moveForward);
+		case ControlSchemes.MARIOKART:
+			input.moveForward = Input.GetAxisRaw("P" + playerNumber + " Submit");
+			input.moveSideways = 0;
+			input.turnUD = Input.GetAxis("P" + playerNumber +" Forward");
+			input.turnLR = Input.GetAxis("P" + playerNumber +" Sideways");
 			break;
 
-		default:
+		case ControlSchemes.FLIGHTSIM:
 			input.moveForward = Input.GetAxisRaw("P" + playerNumber + " Forward");
 			input.moveSideways = Input.GetAxis("P" + playerNumber + " Sideways");
 			input.turnUD = Input.GetAxis("P" + playerNumber +" Vertical");
 			input.turnLR = Input.GetAxis("P" + playerNumber +" Horizontal");
-			input.drop = Input.GetAxis("P" + playerNumber +" Drop");
-			input.flyWalk = Input.GetButtonDown("P" + playerNumber +" Crouch");
 			break;
 		}
+		input.drop = Input.GetAxis("P" + playerNumber +" Drop");
+		input.flyWalk = Input.GetButtonDown("P" + playerNumber +" Crouch");
 		input.turnUD *= (GameController.settings.inversions [playerNumber - 1] ? -1 : 1);
 	}
 
