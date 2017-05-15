@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54952907286983442}
   - component: {fileID: 136388011038464784}
   - component: {fileID: 114339637003739632}
+  - component: {fileID: 122363983240808998}
   m_Layer: 0
   m_Name: Cigarette
   m_TagString: pickup
@@ -164,11 +165,19 @@ MonoBehaviour:
   heldByPlayer: 0
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
-  startingPosition0: {x: 0, y: 0, z: 0}
-  startingPosition1: {x: 0, y: 0, z: 0}
-  startingPosition2: {x: 0, y: 0, z: 0}
-  startingPosition3: {x: 0, y: 0, z: 0}
-  startingPosition4: {x: 0, y: 0, z: 0}
+  itemName: 
+  isHeld: 0
+--- !u!122 &122363983240808998
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057635900743640}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.35
 --- !u!136 &136388011038464784
 CapsuleCollider:
   m_ObjectHideFlags: 1
