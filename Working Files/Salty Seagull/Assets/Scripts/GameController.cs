@@ -58,10 +58,14 @@ public class GameController : MenuController
 	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
 	private GameObject gameOverMenu;
+	private AudioSource countDownSFX;
+	private AudioSource goSFX;
+	private bool playedGoSound;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		playedGoSound = false;
 		paused = false;
 		gameOver = false;
 		gameOverMenu = GameObject.Find("GameOverMenu");
@@ -73,6 +77,8 @@ public class GameController : MenuController
 		sea = GameObject.Find ("Sea").transform;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
 		winText.text = "";
+		countDownSFX = GameObject.Find("WinText").GetComponents<AudioSource>()[0];
+		goSFX = GameObject.Find("WinText").GetComponents<AudioSource>()[1];
 		filledPickups = new ArrayList();
 		// This block randomly chooses a set of spawn points for each player and nest
 		playerInfo = new Dictionary<int, PlayerSpawnInfo> ();
@@ -207,9 +213,19 @@ public class GameController : MenuController
 			if (currentWarmup > 0) {
 				currentWarmup -= Time.deltaTime;
 				seconds = ((int)currentWarmup) % 60;
-				winText.text = seconds.ToString ();
+				string prevText = winText.text;
+				winText.text = (seconds).ToString ();
+				//sound to go with counting down
+				if (prevText != winText.text && seconds > 0)
+				{
+					countDownSFX.PlayOneShot(countDownSFX.clip);
+				}
+				else if(prevText != winText.text)
+				{
+					winText.text = "GO!";
+					goSFX.PlayOneShot(goSFX.clip);
+				}
 			} else {
-
 				//only play while timer ticks down
 				if (currentTime > 0) {
 					currentTime -= Time.deltaTime;
