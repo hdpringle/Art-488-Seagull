@@ -15,6 +15,9 @@ public class PlayerSelecter : MonoBehaviour
 
 	public bool chosen;//has the player chosen a seagull?
 
+	private AudioSource choseSFX;
+	private AudioSource swipeSFX;
+
 	private class InputValues
 	{
 		public float turnLR;
@@ -26,6 +29,9 @@ public class PlayerSelecter : MonoBehaviour
 	{
 		input = new InputValues();
 		chosen = false;
+
+		choseSFX = GameObject.Find("MenuController").GetComponents<AudioSource>()[0];
+		swipeSFX = GameObject.Find("MenuController").GetComponents<AudioSource>()[1];
 
 		//constantly calls an update function, every 0.25 seconds. Lets us get delays on the controller input.
 		InvokeRepeating("BestUpdate", 0f, 0.25f);
@@ -63,6 +69,11 @@ public class PlayerSelecter : MonoBehaviour
 		//let the player see their choice
 		if(chosen)
 		{
+			if (transform.FindChild("Text").GetComponent<Text>().text != "DONE!")
+			{
+				//Just play this once
+				choseSFX.PlayOneShot(choseSFX.clip);
+			}
 			transform.FindChild("Text").GetComponent<Text>().text = "DONE!";
 			transform.FindChild("Button").SetAsLastSibling();
 		}
@@ -86,6 +97,7 @@ public class PlayerSelecter : MonoBehaviour
 			//swipe right
 			if (input.turnLR > 0)
 			{
+				swipeSFX.PlayOneShot(swipeSFX.clip);
 				currentSeagull++;
 				if (currentSeagull > NUMBER_OF_SEAGULLS)
 				{
@@ -95,6 +107,7 @@ public class PlayerSelecter : MonoBehaviour
 			//swipe left
 			else if (input.turnLR < 0)
 			{
+				swipeSFX.PlayOneShot(swipeSFX.clip);
 				currentSeagull--;
 				if (currentSeagull <= 0)
 				{

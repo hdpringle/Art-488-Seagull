@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour
 	private Animator animator;
     private float yaw, pitch, worldy, sinr, cosr;
     private bool holding, flying;
+	private AudioSource squakSFX;
 	protected InputValues input;
     Transform heldObject;
 
     void Start()
     {
 		game = GameObject.Find("GameController").GetComponent<GameController>();
-
+		squakSFX = GetComponent<AudioSource>();
 		rb = GetComponent<Rigidbody>();
 		charCon = GetComponent<CharacterController> ();
 		animator = GetComponent<Animator> ();
@@ -192,6 +193,8 @@ public class PlayerController : MonoBehaviour
 				//Check to see if the object we collided with is in our own nest
 				if (!GameObject.Find("Nest" + playerNumber).GetComponent<NEST>().isInNest(other.gameObject))
 				{
+					//squak when you pick things up
+					squakSFX.PlayOneShot(squakSFX.clip);
 					//other.gameObject.SetActive(false);
 					heldObject = other.transform;
 					heldObject.gameObject.GetComponent<Pickups>().heldByPlayer = playerNumber;

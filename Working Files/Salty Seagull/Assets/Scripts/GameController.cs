@@ -60,12 +60,10 @@ public class GameController : MenuController
 	private GameObject gameOverMenu;
 	private AudioSource countDownSFX;
 	private AudioSource goSFX;
-	private bool playedGoSound;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		playedGoSound = false;
 		paused = false;
 		gameOver = false;
 		gameOverMenu = GameObject.Find("GameOverMenu");
@@ -220,7 +218,7 @@ public class GameController : MenuController
 				{
 					countDownSFX.PlayOneShot(countDownSFX.clip);
 				}
-				else if(prevText != winText.text)
+				else if(prevText != winText.text && seconds == 0)
 				{
 					winText.text = "GO!";
 					goSFX.PlayOneShot(goSFX.clip);
