@@ -29,7 +29,7 @@ public class Pickups : MonoBehaviour
         gravityActive = false;
 		offset = transform.FindChild("MountPoint").transform.position;
 		startingRotation = transform.eulerAngles;
-		halo = GetComponent("Halo");
+		halo = this.gameObject.GetComponent("Halo");
 	}
 
     // Update is called once per frame
@@ -61,7 +61,7 @@ public class Pickups : MonoBehaviour
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
 		}
-		else if (!(other.CompareTag("pickup")||other.CompareTag("Player")))
+		else if (other.CompareTag("Untagged") || other.CompareTag("Island"))
 		{
 			gravityActive = false;
 		}
