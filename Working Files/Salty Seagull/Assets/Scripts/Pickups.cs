@@ -57,13 +57,18 @@ public class Pickups : MonoBehaviour
 			//only give points to the player for dropping in their own nest
 			if (other.gameObject.GetComponent<NEST>().nestId == heldByPlayer)
 			{
-				GameObject.Find(playerName).GetComponent<PlayerController>().setHolding (false);
+				GameObject.Find(playerName).GetComponent<PlayerController>().setHolding(false);
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
 		}
 		else if (other.CompareTag("Untagged") || other.CompareTag("Island"))
 		{
+			print(name + " Collided with " + other.gameObject.name+" So Im gonna stop...");
 			gravityActive = false;
+		}
+		else if(!other.CompareTag("Player"))
+		{
+			gravityActive = true;
 		}
 		//print("The "+name+"Collided with: "+other.gameObject.name);
 	}

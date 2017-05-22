@@ -235,10 +235,12 @@ public class PlayerController : MonoBehaviour
 				other.gameObject.GetComponent<PlayerController>().holding = false;
 			}
 		}
+		/*
 		else if(other.CompareTag("Island"))
 		{
 			animator.SetTrigger("Walking");
 		}
+		*/
     }
 
 	/**
