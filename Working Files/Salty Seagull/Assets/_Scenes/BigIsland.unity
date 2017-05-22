@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
+  m_HorizontalAxis: Sideways
   m_VerticalAxis: PauseUp
   m_SubmitButton: Submit
   m_CancelButton: Cancel
@@ -2010,7 +2010,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 4bca7d396bcbdda438fab50c3f1ece2a, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -2298,7 +2298,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 675887769}
-  m_LocalRotation: {x: -0.65792716, y: 0.25909817, z: -0.70570755, w: 0.044461258}
+  m_LocalRotation: {x: -0.6579272, y: 0.2590982, z: -0.7057076, w: 0.04446126}
   m_LocalPosition: {x: -82.47, y: 39.475, z: 117.475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2824,7 +2824,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 821507081}
-  m_LocalRotation: {x: -0.6579272, y: 0.2590982, z: -0.7057076, w: 0.04446126}
+  m_LocalRotation: {x: -0.65792716, y: 0.25909817, z: -0.70570755, w: 0.044461258}
   m_LocalPosition: {x: -102.381, y: 31.20589, z: 91.02115}
   m_LocalScale: {x: 1.0000006, y: 1.0000006, z: 1.0000002}
   m_Children: []
@@ -4097,15 +4097,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1149951469805234, guid: 89638ad0c3498864abb0ceacaef90a76, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224368605570193548, guid: 89638ad0c3498864abb0ceacaef90a76,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 87
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89638ad0c3498864abb0ceacaef90a76, type: 2}
@@ -5661,7 +5652,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1649820484}
-  m_LocalRotation: {x: -0.65792716, y: 0.25909817, z: -0.70570755, w: 0.044461258}
+  m_LocalRotation: {x: -0.6579272, y: 0.2590982, z: -0.7057076, w: 0.04446126}
   m_LocalPosition: {x: -83.11, y: 34.36, z: 119.94}
   m_LocalScale: {x: 1, y: 1, z: 1.0000002}
   m_Children: []
