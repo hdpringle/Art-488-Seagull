@@ -300,7 +300,7 @@ public class GameController : MenuController
 			if(gObj.GetComponent<Pickups>() != null)
 			{
 				//check if the spawn time of the prefab matches the current time, then if so spawn one
-				if (secs % gObj.GetComponent<Pickups>().spawnTime == 0)
+				if (secs % gObj.GetComponent<Pickups>().spawnTime == 0 && GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints") != null)
 				{
 					Transform[] spawnLocation = GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform.GetComponentsInChildren<Transform>();
 					var chosenLocation = 0;
