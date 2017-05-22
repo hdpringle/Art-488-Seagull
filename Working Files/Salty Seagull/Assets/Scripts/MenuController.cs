@@ -56,12 +56,19 @@ public class MenuController : MonoBehaviour {
 	protected GameObject currentMenu;
 
 	protected EventSystem navigator;
+	protected bool focused = false;
 
 	void Start()
 	{
 		currentMenu = rootMenu;
 		navigator = GameObject.Find ("EventSystem").GetComponent<EventSystem> ();
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<AudioSource> ().volume = settings.musicVolume;
+		focused = true;
+	}
+
+	public virtual void Focus(bool v)
+	{
+		focused = v;
 	}
 
 	void Update()
@@ -72,11 +79,6 @@ public class MenuController : MonoBehaviour {
 			{
 				ShowSettingsMenu (false);
 			}
-		}
-
-		if (currentMenu != null && !navigator.currentSelectedGameObject.transform.IsChildOf (currentMenu.transform))
-		{
-			navigator.SetSelectedGameObject (currentMenu.transform.GetChild (1).gameObject);
 		}
 	}
 
@@ -119,8 +121,10 @@ public class MenuController : MonoBehaviour {
 				settingsMenu.SetActive (state);
 				currentMenu = settingsMenu;
 				settingsMenu.GetComponent<SettingsMenu> ().Master = this;
+				settingsMenu.GetComponent<SettingsMenu> ().Focus (true);
 				navigator.SetSelectedGameObject (settingsMenu.transform.GetChild (1).gameObject);
 			} else {
+				settingsMenu.GetComponent<SettingsMenu> ().Focus (false);
 				settingsMenu.SetActive (false);
 				currentMenu = rootMenu;
 				navigator.SetSelectedGameObject (rootMenu.transform.GetChild (1).gameObject);
