@@ -61,7 +61,7 @@ public class Pickups : MonoBehaviour
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
 		}
-		else if (!(other.CompareTag("pickup")||other.CompareTag("Player")))
+		else if (other.CompareTag("Untagged") || other.CompareTag("Island"))
 		{
 			gravityActive = false;
 		}

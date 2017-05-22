@@ -311,7 +311,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851995037904762}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 633.8386, y: 2.1958096, z: -841.4855}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4714905655505040}
@@ -401,7 +401,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.004, y: 0.005, z: 0.004}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.002, z: 0}
 --- !u!95 &95152505821406738
 Animator:
   serializedVersion: 3
@@ -438,6 +438,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: Bucket
+  isHeld: 0
 --- !u!122 &122651841049882108
 Halo:
   m_ObjectHideFlags: 1
