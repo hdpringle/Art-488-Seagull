@@ -215,14 +215,14 @@ public class PlayerController : MonoBehaviour
 				}
             }
         }
-        if(other.CompareTag("nest"))
+      /*  if(other.CompareTag("nest"))
         {
 			if(holding && other.gameObject.GetComponent<NEST>().nestId == playerNumber)
 			{
 				holding = false;
 				other.gameObject.GetComponent<NEST>().addObject(heldObject.gameObject);
 			}
-        }
+        }*/
 		else if(other.CompareTag("Player"))
 		{
 			if(!holding)
@@ -239,7 +239,6 @@ public class PlayerController : MonoBehaviour
 		{
 			animator.SetTrigger("Walking");
 		}
-		print(other.tag);
     }
 
 	/**

@@ -61,9 +61,10 @@ public class Pickups : MonoBehaviour
 				other.gameObject.GetComponent<NEST>().addObject(this.gameObject);
 			}
 		}
-		else if (!other.CompareTag("pickup"))
+		else if (!(other.CompareTag("pickup")||other.CompareTag("Player")))
 		{
 			gravityActive = false;
 		}
+		//print("The "+name+"Collided with: "+other.gameObject.name);
 	}
 }
