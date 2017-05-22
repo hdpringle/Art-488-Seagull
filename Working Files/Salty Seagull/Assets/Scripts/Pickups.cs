@@ -63,7 +63,7 @@ public class Pickups : MonoBehaviour
 		}
 		else if (other.CompareTag("Untagged") || other.CompareTag("Island"))
 		{
-			print(name + " Collided with " + other.gameObject.name+" So Im gonna stop...");
+			//print(name + " Collided with " + other.gameObject.name+" So Im gonna stop...");
 			gravityActive = false;
 		}
 		//print("The "+name+"Collided with: "+other.gameObject.name);
