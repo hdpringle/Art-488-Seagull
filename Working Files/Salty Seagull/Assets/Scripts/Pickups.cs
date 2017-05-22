@@ -66,10 +66,6 @@ public class Pickups : MonoBehaviour
 			print(name + " Collided with " + other.gameObject.name+" So Im gonna stop...");
 			gravityActive = false;
 		}
-		else if(!other.CompareTag("Player"))
-		{
-			gravityActive = true;
-		}
 		//print("The "+name+"Collided with: "+other.gameObject.name);
 	}
 }
