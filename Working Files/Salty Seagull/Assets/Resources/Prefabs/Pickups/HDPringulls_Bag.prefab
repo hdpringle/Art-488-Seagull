@@ -153,13 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointVal: 4
-  spawnTime: 0
+  spawnTime: 10
   gravityActive: 0
   gravityStrength: 0.075
   heldByPlayer: 0
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
-  itemName: HDPringle
+  itemName: HDPringull
+  isHeld: 0
 --- !u!122 &122512585742603982
 Halo:
   m_ObjectHideFlags: 1

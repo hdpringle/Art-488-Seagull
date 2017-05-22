@@ -141,13 +141,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointVal: 1
-  spawnTime: 50000
+  spawnTime: 30
   gravityActive: 0
   gravityStrength: 0.075
   heldByPlayer: 0
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: 
+  isHeld: 0
 --- !u!122 &122305188129038356
 Halo:
   m_ObjectHideFlags: 1

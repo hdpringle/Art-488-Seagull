@@ -141,13 +141,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointVal: 5
-  spawnTime: 0
+  spawnTime: 10
   gravityActive: 0
   gravityStrength: 0.075
   heldByPlayer: 0
   offset: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0}
   itemName: RubbertDuck
+  isHeld: 0
 --- !u!122 &122166336534813538
 Halo:
   m_ObjectHideFlags: 1
