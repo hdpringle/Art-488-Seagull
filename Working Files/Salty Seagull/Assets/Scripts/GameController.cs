@@ -58,6 +58,8 @@ public class GameController : MenuController
 	private bool paused, gameOver;
 	private Dictionary<int, PlayerSpawnInfo> playerInfo;
 	private GameObject gameOverMenu;
+	private AudioSource countDownSFX;
+	private AudioSource goSFX;
 	
 	// Use this for initialization
 	void Start ()
@@ -73,6 +75,8 @@ public class GameController : MenuController
 		sea = GameObject.Find ("Sea").transform;
 		winText = GameObject.Find ("WinText").GetComponent<Text> ();
 		winText.text = "";
+		countDownSFX = GameObject.Find("WinText").GetComponents<AudioSource>()[0];
+		goSFX = GameObject.Find("WinText").GetComponents<AudioSource>()[1];
 		filledPickups = new ArrayList();
 		// This block randomly chooses a set of spawn points for each player and nest
 		playerInfo = new Dictionary<int, PlayerSpawnInfo> ();
@@ -207,9 +211,19 @@ public class GameController : MenuController
 			if (currentWarmup > 0) {
 				currentWarmup -= Time.deltaTime;
 				seconds = ((int)currentWarmup) % 60;
-				winText.text = seconds.ToString ();
+				string prevText = winText.text;
+				winText.text = (seconds).ToString ();
+				//sound to go with counting down
+				if (prevText != winText.text && seconds > 0)
+				{
+					countDownSFX.PlayOneShot(countDownSFX.clip);
+				}
+				else if(prevText != winText.text && seconds == 0)
+				{
+					winText.text = "GO!";
+					goSFX.PlayOneShot(goSFX.clip);
+				}
 			} else {
-
 				//only play while timer ticks down
 				if (currentTime > 0) {
 					currentTime -= Time.deltaTime;
@@ -286,7 +300,7 @@ public class GameController : MenuController
 			if(gObj.GetComponent<Pickups>() != null)
 			{
 				//check if the spawn time of the prefab matches the current time, then if so spawn one
-				if (secs % gObj.GetComponent<Pickups>().spawnTime == 0)
+				if (secs % gObj.GetComponent<Pickups>().spawnTime == 0 && GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints") != null)
 				{
 					Transform[] spawnLocation = GameObject.Find(gObj.GetComponent<Pickups>().itemName + "SpawnPoints").transform.GetComponentsInChildren<Transform>();
 					var chosenLocation = 0;
