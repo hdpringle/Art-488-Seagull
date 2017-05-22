@@ -7,17 +7,18 @@ using System.Runtime.InteropServices;
 
 public class MapSelect : MenuController
 {
-
-	private const int NUMFIELDS = 4;
-
 	// map - see below
-	// field:
-	//		0 - map select
-	//		1 - player count select
 	private int map;
+	private Text titleText, capText, descText;
 
-	private string[] maps = { "BigIsland", "StiltIsland", "Cove" };
-	private GameObject[] fieldHighlights;
+	private string[] maps = { "BigIsland", "StiltIsland", "CampIsland", "Cove" };
+	private int[] capacities = { 4, 4, 4, 2 };
+	private string[] descriptions = {
+		"A large, polished island with lots of pickups.",
+		"A smaller island with an extended pier system inspired by floating villages.",
+		"A peaceful gettaway featuring a campsite.",
+		"Our pre-alpha testing map, included as a monument to how far we have come."
+	};
 
 	private class GSI
 	{
@@ -28,6 +29,8 @@ public class MapSelect : MenuController
 	private class MapRelations
 	{
 		public string name;
+		public int capacity;
+		public string description;
 		public GameObject highlight;
 		public Toggle toggle;
 	}
@@ -39,20 +42,20 @@ public class MapSelect : MenuController
 		map = 0;
 		inputs = new GSI();
 
+		titleText = GameObject.Find("Title").GetComponent<Text>();
+		capText = GameObject.Find("Capacity").GetComponent<Text>();
+		descText = GameObject.Find("Description").GetComponent<Text>();
+
 		relations = new Dictionary<int, MapRelations>();
 		for (int i = 0; i < maps.Length; i++)
 		{
 			MapRelations relation = new MapRelations();
 			relation.name = maps[i];
+			relation.capacity = capacities[i];
+			relation.description = descriptions[i];
 			relation.highlight = GameObject.Find(relation.name + "Highlight");
 			relation.toggle = GameObject.Find(relation.name + "Toggle").GetComponent<Toggle>();
 			relations[i] = relation;
-		}
-
-		fieldHighlights = new GameObject[NUMFIELDS];
-		for (int i = 0; i < NUMFIELDS; i++)
-		{
-			fieldHighlights[i] = GameObject.Find("Panel" + i);
 		}
 
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<AudioSource> ().volume = settings.musicVolume;
@@ -94,6 +97,10 @@ public class MapSelect : MenuController
 				settings.mapChosen = kvp.Value.name;
 				kvp.Value.highlight.SetActive(true);
 				kvp.Value.toggle.isOn = true;
+
+				titleText.text = kvp.Value.name;
+				capText.text = "Max Players: " + kvp.Value.capacity;
+				descText.text = kvp.Value.description;
 			}
 			else
 			{
